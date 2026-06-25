@@ -1,0 +1,50 @@
+{{- $author := partial "require-param.html" (dict "scope" site.Params "key" "author" "location" "params.author in hugo.toml" "expected" "the site author") -}}
+{{- $description := partial "require-param.html" (dict "scope" site.Params "key" "description" "location" "params.description in hugo.toml" "expected" "the site description") -}}
+{{- $themeColor := partial "require-param.html" (dict "scope" site.Params "key" "theme_color" "location" "params.theme_color in hugo.toml" "expected" "the browser theme color") -}}
+{{- $messageEmail := partial "require-param.html" (dict "scope" site.Params "key" "message_email" "location" "params.message_email in hugo.toml" "expected" "the message recipient email address") -}}
+
+{{- $licenseParams := partial "require-param.html" (dict "scope" site.Params "key" "license" "location" "[params.license] in hugo.toml" "expected" "the site license config table") -}}
+{{- $licenseName := partial "require-param.html" (dict "scope" $licenseParams "key" "name" "location" "params.license.name in hugo.toml" "expected" "the site license name") -}}
+{{- $licenseURL := partial "require-param.html" (dict "scope" $licenseParams "key" "url" "location" "params.license.url in hugo.toml" "expected" "the site license URL") -}}
+
+{{- $messageFormParams := partial "require-param.html" (dict "scope" site.Params "key" "message_form" "location" "[params.message_form] in hugo.toml" "expected" "the message form config table") -}}
+{{- $messageFormAPIKey := partial "require-param.html" (dict "scope" $messageFormParams "key" "api_key" "location" "params.message_form.api_key in hugo.toml" "expected" "the Static Forms API key") -}}
+{{- $messageFormSuccessPath := partial "require-param.html" (dict "scope" $messageFormParams "key" "success_path" "location" "params.message_form.success_path in hugo.toml" "expected" "the message success page path") -}}
+
+{{- $remoteImagesParams := partial "require-param.html" (dict "scope" site.Params "key" "remote_images" "location" "[params.remote_images] in hugo.toml" "expected" "the remote image config table") -}}
+{{- $remoteImagesBaseURL := partial "require-param.html" (dict "scope" $remoteImagesParams "key" "base_url" "location" "params.remote_images.base_url in hugo.toml" "expected" "the remote image base URL") -}}
+{{- $remoteImagesFetchHeaderName := partial "require-param.html" (dict "scope" $remoteImagesParams "key" "fetch_header_name" "location" "params.remote_images.fetch_header_name in hugo.toml" "expected" "the remote image fetch header name") -}}
+{{- $remoteImagesFetchHeaderValue := partial "require-param.html" (dict "scope" $remoteImagesParams "key" "fetch_header_value" "location" "params.remote_images.fetch_header_value in hugo.toml" "expected" "the remote image fetch header value") -}}
+
+{{- $openGraphParams := partial "require-param.html" (dict "scope" site.Params "key" "open_graph" "location" "[params.open_graph] in hugo.toml" "expected" "the Open Graph image config table") -}}
+{{- $openGraphRegularFontURL := partial "require-param.html" (dict "scope" $openGraphParams "key" "regular_font_url" "location" "params.open_graph.regular_font_url in hugo.toml" "expected" "the regular Open Graph font URL") -}}
+{{- $openGraphRegularFontCacheKey := partial "require-param.html" (dict "scope" $openGraphParams "key" "regular_font_cache_key" "location" "params.open_graph.regular_font_cache_key in hugo.toml" "expected" "the regular Open Graph font cache key") -}}
+{{- $openGraphMediumFontURL := partial "require-param.html" (dict "scope" $openGraphParams "key" "medium_font_url" "location" "params.open_graph.medium_font_url in hugo.toml" "expected" "the medium Open Graph font URL") -}}
+{{- $openGraphMediumFontCacheKey := partial "require-param.html" (dict "scope" $openGraphParams "key" "medium_font_cache_key" "location" "params.open_graph.medium_font_cache_key in hugo.toml" "expected" "the medium Open Graph font cache key") -}}
+
+{{- return (dict
+	"author" $author
+	"description" $description
+	"license" (dict
+	"name" $licenseName
+	"url" $licenseURL
+	)
+	"messageEmail" $messageEmail
+	"messageForm" (dict
+	"apiKey" $messageFormAPIKey
+	"successPath" $messageFormSuccessPath
+	)
+	"openGraph" (dict
+	"mediumFontCacheKey" $openGraphMediumFontCacheKey
+	"mediumFontURL" $openGraphMediumFontURL
+	"regularFontCacheKey" $openGraphRegularFontCacheKey
+	"regularFontURL" $openGraphRegularFontURL
+	)
+	"remoteImages" (dict
+	"baseURL" $remoteImagesBaseURL
+	"fetchHeaderName" $remoteImagesFetchHeaderName
+	"fetchHeaderValue" $remoteImagesFetchHeaderValue
+	)
+	"themeColor" $themeColor
+	)
+-}}

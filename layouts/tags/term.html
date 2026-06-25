@@ -1,0 +1,11 @@
+{{ define "main" }}
+<nav class="page-nav" aria-label="标签文章导航">
+	<a href="{{ "tags/" | relURL }}">返回标签页</a>
+</nav>
+<h1>#{{ .Title }}</h1>
+<div class="article-grid">
+	{{ range .Pages }}
+		{{ partial "article-card.html" (dict "page" . "date" .Date "headingLevel" 2) }}
+	{{ end }}
+</div>
+{{ end }}

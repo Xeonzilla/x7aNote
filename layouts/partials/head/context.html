@@ -1,0 +1,33 @@
+{{- $siteTitle := site.Title -}}
+{{- $pageTitle := cond .IsHome $siteTitle .Title -}}
+{{- if eq .Kind "404" -}}
+	{{- $pageTitle = "404 页面不存在" -}}
+{{- end -}}
+{{- $documentTitle := $siteTitle -}}
+{{- if not .IsHome -}}
+	{{- $documentTitle = printf "%s | %s" $pageTitle $siteTitle -}}
+{{- end -}}
+{{- $siteConfig := partialCached "site-config.html" site "site-config" -}}
+{{- $description := $siteConfig.description -}}
+{{- if .IsPage -}}
+	{{- with .Summary -}}
+		{{- $summary := . | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace -}}
+		{{- if $summary -}}
+			{{- $description = $summary | truncate 160 -}}
+		{{- end -}}
+	{{- end -}}
+{{- end -}}
+{{- $description = $description | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace -}}
+{{- return (dict
+	"page" .
+	"siteTitle" $siteTitle
+	"pageTitle" $pageTitle
+	"documentTitle" $documentTitle
+	"siteAuthor" $siteConfig.author
+	"siteDescription" $siteConfig.description
+	"themeColor" $siteConfig.themeColor
+	"licenseURL" $siteConfig.license.url
+	"description" $description
+	"isArticle" (and .IsPage (eq .Section "posts"))
+	)
+-}}

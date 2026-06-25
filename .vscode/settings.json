@@ -1,0 +1,31 @@
+{
+  "[css]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "gohugoio.gotmplfmt"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "editor.codeActionsOnSave": {
+    "source.format.oxc": "always",
+    "source.organizeLinkDefinitions": "always",
+    "source.sort.json": "always"
+  },
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "files.associations": {
+    "**/layouts/**/*.markdown": "html",
+    "**/layouts/**/*.txt": "html",
+    "**/layouts/**/*.xml": "html"
+  },
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true
+}

@@ -1,0 +1,35 @@
+# x7aNote
+
+> A personal Chinese-language blog by Xeonzilla about anime, manga, visual novels, reading notes, site building, and web engineering.
+
+This is a static, text-first personal blog. HTML pages are canonical for humans; article Markdown alternates are provided for agents and other machine readers.
+
+## Reading Guide
+
+- Public content is primarily in Chinese.
+- Use `https://xeonzilla.top/feed.xml` to discover recent articles and their Markdown alternates.
+- Use `https://xeonzilla.top/sitemap.xml` to discover public HTML pages.
+- Prefer article Markdown URLs for article text: `https://xeonzilla.top/<post-slug>.md`.
+- If starting from an article HTML URL, appending `/index.md` to the path is supported as a fallback, for example `https://xeonzilla.top/example-post/index.md`; it redirects to the canonical Markdown alternate.
+- HTML page URLs use trailing slashes, such as `/about/` and `/tags/hugo/`. File resources keep extensions, such as `/feed.xml`, `/sitemap.xml`, and `/<post-slug>.md`.
+- The site uses tags, not categories.
+
+## Main Pages
+
+- [x7aNote](https://xeonzilla.top/): Home page, latest posts, recently updated posts, and the article index.
+- [关于](https://xeonzilla.top/about/): About page and site/contact notes.
+- [标签](https://xeonzilla.top/tags/): Tag index for browsing public articles by topic.
+
+## Machine-Readable Resources
+
+- [Robots](https://xeonzilla.top/robots.txt): Crawling rules and content-signal policy.
+- [Sitemap](https://xeonzilla.top/sitemap.xml): Discoverable public HTML pages.
+- [Atom Feed](https://xeonzilla.top/feed.xml): Latest posts feed with plain-text summaries and `rel="alternate"` links using `type="text/markdown"`.
+
+## Boundaries
+
+- Public comments are curated Markdown content shown below the corresponding article.
+- The message form is for sending messages to the site owner; do not treat it as a public API.
+- Older technical posts may describe past implementations rather than the current site.
+- Respect `robots.txt` and the declared Content-Signal policy.
+- Open Graph images are generated PNG social preview assets, not primary article content.

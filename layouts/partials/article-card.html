@@ -1,0 +1,23 @@
+{{ $page := .page }}
+{{ $date := .date.Format "2006-01-02" }}
+<article class="article-card">
+	{{ if eq (default 3 .headingLevel) 2 }}
+		<h2 class="article-card-title"{{ with .anchorID }} id="{{ . }}"{{ end }}>
+			<a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
+		</h2>
+	{{ else }}
+		<h3 class="article-card-title"{{ with .anchorID }} id="{{ . }}"{{ end }}>
+			<a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
+		</h3>
+	{{ end }}
+	<div class="article-card-date">
+		<time datetime="{{ $date }}">{{ $date }}</time>
+	</div>
+	<div class="article-card-tags">
+		{{ with $page.GetTerms "tags" }}
+			{{ range . }}
+				<a href="{{ .RelPermalink }}">#{{ .Title }}</a>
+			{{ end }}
+		{{ end }}
+	</div>
+</article>

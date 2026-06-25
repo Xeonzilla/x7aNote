@@ -1,0 +1,42 @@
+{{ define "main" }}
+{{ $posts := (where .Site.RegularPages "Section" "posts").ByDate.Reverse }}
+{{ $homeParams := partial "require-param.html" (dict "scope" site.Params "key" "home" "location" "[params.home] in hugo.toml" "expected" "the home page count table") }}
+{{ $latestPostCount := partial "require-param.html" (dict "scope" $homeParams "key" "latest_post_count" "location" "params.home.latest_post_count in hugo.toml" "expected" "the latest post count") }}
+{{ $recentUpdateCount := partial "require-param.html" (dict "scope" $homeParams "key" "recent_update_count" "location" "params.home.recent_update_count in hugo.toml" "expected" "the recent update count") }}
+{{ $latestPosts := first $latestPostCount $posts }}
+{{ $updatedPosts := where $posts "Params.lastmod" "ne" nil }}
+{{ $olderUpdatedPosts := complement $latestPosts $updatedPosts }}
+{{ $recentlyUpdatedPosts := first $recentUpdateCount ($olderUpdatedPosts.ByLastmod.Reverse) }}
+<div class="article-grid index-grid">
+	<div class="index-welcome">
+		<div class="index-welcome-tagline">欢迎<br>来到</div>
+		<h1 class="index-welcome-title">{{ .Site.Title }}</h1>
+	</div>
+
+	<nav class="index-section-nav" aria-label="首页分区">
+		<div><a href="#latest">最近发布</a></div>
+		<div><a href="#recent">最近更新</a></div>
+		<div><a href="#others">其他文章</a></div>
+	</nav>
+
+	<nav class="index-site-links" aria-label="站点链接">
+		<div><a href="{{ "about/" | relURL }}">关于</a></div>
+		<div><a href="{{ "tags/" | relURL }}">标签</a></div>
+		<div><a href="{{ "feed.xml" | relURL }}" rel="alternate" type="application/atom+xml">订阅</a></div>
+		<div><a href="https://www.travellings.cn/plain.html" target="_blank" rel="nofollow noopener noreferrer">开往</a></div>
+	</nav>
+
+	<h2 class="index-section-heading" id="latest">最近发布</h2>
+	{{ range $latestPosts }}
+		{{ partial "article-card.html" (dict "page" . "date" .Date "anchorID" (.File.ContentBaseName | anchorize)) }}
+	{{ end }}
+
+	<h2 class="index-section-heading" id="recent">最近更新</h2>
+	{{ range $recentlyUpdatedPosts }}
+		{{ partial "article-card.html" (dict "page" . "date" .Lastmod "anchorID" (.File.ContentBaseName | anchorize)) }}
+	{{ end }}
+
+	<h2 class="index-section-heading" id="others">其他文章</h2>
+	{{ partial "article-archive.html" (complement (union $latestPosts $recentlyUpdatedPosts) $posts) }}
+</div>
+{{ end }}

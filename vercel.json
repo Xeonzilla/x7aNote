@@ -1,0 +1,3414 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "bash vercel-build.sh",
+  "framework": "hugo",
+  "headers": [
+    {
+      "headers": [
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'none'; base-uri 'none'; script-src 'none'; script-src-attr 'none'; style-src 'self'; style-src-elem 'self'; style-src-attr 'none'; img-src 'self'; font-src 'self'; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; form-action 'self' https://api.staticforms.dev; frame-ancestors 'none'; upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Permitted-Cross-Domain-Policies",
+          "value": "none"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "accelerometer=(), autoplay=(), browsing-topics=(), camera=(), clipboard-read=(), clipboard-write=(), display-capture=(), encrypted-media=(), fullscreen=(), geolocation=(), gyroscope=(), interest-cohort=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=()"
+        },
+        {
+          "key": "Cross-Origin-Embedder-Policy",
+          "value": "require-corp"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin"
+        },
+        {
+          "key": "Link",
+          "value": "</robots.txt>; rel=\"describedby\"; type=\"text/plain\", </sitemap.xml>; rel=\"index\"; type=\"application/xml\", </llms.txt>; rel=\"describedby\"; type=\"text/plain\""
+        }
+      ],
+      "source": "/(.*)"
+    },
+    {
+      "headers": [
+        {
+          "key": "Cross-Origin-Resource-Policy",
+          "value": "same-origin"
+        }
+      ],
+      "source": "/((?!favicon\\.svg$).*)"
+    },
+    {
+      "headers": [
+        {
+          "key": "Cross-Origin-Resource-Policy",
+          "value": "cross-origin"
+        }
+      ],
+      "source": "/favicon.svg"
+    },
+    {
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ],
+      "source": "/(css|images|open-graph)/(.*)"
+    },
+    {
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate, s-maxage=3600, stale-while-revalidate=86400"
+        }
+      ],
+      "source": "/feed.xml"
+    },
+    {
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate, s-maxage=86400, stale-while-revalidate=86400"
+        }
+      ],
+      "source": "/:asset(llms\\.txt|robots\\.txt|sitemap\\.xml)"
+    },
+    {
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate, s-maxage=86400, stale-while-revalidate=86400"
+        }
+      ],
+      "source": "/:slug\\.md"
+    },
+    {
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, stale-while-revalidate=86400"
+        }
+      ],
+      "source": "/:asset(favicon\\.ico|favicon\\.svg|favicon-96x96\\.png)"
+    },
+    {
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ],
+      "source": "/404.html"
+    },
+    {
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ],
+      "source": "/message-sent/"
+    }
+  ],
+  "outputDirectory": "public",
+  "redirects": [
+    {
+      "destination": "/:slug.md",
+      "source": "/:slug/index.md",
+      "statusCode": 308
+    },
+    {
+      "destination": "/feed.xml",
+      "source": "/rss.xml",
+      "statusCode": 308
+    },
+    {
+      "destination": "/feed.xml",
+      "source": "/atom.xml",
+      "statusCode": 308
+    },
+    {
+      "destination": "/feed.xml",
+      "source": "/index.xml",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sitemap.xml",
+      "source": "/sitemap-index.xml",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sitemap.xml",
+      "source": "/sitemap-0.xml",
+      "statusCode": 308
+    },
+    {
+      "destination": "/episode12-adaptation-and-s3-summary/",
+      "source": "/collected_articles/www.bilibili.com/opus/946810933277098003/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/episode12-adaptation-and-s3-summary/",
+      "source": "/collected_articles/www.bilibili.com/opus/946810933277098003",
+      "statusCode": 308
+    },
+    {
+      "destination": "/episode12-adaptation-and-s3-summary/",
+      "source": "/note/episode12-adaptation-and-s3-summary/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/episode12-adaptation-and-s3-summary/",
+      "source": "/note/episode12-adaptation-and-s3-summary",
+      "statusCode": 308
+    },
+    {
+      "destination": "/episode12-adaptation-and-s3-summary/",
+      "source": "/posts/episode12_adaptation_and_s3_summary/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/episode12-adaptation-and-s3-summary/",
+      "source": "/posts/episode12_adaptation_and_s3_summary",
+      "statusCode": 308
+    },
+    {
+      "destination": "/episode12-adaptation-and-s3-summary/",
+      "source": "/posts/episode12-adaptation-and-s3-summary/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/episode12-adaptation-and-s3-summary/",
+      "source": "/posts/episode12-adaptation-and-s3-summary",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anti-malicious-mirroring/",
+      "source": "/note/anti-malicious-mirroring/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anti-malicious-mirroring/",
+      "source": "/note/anti-malicious-mirroring",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anti-malicious-mirroring/",
+      "source": "/posts/anti_malicious_mirroring/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anti-malicious-mirroring/",
+      "source": "/posts/anti_malicious_mirroring",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anti-malicious-mirroring/",
+      "source": "/posts/anti-malicious-mirroring/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anti-malicious-mirroring/",
+      "source": "/posts/anti-malicious-mirroring",
+      "statusCode": 308
+    },
+    {
+      "destination": "/comments-widget-and-giscus/",
+      "source": "/note/auto-theme-comments-system-with-comments-widget/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/comments-widget-and-giscus/",
+      "source": "/note/auto-theme-comments-system-with-comments-widget",
+      "statusCode": 308
+    },
+    {
+      "destination": "/comments-widget-and-giscus/",
+      "source": "/post/auto_theme_comments_system_with_comments_widget/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/comments-widget-and-giscus/",
+      "source": "/post/auto_theme_comments_system_with_comments_widget",
+      "statusCode": 308
+    },
+    {
+      "destination": "/comments-widget-and-giscus/",
+      "source": "/posts/auto_theme_comments_system_with_comments_widget/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/comments-widget-and-giscus/",
+      "source": "/posts/auto_theme_comments_system_with_comments_widget",
+      "statusCode": 308
+    },
+    {
+      "destination": "/comments-widget-and-giscus/",
+      "source": "/posts/auto-theme-comments-system-with-comments-widget/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/comments-widget-and-giscus/",
+      "source": "/posts/auto-theme-comments-system-with-comments-widget",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-bangumi/",
+      "source": "/note/blog-bangumi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-bangumi/",
+      "source": "/note/blog-bangumi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-bangumi/",
+      "source": "/post/blog_bangumi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-bangumi/",
+      "source": "/post/blog_bangumi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-bangumi/",
+      "source": "/posts/blog_bangumi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-bangumi/",
+      "source": "/posts/blog_bangumi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-bangumi/",
+      "source": "/posts/blog-bangumi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-bangumi/",
+      "source": "/posts/blog-bangumi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-summary/",
+      "source": "/note/blog-summary/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-summary/",
+      "source": "/note/blog-summary",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-summary/",
+      "source": "/post/blog_summary/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-summary/",
+      "source": "/post/blog_summary",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-summary/",
+      "source": "/posts/blog_summary/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-summary/",
+      "source": "/posts/blog_summary",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-summary/",
+      "source": "/posts/blog-summary/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-summary/",
+      "source": "/posts/blog-summary",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-summary-season2/",
+      "source": "/note/blog-summary2/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-summary-season2/",
+      "source": "/note/blog-summary2",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-summary-season2/",
+      "source": "/posts/blog_summary2/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-summary-season2/",
+      "source": "/posts/blog_summary2",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-summary-season2/",
+      "source": "/posts/blog-summary2/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-summary-season2/",
+      "source": "/posts/blog-summary2",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-tags-and-post-titles/",
+      "source": "/jotting/blog-tags-and-post-titles/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-tags-and-post-titles/",
+      "source": "/jotting/blog-tags-and-post-titles",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-tags-and-post-titles/",
+      "source": "/posts/blog_tags_and_post_titles/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-tags-and-post-titles/",
+      "source": "/posts/blog_tags_and_post_titles",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-tags-and-post-titles/",
+      "source": "/posts/blog-tags-and-post-titles/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-tags-and-post-titles/",
+      "source": "/posts/blog-tags-and-post-titles",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-tech-debt-pain/",
+      "source": "/jotting/blog-tech-debt-pain/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/blog-tech-debt-pain/",
+      "source": "/jotting/blog-tech-debt-pain",
+      "statusCode": 308
+    },
+    {
+      "destination": "/free-is-the-most-expensive/",
+      "source": "/jotting/free-is-the-most-expensive/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/free-is-the-most-expensive/",
+      "source": "/jotting/free-is-the-most-expensive",
+      "statusCode": 308
+    },
+    {
+      "destination": "/free-is-the-most-expensive/",
+      "source": "/post/free_is_the_most_expensive/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/free-is-the-most-expensive/",
+      "source": "/post/free_is_the_most_expensive",
+      "statusCode": 308
+    },
+    {
+      "destination": "/free-is-the-most-expensive/",
+      "source": "/posts/free_is_the_most_expensive/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/free-is-the-most-expensive/",
+      "source": "/posts/free_is_the_most_expensive",
+      "statusCode": 308
+    },
+    {
+      "destination": "/free-is-the-most-expensive/",
+      "source": "/posts/free-is-the-most-expensive/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/free-is-the-most-expensive/",
+      "source": "/posts/free-is-the-most-expensive",
+      "statusCode": 308
+    },
+    {
+      "destination": "/from-fuwari-to-thought-lite/",
+      "source": "/note/from-fuwari-to-thought-lite/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/from-fuwari-to-thought-lite/",
+      "source": "/note/from-fuwari-to-thought-lite",
+      "statusCode": 308
+    },
+    {
+      "destination": "/from-papermod-to-blowfish/",
+      "source": "/note/from-papermod-to-blowfish/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/from-papermod-to-blowfish/",
+      "source": "/note/from-papermod-to-blowfish",
+      "statusCode": 308
+    },
+    {
+      "destination": "/from-papermod-to-blowfish/",
+      "source": "/post/from_papermod_to_blowfish/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/from-papermod-to-blowfish/",
+      "source": "/post/from_papermod_to_blowfish",
+      "statusCode": 308
+    },
+    {
+      "destination": "/from-papermod-to-blowfish/",
+      "source": "/posts/from_papermod_to_blowfish/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/from-papermod-to-blowfish/",
+      "source": "/posts/from_papermod_to_blowfish",
+      "statusCode": 308
+    },
+    {
+      "destination": "/from-papermod-to-blowfish/",
+      "source": "/posts/from-papermod-to-blowfish/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/from-papermod-to-blowfish/",
+      "source": "/posts/from-papermod-to-blowfish",
+      "statusCode": 308
+    },
+    {
+      "destination": "/fujimototatsuki17-26/",
+      "source": "/note/fujimototatsuki17-26/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/fujimototatsuki17-26/",
+      "source": "/note/fujimototatsuki17-26",
+      "statusCode": 308
+    },
+    {
+      "destination": "/fujimototatsuki17-26/",
+      "source": "/posts/fujimototatsuki17-26/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/fujimototatsuki17-26/",
+      "source": "/posts/fujimototatsuki17-26",
+      "statusCode": 308
+    },
+    {
+      "destination": "/fuwari-custom-image-service/",
+      "source": "/note/fuwari-custom-image-service/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/fuwari-custom-image-service/",
+      "source": "/note/fuwari-custom-image-service",
+      "statusCode": 308
+    },
+    {
+      "destination": "/fuwari-custom-image-service/",
+      "source": "/posts/fuwari-custom-image-service/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/fuwari-custom-image-service/",
+      "source": "/posts/fuwari-custom-image-service",
+      "statusCode": 308
+    },
+    {
+      "destination": "/fuwari-responsive-images/",
+      "source": "/note/fuwari-responsive-images/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/fuwari-responsive-images/",
+      "source": "/note/fuwari-responsive-images",
+      "statusCode": 308
+    },
+    {
+      "destination": "/fuwari-responsive-images/",
+      "source": "/posts/fuwari_responsive_images/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/fuwari-responsive-images/",
+      "source": "/posts/fuwari_responsive_images",
+      "statusCode": 308
+    },
+    {
+      "destination": "/fuwari-responsive-images/",
+      "source": "/posts/fuwari-responsive-images/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/fuwari-responsive-images/",
+      "source": "/posts/fuwari-responsive-images",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hugo-avif-cls/",
+      "source": "/note/hugo-avif-cls/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hugo-avif-cls/",
+      "source": "/note/hugo-avif-cls",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hugo-avif-cls/",
+      "source": "/post/hugo_avif_cls/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hugo-avif-cls/",
+      "source": "/post/hugo_avif_cls",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hugo-avif-cls/",
+      "source": "/posts/hugo_avif_cls/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hugo-avif-cls/",
+      "source": "/posts/hugo_avif_cls",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hugo-avif-cls/",
+      "source": "/posts/hugo-avif-cls/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hugo-avif-cls/",
+      "source": "/posts/hugo-avif-cls",
+      "statusCode": 308
+    },
+    {
+      "destination": "/netlify-supabase-umami/",
+      "source": "/note/netlify-supabase-umami/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/netlify-supabase-umami/",
+      "source": "/note/netlify-supabase-umami",
+      "statusCode": 308
+    },
+    {
+      "destination": "/netlify-supabase-umami/",
+      "source": "/post/netlify_supabase_umami/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/netlify-supabase-umami/",
+      "source": "/post/netlify_supabase_umami",
+      "statusCode": 308
+    },
+    {
+      "destination": "/netlify-supabase-umami/",
+      "source": "/posts/netlify_supabase_umami/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/netlify-supabase-umami/",
+      "source": "/posts/netlify_supabase_umami",
+      "statusCode": 308
+    },
+    {
+      "destination": "/netlify-supabase-umami/",
+      "source": "/posts/netlify-supabase-umami/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/netlify-supabase-umami/",
+      "source": "/posts/netlify-supabase-umami",
+      "statusCode": 308
+    },
+    {
+      "destination": "/the-bumpy-road-to-thought-lite/",
+      "source": "/jotting/the-bumpy-road-to-thought-lite/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/the-bumpy-road-to-thought-lite/",
+      "source": "/jotting/the-bumpy-road-to-thought-lite",
+      "statusCode": 308
+    },
+    {
+      "destination": "/the-plunge-from-fantasy-to-reality/",
+      "source": "/jotting/the-plunge-from-fantasy-to-reality/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/the-plunge-from-fantasy-to-reality/",
+      "source": "/jotting/the-plunge-from-fantasy-to-reality",
+      "statusCode": 308
+    },
+    {
+      "destination": "/the-plunge-from-fantasy-to-reality/",
+      "source": "/posts/the_plunge_from_fantasy_to_reality/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/the-plunge-from-fantasy-to-reality/",
+      "source": "/posts/the_plunge_from_fantasy_to_reality",
+      "statusCode": 308
+    },
+    {
+      "destination": "/the-plunge-from-fantasy-to-reality/",
+      "source": "/posts/the-plunge-from-fantasy-to-reality/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/the-plunge-from-fantasy-to-reality/",
+      "source": "/posts/the-plunge-from-fantasy-to-reality",
+      "statusCode": 308
+    },
+    {
+      "destination": "/twikoo-cloudflare-update/",
+      "source": "/note/twikoo-cloudflare-update/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/twikoo-cloudflare-update/",
+      "source": "/note/twikoo-cloudflare-update",
+      "statusCode": 308
+    },
+    {
+      "destination": "/twikoo-cloudflare-update/",
+      "source": "/posts/twikoo-cloudflare_update/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/twikoo-cloudflare-update/",
+      "source": "/posts/twikoo-cloudflare_update",
+      "statusCode": 308
+    },
+    {
+      "destination": "/twikoo-cloudflare-update/",
+      "source": "/posts/twikoo-cloudflare-update/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/twikoo-cloudflare-update/",
+      "source": "/posts/twikoo-cloudflare-update",
+      "statusCode": 308
+    },
+    {
+      "destination": "/waline/",
+      "source": "/note/waline/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/waline/",
+      "source": "/note/waline",
+      "statusCode": 308
+    },
+    {
+      "destination": "/waline/",
+      "source": "/post/waline/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/waline/",
+      "source": "/post/waline",
+      "statusCode": 308
+    },
+    {
+      "destination": "/waline/",
+      "source": "/posts/waline/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/waline/",
+      "source": "/posts/waline",
+      "statusCode": 308
+    },
+    {
+      "destination": "/7th-timeloop/",
+      "source": "/note/7th-timeloop/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/7th-timeloop/",
+      "source": "/note/7th-timeloop",
+      "statusCode": 308
+    },
+    {
+      "destination": "/7th-timeloop/",
+      "source": "/post/7th_timeloop/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/7th-timeloop/",
+      "source": "/post/7th_timeloop",
+      "statusCode": 308
+    },
+    {
+      "destination": "/7th-timeloop/",
+      "source": "/post/loopnana/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/7th-timeloop/",
+      "source": "/post/loopnana",
+      "statusCode": 308
+    },
+    {
+      "destination": "/7th-timeloop/",
+      "source": "/posts/7th_timeloop/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/7th-timeloop/",
+      "source": "/posts/7th_timeloop",
+      "statusCode": 308
+    },
+    {
+      "destination": "/7th-timeloop/",
+      "source": "/posts/7th-timeloop/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/7th-timeloop/",
+      "source": "/posts/7th-timeloop",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ai-no-idenshi/",
+      "source": "/note/ai-no-idenshi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ai-no-idenshi/",
+      "source": "/note/ai-no-idenshi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ai-no-idenshi/",
+      "source": "/post/ai_no_idenshi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ai-no-idenshi/",
+      "source": "/post/ai_no_idenshi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ai-no-idenshi/",
+      "source": "/posts/ai_no_idenshi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ai-no-idenshi/",
+      "source": "/posts/ai_no_idenshi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ai-no-idenshi/",
+      "source": "/posts/ai-no-idenshi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ai-no-idenshi/",
+      "source": "/posts/ai-no-idenshi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anime-impressions-fall2025/",
+      "source": "/jotting/anime-impressions-fall2025/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anime-impressions-fall2025/",
+      "source": "/jotting/anime-impressions-fall2025",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anime-impressions-summer2025/",
+      "source": "/jotting/anime-impressions-summer2025/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anime-impressions-summer2025/",
+      "source": "/jotting/anime-impressions-summer2025",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anime-impressions-summer2025/",
+      "source": "/posts/anime_impressions_july2025/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anime-impressions-summer2025/",
+      "source": "/posts/anime_impressions_july2025",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anime-impressions-summer2025/",
+      "source": "/posts/anime-impressions-july2025/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anime-impressions-summer2025/",
+      "source": "/posts/anime-impressions-july2025",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anime-impressions-summer2025/",
+      "source": "/posts/anime-impressions-summer2025/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anime-impressions-summer2025/",
+      "source": "/posts/anime-impressions-summer2025",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anime-impressions-winter2026/",
+      "source": "/jotting/anime-impressions-winter2026/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anime-impressions-winter2026/",
+      "source": "/jotting/anime-impressions-winter2026",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anime-science-preface/",
+      "source": "/note/anime-science-preface/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anime-science-preface/",
+      "source": "/note/anime-science-preface",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anime-science-preface/",
+      "source": "/post/anime_science_preface/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anime-science-preface/",
+      "source": "/post/anime_science_preface",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anime-science-preface/",
+      "source": "/posts/anime_science_preface/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anime-science-preface/",
+      "source": "/posts/anime_science_preface",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anime-science-preface/",
+      "source": "/posts/anime-science-preface/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/anime-science-preface/",
+      "source": "/posts/anime-science-preface",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ao-buta-knapsack/",
+      "source": "/note/ao-buta-knapsack/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ao-buta-knapsack/",
+      "source": "/note/ao-buta-knapsack",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ao-buta-knapsack/",
+      "source": "/posts/ao-buta_knapsack/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ao-buta-knapsack/",
+      "source": "/posts/ao-buta_knapsack",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ao-buta-knapsack/",
+      "source": "/posts/ao-buta-knapsack/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ao-buta-knapsack/",
+      "source": "/posts/ao-buta-knapsack",
+      "statusCode": 308
+    },
+    {
+      "destination": "/aonatsu-line/",
+      "source": "/note/aonatsu-line/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/aonatsu-line/",
+      "source": "/note/aonatsu-line",
+      "statusCode": 308
+    },
+    {
+      "destination": "/aonatsu-line/",
+      "source": "/posts/aonatsu_line/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/aonatsu-line/",
+      "source": "/posts/aonatsu_line",
+      "statusCode": 308
+    },
+    {
+      "destination": "/aonatsu-line/",
+      "source": "/posts/aonatsu-line/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/aonatsu-line/",
+      "source": "/posts/aonatsu-line",
+      "statusCode": 308
+    },
+    {
+      "destination": "/apocalypse-hotel/",
+      "source": "/note/apocalypse-hotel/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/apocalypse-hotel/",
+      "source": "/note/apocalypse-hotel",
+      "statusCode": 308
+    },
+    {
+      "destination": "/apocalypse-hotel/",
+      "source": "/posts/apocalypse_hotel/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/apocalypse-hotel/",
+      "source": "/posts/apocalypse_hotel",
+      "statusCode": 308
+    },
+    {
+      "destination": "/apocalypse-hotel/",
+      "source": "/posts/apocalypse-hotel/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/apocalypse-hotel/",
+      "source": "/posts/apocalypse-hotel",
+      "statusCode": 308
+    },
+    {
+      "destination": "/atri-my-dear-moments/",
+      "source": "/note/atri-my-dear-moments/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/atri-my-dear-moments/",
+      "source": "/note/atri-my-dear-moments",
+      "statusCode": 308
+    },
+    {
+      "destination": "/atri-my-dear-moments/",
+      "source": "/post/atri_my_dear_moments/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/atri-my-dear-moments/",
+      "source": "/post/atri_my_dear_moments",
+      "statusCode": 308
+    },
+    {
+      "destination": "/atri-my-dear-moments/",
+      "source": "/posts/atri_my_dear_moments/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/atri-my-dear-moments/",
+      "source": "/posts/atri_my_dear_moments",
+      "statusCode": 308
+    },
+    {
+      "destination": "/atri-my-dear-moments/",
+      "source": "/posts/atri-my-dear-moments/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/atri-my-dear-moments/",
+      "source": "/posts/atri-my-dear-moments",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bang-bravern/",
+      "source": "/note/bang-bravern/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bang-bravern/",
+      "source": "/note/bang-bravern",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bang-bravern/",
+      "source": "/post/bang_bravern/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bang-bravern/",
+      "source": "/post/bang_bravern",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bang-bravern/",
+      "source": "/post/yuuki_bakuhatsu_bang_bravern/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bang-bravern/",
+      "source": "/post/yuuki_bakuhatsu_bang_bravern",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bang-bravern/",
+      "source": "/posts/bang_bravern/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bang-bravern/",
+      "source": "/posts/bang_bravern",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bang-bravern/",
+      "source": "/posts/bang-bravern/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bang-bravern/",
+      "source": "/posts/bang-bravern",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bang-dream-ave-mujica/",
+      "source": "/note/bang-dream-ave-mujica/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bang-dream-ave-mujica/",
+      "source": "/note/bang-dream-ave-mujica",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bang-dream-ave-mujica/",
+      "source": "/post/bang_dream_ave_mujica/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bang-dream-ave-mujica/",
+      "source": "/post/bang_dream_ave_mujica",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bang-dream-ave-mujica/",
+      "source": "/posts/bang_dream_ave_mujica/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bang-dream-ave-mujica/",
+      "source": "/posts/bang_dream_ave_mujica",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bang-dream-ave-mujica/",
+      "source": "/posts/bang-dream-ave-mujica/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bang-dream-ave-mujica/",
+      "source": "/posts/bang-dream-ave-mujica",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bisque-koi/",
+      "source": "/note/bisque-koi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bisque-koi/",
+      "source": "/note/bisque-koi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bisque-koi/",
+      "source": "/post/bisque_koi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bisque-koi/",
+      "source": "/post/bisque_koi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bisque-koi/",
+      "source": "/post/sono_bisque_doll_wa_koi_o_suru/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bisque-koi/",
+      "source": "/post/sono_bisque_doll_wa_koi_o_suru",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bisque-koi/",
+      "source": "/posts/bisque_koi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bisque-koi/",
+      "source": "/posts/bisque_koi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bisque-koi/",
+      "source": "/posts/bisque-koi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bisque-koi/",
+      "source": "/posts/bisque-koi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bocchi-the-rock/",
+      "source": "/note/bocchi-the-rock/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bocchi-the-rock/",
+      "source": "/note/bocchi-the-rock",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bocchi-the-rock/",
+      "source": "/post/bocchi_the_rock/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bocchi-the-rock/",
+      "source": "/post/bocchi_the_rock",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bocchi-the-rock/",
+      "source": "/posts/bocchi_the_rock/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bocchi-the-rock/",
+      "source": "/posts/bocchi_the_rock",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bocchi-the-rock/",
+      "source": "/posts/bocchi-the-rock/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bocchi-the-rock/",
+      "source": "/posts/bocchi-the-rock",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bokuyaba-season2/",
+      "source": "/note/bokuyaba-season2/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bokuyaba-season2/",
+      "source": "/note/bokuyaba-season2",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bokuyaba-season2/",
+      "source": "/post/bokuyaba_season2/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bokuyaba-season2/",
+      "source": "/post/bokuyaba_season2",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bokuyaba-season2/",
+      "source": "/posts/bokuyaba_season2/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bokuyaba-season2/",
+      "source": "/posts/bokuyaba_season2",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bokuyaba-season2/",
+      "source": "/posts/bokuyaba-season2/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/bokuyaba-season2/",
+      "source": "/posts/bokuyaba-season2",
+      "statusCode": 308
+    },
+    {
+      "destination": "/chainsawman-reze-arc/",
+      "source": "/note/chainsawman-reze-arc/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/chainsawman-reze-arc/",
+      "source": "/note/chainsawman-reze-arc",
+      "statusCode": 308
+    },
+    {
+      "destination": "/chiramune/",
+      "source": "/note/chiramune/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/chiramune/",
+      "source": "/note/chiramune",
+      "statusCode": 308
+    },
+    {
+      "destination": "/chiramune/",
+      "source": "/posts/chiramune/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/chiramune/",
+      "source": "/posts/chiramune",
+      "statusCode": 308
+    },
+    {
+      "destination": "/chou-kaguya-hime/",
+      "source": "/note/chou-kaguya-hime/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/chou-kaguya-hime/",
+      "source": "/note/chou-kaguya-hime",
+      "statusCode": 308
+    },
+    {
+      "destination": "/chroma-shift-and-rgb-shift/",
+      "source": "/note/chroma-shift-and-rgb-shift/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/chroma-shift-and-rgb-shift/",
+      "source": "/note/chroma-shift-and-rgb-shift",
+      "statusCode": 308
+    },
+    {
+      "destination": "/chroma-shift-and-rgb-shift/",
+      "source": "/post/chroma_shift_and_rgb_shift/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/chroma-shift-and-rgb-shift/",
+      "source": "/post/chroma_shift_and_rgb_shift",
+      "statusCode": 308
+    },
+    {
+      "destination": "/chroma-shift-and-rgb-shift/",
+      "source": "/posts/chroma_shift_and_rgb_shift/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/chroma-shift-and-rgb-shift/",
+      "source": "/posts/chroma_shift_and_rgb_shift",
+      "statusCode": 308
+    },
+    {
+      "destination": "/chroma-shift-and-rgb-shift/",
+      "source": "/posts/chroma-shift-and-rgb-shift/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/chroma-shift-and-rgb-shift/",
+      "source": "/posts/chroma-shift-and-rgb-shift",
+      "statusCode": 308
+    },
+    {
+      "destination": "/d4dj-first-mix/",
+      "source": "/note/d4dj-first-mix/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/d4dj-first-mix/",
+      "source": "/note/d4dj-first-mix",
+      "statusCode": 308
+    },
+    {
+      "destination": "/d4dj-first-mix/",
+      "source": "/post/d4dj_first_mix/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/d4dj-first-mix/",
+      "source": "/post/d4dj_first_mix",
+      "statusCode": 308
+    },
+    {
+      "destination": "/d4dj-first-mix/",
+      "source": "/posts/d4dj_first_mix/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/d4dj-first-mix/",
+      "source": "/posts/d4dj_first_mix",
+      "statusCode": 308
+    },
+    {
+      "destination": "/d4dj-first-mix/",
+      "source": "/posts/d4dj-first-mix/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/d4dj-first-mix/",
+      "source": "/posts/d4dj-first-mix",
+      "statusCode": 308
+    },
+    {
+      "destination": "/dandadan/",
+      "source": "/note/dandadan/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/dandadan/",
+      "source": "/note/dandadan",
+      "statusCode": 308
+    },
+    {
+      "destination": "/dandadan/",
+      "source": "/post/dandadan/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/dandadan/",
+      "source": "/post/dandadan",
+      "statusCode": 308
+    },
+    {
+      "destination": "/dandadan/",
+      "source": "/posts/dandadan/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/dandadan/",
+      "source": "/posts/dandadan",
+      "statusCode": 308
+    },
+    {
+      "destination": "/danjon-meshi/",
+      "source": "/note/danjon-meshi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/danjon-meshi/",
+      "source": "/note/danjon-meshi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/danjon-meshi/",
+      "source": "/post/danjon_meshi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/danjon-meshi/",
+      "source": "/post/danjon_meshi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/danjon-meshi/",
+      "source": "/posts/danjon_meshi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/danjon-meshi/",
+      "source": "/posts/danjon_meshi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/danjon-meshi/",
+      "source": "/posts/danjon-meshi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/danjon-meshi/",
+      "source": "/posts/danjon-meshi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/food-court-de-mata-ashita/",
+      "source": "/note/food-court-de-mata-ashita/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/food-court-de-mata-ashita/",
+      "source": "/note/food-court-de-mata-ashita",
+      "statusCode": 308
+    },
+    {
+      "destination": "/food-court-de-mata-ashita/",
+      "source": "/posts/food_court_de_mata_ashita/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/food-court-de-mata-ashita/",
+      "source": "/posts/food_court_de_mata_ashita",
+      "statusCode": 308
+    },
+    {
+      "destination": "/food-court-de-mata-ashita/",
+      "source": "/posts/food-court-de-mata-ashita/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/food-court-de-mata-ashita/",
+      "source": "/posts/food-court-de-mata-ashita",
+      "statusCode": 308
+    },
+    {
+      "destination": "/gimai-seikatsu/",
+      "source": "/note/gimai-seikatsu/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/gimai-seikatsu/",
+      "source": "/note/gimai-seikatsu",
+      "statusCode": 308
+    },
+    {
+      "destination": "/gimai-seikatsu/",
+      "source": "/post/gimai_seikatsu/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/gimai-seikatsu/",
+      "source": "/post/gimai_seikatsu",
+      "statusCode": 308
+    },
+    {
+      "destination": "/gimai-seikatsu/",
+      "source": "/posts/gimai_seikatsu/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/gimai-seikatsu/",
+      "source": "/posts/gimai_seikatsu",
+      "statusCode": 308
+    },
+    {
+      "destination": "/gimai-seikatsu/",
+      "source": "/posts/gimai-seikatsu/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/gimai-seikatsu/",
+      "source": "/posts/gimai-seikatsu",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hanashura/",
+      "source": "/note/hanashura/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hanashura/",
+      "source": "/note/hanashura",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hanashura/",
+      "source": "/post/hanashura/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hanashura/",
+      "source": "/post/hanashura",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hanashura/",
+      "source": "/posts/hanashura/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hanashura/",
+      "source": "/posts/hanashura",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hibimeshi/",
+      "source": "/note/hibimeshi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hibimeshi/",
+      "source": "/note/hibimeshi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hibimeshi/",
+      "source": "/posts/hibimeshi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hibimeshi/",
+      "source": "/posts/hibimeshi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/himesama-goumon/",
+      "source": "/note/himesama-goumon/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/himesama-goumon/",
+      "source": "/note/himesama-goumon",
+      "statusCode": 308
+    },
+    {
+      "destination": "/himesama-goumon/",
+      "source": "/post/hime-sama_goumon_no_jikan_desu/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/himesama-goumon/",
+      "source": "/post/hime-sama_goumon_no_jikan_desu",
+      "statusCode": 308
+    },
+    {
+      "destination": "/himesama-goumon/",
+      "source": "/post/himesama_goumon/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/himesama-goumon/",
+      "source": "/post/himesama_goumon",
+      "statusCode": 308
+    },
+    {
+      "destination": "/himesama-goumon/",
+      "source": "/posts/himesama_goumon/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/himesama-goumon/",
+      "source": "/posts/himesama_goumon",
+      "statusCode": 308
+    },
+    {
+      "destination": "/himesama-goumon/",
+      "source": "/posts/himesama-goumon/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/himesama-goumon/",
+      "source": "/posts/himesama-goumon",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hoshitele/",
+      "source": "/note/hoshitele/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hoshitele/",
+      "source": "/note/hoshitele",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hoshitele/",
+      "source": "/post/hoshikuzu_terepasu/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hoshitele/",
+      "source": "/post/hoshikuzu_terepasu",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hoshitele/",
+      "source": "/post/hoshitele/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hoshitele/",
+      "source": "/post/hoshitele",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hoshitele/",
+      "source": "/posts/hoshitele/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hoshitele/",
+      "source": "/posts/hoshitele",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ikoku-nikki/",
+      "source": "/note/ikoku-nikki/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ikoku-nikki/",
+      "source": "/note/ikoku-nikki",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kaishani-sukinahito/",
+      "source": "/note/kaishani-sukinahito/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kaishani-sukinahito/",
+      "source": "/note/kaishani-sukinahito",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kaishani-sukinahito/",
+      "source": "/post/kaishani_sukinahito/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kaishani-sukinahito/",
+      "source": "/post/kaishani_sukinahito",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kaishani-sukinahito/",
+      "source": "/posts/kaishani_sukinahito/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kaishani-sukinahito/",
+      "source": "/posts/kaishani_sukinahito",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kaishani-sukinahito/",
+      "source": "/posts/kaishani-sukinahito/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kaishani-sukinahito/",
+      "source": "/posts/kaishani-sukinahito",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kamiina-botan/",
+      "source": "/note/kamiina-botan/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kamiina-botan/",
+      "source": "/note/kamiina-botan",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kamitsubaki/",
+      "source": "/note/kamitsubaki/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kamitsubaki/",
+      "source": "/note/kamitsubaki",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kamitsubaki/",
+      "source": "/posts/kamitsubaki/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kamitsubaki/",
+      "source": "/posts/kamitsubaki",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kaoruhana/",
+      "source": "/note/kaoruhana/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kaoruhana/",
+      "source": "/note/kaoruhana",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kaoruhana/",
+      "source": "/posts/kaoruhana/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kaoruhana/",
+      "source": "/posts/kaoruhana",
+      "statusCode": 308
+    },
+    {
+      "destination": "/karasu-aruji/",
+      "source": "/note/karasu-aruji/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/karasu-aruji/",
+      "source": "/note/karasu-aruji",
+      "statusCode": 308
+    },
+    {
+      "destination": "/karasu-aruji/",
+      "source": "/post/karasu_aruji/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/karasu-aruji/",
+      "source": "/post/karasu_aruji",
+      "statusCode": 308
+    },
+    {
+      "destination": "/karasu-aruji/",
+      "source": "/post/karasu_wa_aruji_o_erabanai/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/karasu-aruji/",
+      "source": "/post/karasu_wa_aruji_o_erabanai",
+      "statusCode": 308
+    },
+    {
+      "destination": "/karasu-aruji/",
+      "source": "/posts/karasu_aruji/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/karasu-aruji/",
+      "source": "/posts/karasu_aruji",
+      "statusCode": 308
+    },
+    {
+      "destination": "/karasu-aruji/",
+      "source": "/posts/karasu-aruji/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/karasu-aruji/",
+      "source": "/posts/karasu-aruji",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kimi-no-iro/",
+      "source": "/note/kimi-no-iro/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kimi-no-iro/",
+      "source": "/note/kimi-no-iro",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kimi-no-iro/",
+      "source": "/post/kimi_no_iro/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kimi-no-iro/",
+      "source": "/post/kimi_no_iro",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kimi-no-iro/",
+      "source": "/posts/kimi_no_iro/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kimi-no-iro/",
+      "source": "/posts/kimi_no_iro",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kimi-no-iro/",
+      "source": "/posts/kimi-no-iro/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/kimi-no-iro/",
+      "source": "/posts/kimi-no-iro",
+      "statusCode": 308
+    },
+    {
+      "destination": "/koe-no-katachi/",
+      "source": "/note/koe-no-katachi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/koe-no-katachi/",
+      "source": "/note/koe-no-katachi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/koe-no-katachi/",
+      "source": "/post/koe_no_katachi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/koe-no-katachi/",
+      "source": "/post/koe_no_katachi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/koe-no-katachi/",
+      "source": "/posts/koe_no_katachi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/koe-no-katachi/",
+      "source": "/posts/koe_no_katachi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/koe-no-katachi/",
+      "source": "/posts/koe-no-katachi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/koe-no-katachi/",
+      "source": "/posts/koe-no-katachi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/look-back/",
+      "source": "/note/look-back/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/look-back/",
+      "source": "/note/look-back",
+      "statusCode": 308
+    },
+    {
+      "destination": "/look-back/",
+      "source": "/post/look_back/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/look-back/",
+      "source": "/post/look_back",
+      "statusCode": 308
+    },
+    {
+      "destination": "/look-back/",
+      "source": "/posts/look_back/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/look-back/",
+      "source": "/posts/look_back",
+      "statusCode": 308
+    },
+    {
+      "destination": "/look-back/",
+      "source": "/posts/look-back/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/look-back/",
+      "source": "/posts/look-back",
+      "statusCode": 308
+    },
+    {
+      "destination": "/maebashi-witches/",
+      "source": "/note/maebashi-witches/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/maebashi-witches/",
+      "source": "/note/maebashi-witches",
+      "statusCode": 308
+    },
+    {
+      "destination": "/maebashi-witches/",
+      "source": "/posts/maebashi_witches/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/maebashi-witches/",
+      "source": "/posts/maebashi_witches",
+      "statusCode": 308
+    },
+    {
+      "destination": "/maebashi-witches/",
+      "source": "/posts/maebashi-witches/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/maebashi-witches/",
+      "source": "/posts/maebashi-witches",
+      "statusCode": 308
+    },
+    {
+      "destination": "/mayopan/",
+      "source": "/note/mayopan/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/mayopan/",
+      "source": "/note/mayopan",
+      "statusCode": 308
+    },
+    {
+      "destination": "/mayopan/",
+      "source": "/post/mayopan/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/mayopan/",
+      "source": "/post/mayopan",
+      "statusCode": 308
+    },
+    {
+      "destination": "/mayopan/",
+      "source": "/posts/mayopan/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/mayopan/",
+      "source": "/posts/mayopan",
+      "statusCode": 308
+    },
+    {
+      "destination": "/mono/",
+      "source": "/note/mono/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/mono/",
+      "source": "/note/mono",
+      "statusCode": 308
+    },
+    {
+      "destination": "/mono/",
+      "source": "/posts/mono/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/mono/",
+      "source": "/posts/mono",
+      "statusCode": 308
+    },
+    {
+      "destination": "/narenare/",
+      "source": "/note/narenare/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/narenare/",
+      "source": "/note/narenare",
+      "statusCode": 308
+    },
+    {
+      "destination": "/narenare/",
+      "source": "/post/narenare/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/narenare/",
+      "source": "/post/narenare",
+      "statusCode": 308
+    },
+    {
+      "destination": "/narenare/",
+      "source": "/posts/narenare/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/narenare/",
+      "source": "/posts/narenare",
+      "statusCode": 308
+    },
+    {
+      "destination": "/negaposi-angler/",
+      "source": "/note/negaposi-angler/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/negaposi-angler/",
+      "source": "/note/negaposi-angler",
+      "statusCode": 308
+    },
+    {
+      "destination": "/negaposi-angler/",
+      "source": "/post/negaposi_angler/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/negaposi-angler/",
+      "source": "/post/negaposi_angler",
+      "statusCode": 308
+    },
+    {
+      "destination": "/negaposi-angler/",
+      "source": "/posts/negaposi_angler/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/negaposi-angler/",
+      "source": "/posts/negaposi_angler",
+      "statusCode": 308
+    },
+    {
+      "destination": "/negaposi-angler/",
+      "source": "/posts/negaposi-angler/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/negaposi-angler/",
+      "source": "/posts/negaposi-angler",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ninkoro/",
+      "source": "/note/ninkoro/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ninkoro/",
+      "source": "/note/ninkoro",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ninkoro/",
+      "source": "/posts/ninkoro/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ninkoro/",
+      "source": "/posts/ninkoro",
+      "statusCode": 308
+    },
+    {
+      "destination": "/overtake/",
+      "source": "/note/overtake/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/overtake/",
+      "source": "/note/overtake",
+      "statusCode": 308
+    },
+    {
+      "destination": "/overtake/",
+      "source": "/post/overtake/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/overtake/",
+      "source": "/post/overtake",
+      "statusCode": 308
+    },
+    {
+      "destination": "/overtake/",
+      "source": "/posts/overtake/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/overtake/",
+      "source": "/posts/overtake",
+      "statusCode": 308
+    },
+    {
+      "destination": "/planetarian/",
+      "source": "/note/planetarian/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/planetarian/",
+      "source": "/note/planetarian",
+      "statusCode": 308
+    },
+    {
+      "destination": "/planetarian/",
+      "source": "/posts/planetarian/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/planetarian/",
+      "source": "/posts/planetarian",
+      "statusCode": 308
+    },
+    {
+      "destination": "/pon-no-michi/",
+      "source": "/note/pon-no-michi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/pon-no-michi/",
+      "source": "/note/pon-no-michi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/pon-no-michi/",
+      "source": "/post/pon_no_michi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/pon-no-michi/",
+      "source": "/post/pon_no_michi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/pon-no-michi/",
+      "source": "/posts/pon_no_michi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/pon-no-michi/",
+      "source": "/posts/pon_no_michi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/pon-no-michi/",
+      "source": "/posts/pon-no-michi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/pon-no-michi/",
+      "source": "/posts/pon-no-michi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ponsuka/",
+      "source": "/note/ponsuka/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ponsuka/",
+      "source": "/note/ponsuka",
+      "statusCode": 308
+    },
+    {
+      "destination": "/puniru-wa-kawaii-suraimu/",
+      "source": "/note/puniru-wa-kawaii-suraimu/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/puniru-wa-kawaii-suraimu/",
+      "source": "/note/puniru-wa-kawaii-suraimu",
+      "statusCode": 308
+    },
+    {
+      "destination": "/puniru-wa-kawaii-suraimu/",
+      "source": "/post/puniru_wa_kawaii_suraimu/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/puniru-wa-kawaii-suraimu/",
+      "source": "/post/puniru_wa_kawaii_suraimu",
+      "statusCode": 308
+    },
+    {
+      "destination": "/puniru-wa-kawaii-suraimu/",
+      "source": "/posts/puniru_wa_kawaii_suraimu/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/puniru-wa-kawaii-suraimu/",
+      "source": "/posts/puniru_wa_kawaii_suraimu",
+      "statusCode": 308
+    },
+    {
+      "destination": "/puniru-wa-kawaii-suraimu/",
+      "source": "/posts/puniru-wa-kawaii-suraimu/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/puniru-wa-kawaii-suraimu/",
+      "source": "/posts/puniru-wa-kawaii-suraimu",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ranma-2024/",
+      "source": "/note/ranma-2024/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ranma-2024/",
+      "source": "/note/ranma-2024",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ranma-2024/",
+      "source": "/post/ranma_2024/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ranma-2024/",
+      "source": "/post/ranma_2024",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ranma-2024/",
+      "source": "/post/ranma_nibun-no-ichi_2024/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ranma-2024/",
+      "source": "/post/ranma_nibun-no-ichi_2024",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ranma-2024/",
+      "source": "/posts/ranma_2024/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ranma-2024/",
+      "source": "/posts/ranma_2024",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ranma-2024/",
+      "source": "/posts/ranma-2024/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ranma-2024/",
+      "source": "/posts/ranma-2024",
+      "statusCode": 308
+    },
+    {
+      "destination": "/renai-daikou/",
+      "source": "/note/renai-daikou/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/renai-daikou/",
+      "source": "/note/renai-daikou",
+      "statusCode": 308
+    },
+    {
+      "destination": "/renai-daikou/",
+      "source": "/post/renai_daikou/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/renai-daikou/",
+      "source": "/post/renai_daikou",
+      "statusCode": 308
+    },
+    {
+      "destination": "/renai-daikou/",
+      "source": "/posts/renai_daikou/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/renai-daikou/",
+      "source": "/posts/renai_daikou",
+      "statusCode": 308
+    },
+    {
+      "destination": "/renai-daikou/",
+      "source": "/posts/renai-daikou/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/renai-daikou/",
+      "source": "/posts/renai-daikou",
+      "statusCode": 308
+    },
+    {
+      "destination": "/roshidere/",
+      "source": "/note/roshidere/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/roshidere/",
+      "source": "/note/roshidere",
+      "statusCode": 308
+    },
+    {
+      "destination": "/roshidere/",
+      "source": "/post/roshidere/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/roshidere/",
+      "source": "/post/roshidere",
+      "statusCode": 308
+    },
+    {
+      "destination": "/roshidere/",
+      "source": "/posts/roshidere/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/roshidere/",
+      "source": "/posts/roshidere",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ruri-no-houseki/",
+      "source": "/note/ruri-no-houseki/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ruri-no-houseki/",
+      "source": "/note/ruri-no-houseki",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ruri-no-houseki/",
+      "source": "/posts/ruri_no_houseki/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ruri-no-houseki/",
+      "source": "/posts/ruri_no_houseki",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ruri-no-houseki/",
+      "source": "/posts/ruri-no-houseki/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/ruri-no-houseki/",
+      "source": "/posts/ruri-no-houseki",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sasaki-to-pii-chan/",
+      "source": "/note/sasaki-to-pii-chan/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sasaki-to-pii-chan/",
+      "source": "/note/sasaki-to-pii-chan",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sasaki-to-pii-chan/",
+      "source": "/post/sasaki_to_pii-chan/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sasaki-to-pii-chan/",
+      "source": "/post/sasaki_to_pii-chan",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sasaki-to-pii-chan/",
+      "source": "/posts/sasaki_to_pii-chan/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sasaki-to-pii-chan/",
+      "source": "/posts/sasaki_to_pii-chan",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sasaki-to-pii-chan/",
+      "source": "/posts/sasaki-to-pii-chan/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sasaki-to-pii-chan/",
+      "source": "/posts/sasaki-to-pii-chan",
+      "statusCode": 308
+    },
+    {
+      "destination": "/seihantai/",
+      "source": "/note/seihantai/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/seihantai/",
+      "source": "/note/seihantai",
+      "statusCode": 308
+    },
+    {
+      "destination": "/seiyuradio/",
+      "source": "/note/seiyuradio/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/seiyuradio/",
+      "source": "/note/seiyuradio",
+      "statusCode": 308
+    },
+    {
+      "destination": "/seiyuradio/",
+      "source": "/post/seiyu_rajio_no_ura_omote/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/seiyuradio/",
+      "source": "/post/seiyu_rajio_no_ura_omote",
+      "statusCode": 308
+    },
+    {
+      "destination": "/seiyuradio/",
+      "source": "/post/seiyuradio/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/seiyuradio/",
+      "source": "/post/seiyuradio",
+      "statusCode": 308
+    },
+    {
+      "destination": "/seiyuradio/",
+      "source": "/posts/seiyuradio/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/seiyuradio/",
+      "source": "/posts/seiyuradio",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shiboyugi/",
+      "source": "/note/shiboyugi/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shiboyugi/",
+      "source": "/note/shiboyugi",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shikanoko/",
+      "source": "/note/shikanoko/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shikanoko/",
+      "source": "/note/shikanoko",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shikanoko/",
+      "source": "/post/shikanoko_nokonoko_koshitantan/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shikanoko/",
+      "source": "/post/shikanoko_nokonoko_koshitantan",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shikanoko/",
+      "source": "/post/shikanoko/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shikanoko/",
+      "source": "/post/shikanoko",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shikanoko/",
+      "source": "/posts/shikanoko/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shikanoko/",
+      "source": "/posts/shikanoko",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shiunjifamily/",
+      "source": "/note/shiunjifamily/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shiunjifamily/",
+      "source": "/note/shiunjifamily",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shiunjifamily/",
+      "source": "/posts/shiunjifamily/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shiunjifamily/",
+      "source": "/posts/shiunjifamily",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shoushimin-series/",
+      "source": "/note/shoushimin-series/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shoushimin-series/",
+      "source": "/note/shoushimin-series",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shoushimin-series/",
+      "source": "/post/shoushimin_series/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shoushimin-series/",
+      "source": "/post/shoushimin_series",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shoushimin-series/",
+      "source": "/posts/shoushimin_series/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shoushimin-series/",
+      "source": "/posts/shoushimin_series",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shoushimin-series/",
+      "source": "/posts/shoushimin-series/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shoushimin-series/",
+      "source": "/posts/shoushimin-series",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shuumatsu-train/",
+      "source": "/note/shuumatsu-train/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shuumatsu-train/",
+      "source": "/note/shuumatsu-train",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shuumatsu-train/",
+      "source": "/post/shuumatsu_train_doko_e_iku/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shuumatsu-train/",
+      "source": "/post/shuumatsu_train_doko_e_iku",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shuumatsu-train/",
+      "source": "/post/shuumatsu_train/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shuumatsu-train/",
+      "source": "/post/shuumatsu_train",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shuumatsu-train/",
+      "source": "/posts/shuumatsu_train/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shuumatsu-train/",
+      "source": "/posts/shuumatsu_train",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shuumatsu-train/",
+      "source": "/posts/shuumatsu-train/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shuumatsu-train/",
+      "source": "/posts/shuumatsu-train",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sound-euphonium-season3/",
+      "source": "/note/sound-euphonium-season3/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sound-euphonium-season3/",
+      "source": "/note/sound-euphonium-season3",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sound-euphonium-season3/",
+      "source": "/post/sound_euphonium_season3/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sound-euphonium-season3/",
+      "source": "/post/sound_euphonium_season3",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sound-euphonium-season3/",
+      "source": "/posts/sound_euphonium_season3/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sound-euphonium-season3/",
+      "source": "/posts/sound_euphonium_season3",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sound-euphonium-season3/",
+      "source": "/posts/sound-euphonium-season3/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sound-euphonium-season3/",
+      "source": "/posts/sound-euphonium-season3",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sousou-no-frieren/",
+      "source": "/note/sousou-no-frieren/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sousou-no-frieren/",
+      "source": "/note/sousou-no-frieren",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sousou-no-frieren/",
+      "source": "/post/sousou_no_frieren/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sousou-no-frieren/",
+      "source": "/post/sousou_no_frieren",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sousou-no-frieren/",
+      "source": "/posts/sousou_no_frieren/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sousou-no-frieren/",
+      "source": "/posts/sousou_no_frieren",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sousou-no-frieren/",
+      "source": "/posts/sousou-no-frieren/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/sousou-no-frieren/",
+      "source": "/posts/sousou-no-frieren",
+      "statusCode": 308
+    },
+    {
+      "destination": "/summer-pockets/",
+      "source": "/note/summer-pockets/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/summer-pockets/",
+      "source": "/note/summer-pockets",
+      "statusCode": 308
+    },
+    {
+      "destination": "/summer-pockets/",
+      "source": "/post/summer_pockets/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/summer-pockets/",
+      "source": "/post/summer_pockets",
+      "statusCode": 308
+    },
+    {
+      "destination": "/summer-pockets/",
+      "source": "/posts/summer_pockets/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/summer-pockets/",
+      "source": "/posts/summer_pockets",
+      "statusCode": 308
+    },
+    {
+      "destination": "/summer-pockets/",
+      "source": "/posts/summer-pockets/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/summer-pockets/",
+      "source": "/posts/summer-pockets",
+      "statusCode": 308
+    },
+    {
+      "destination": "/takopii-no-genzai/",
+      "source": "/note/takopii-no-genzai/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/takopii-no-genzai/",
+      "source": "/note/takopii-no-genzai",
+      "statusCode": 308
+    },
+    {
+      "destination": "/takopii-no-genzai/",
+      "source": "/posts/takopii_no_genzai/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/takopii-no-genzai/",
+      "source": "/posts/takopii_no_genzai",
+      "statusCode": 308
+    },
+    {
+      "destination": "/takopii-no-genzai/",
+      "source": "/posts/takopii-no-genzai/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/takopii-no-genzai/",
+      "source": "/posts/takopii-no-genzai",
+      "statusCode": 308
+    },
+    {
+      "destination": "/tamon/",
+      "source": "/note/tamon/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/tamon/",
+      "source": "/note/tamon",
+      "statusCode": 308
+    },
+    {
+      "destination": "/tenshitsuki/",
+      "source": "/note/tenshitsuki/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/tenshitsuki/",
+      "source": "/note/tenshitsuki",
+      "statusCode": 308
+    },
+    {
+      "destination": "/tenshitsuki/",
+      "source": "/post/one_room_hiatari_futsuu_tenshi-tsuki/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/tenshitsuki/",
+      "source": "/post/one_room_hiatari_futsuu_tenshi-tsuki",
+      "statusCode": 308
+    },
+    {
+      "destination": "/tenshitsuki/",
+      "source": "/post/tenshitsuki/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/tenshitsuki/",
+      "source": "/post/tenshitsuki",
+      "statusCode": 308
+    },
+    {
+      "destination": "/tenshitsuki/",
+      "source": "/posts/tenshitsuki/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/tenshitsuki/",
+      "source": "/posts/tenshitsuki",
+      "statusCode": 308
+    },
+    {
+      "destination": "/totono/",
+      "source": "/note/totono/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/totono/",
+      "source": "/note/totono",
+      "statusCode": 308
+    },
+    {
+      "destination": "/totono/",
+      "source": "/posts/totono/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/totono/",
+      "source": "/posts/totono",
+      "statusCode": 308
+    },
+    {
+      "destination": "/under-ninja/",
+      "source": "/note/under-ninja/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/under-ninja/",
+      "source": "/note/under-ninja",
+      "statusCode": 308
+    },
+    {
+      "destination": "/under-ninja/",
+      "source": "/post/under_ninja/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/under-ninja/",
+      "source": "/post/under_ninja",
+      "statusCode": 308
+    },
+    {
+      "destination": "/under-ninja/",
+      "source": "/posts/under_ninja/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/under-ninja/",
+      "source": "/posts/under_ninja",
+      "statusCode": 308
+    },
+    {
+      "destination": "/under-ninja/",
+      "source": "/posts/under-ninja/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/under-ninja/",
+      "source": "/posts/under-ninja",
+      "statusCode": 308
+    },
+    {
+      "destination": "/vampire-dormitory/",
+      "source": "/note/vanpaia-domitorii/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/vampire-dormitory/",
+      "source": "/note/vanpaia-domitorii",
+      "statusCode": 308
+    },
+    {
+      "destination": "/vampire-dormitory/",
+      "source": "/post/vanpaia_domitorii/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/vampire-dormitory/",
+      "source": "/post/vanpaia_domitorii",
+      "statusCode": 308
+    },
+    {
+      "destination": "/vampire-dormitory/",
+      "source": "/posts/vanpaia_domitorii/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/vampire-dormitory/",
+      "source": "/posts/vanpaia_domitorii",
+      "statusCode": 308
+    },
+    {
+      "destination": "/vampire-dormitory/",
+      "source": "/posts/vanpaia-domitorii/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/vampire-dormitory/",
+      "source": "/posts/vanpaia-domitorii",
+      "statusCode": 308
+    },
+    {
+      "destination": "/vtuber-legend/",
+      "source": "/note/vtuber-legend/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/vtuber-legend/",
+      "source": "/note/vtuber-legend",
+      "statusCode": 308
+    },
+    {
+      "destination": "/vtuber-legend/",
+      "source": "/post/vtuber_legend/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/vtuber-legend/",
+      "source": "/post/vtuber_legend",
+      "statusCode": 308
+    },
+    {
+      "destination": "/vtuber-legend/",
+      "source": "/posts/vtuber_legend/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/vtuber-legend/",
+      "source": "/posts/vtuber_legend",
+      "statusCode": 308
+    },
+    {
+      "destination": "/vtuber-legend/",
+      "source": "/posts/vtuber-legend/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/vtuber-legend/",
+      "source": "/posts/vtuber-legend",
+      "statusCode": 308
+    },
+    {
+      "destination": "/wandance/",
+      "source": "/note/wandance/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/wandance/",
+      "source": "/note/wandance",
+      "statusCode": 308
+    },
+    {
+      "destination": "/wata-tabe/",
+      "source": "/note/wata-tabe/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/wata-tabe/",
+      "source": "/note/wata-tabe",
+      "statusCode": 308
+    },
+    {
+      "destination": "/watakon-season2/",
+      "source": "/note/watakon-season2/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/watakon-season2/",
+      "source": "/note/watakon-season2",
+      "statusCode": 308
+    },
+    {
+      "destination": "/watakon-season2/",
+      "source": "/post/watakon_season2/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/watakon-season2/",
+      "source": "/post/watakon_season2",
+      "statusCode": 308
+    },
+    {
+      "destination": "/watakon-season2/",
+      "source": "/posts/watakon_season2/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/watakon-season2/",
+      "source": "/posts/watakon_season2",
+      "statusCode": 308
+    },
+    {
+      "destination": "/watakon-season2/",
+      "source": "/posts/watakon-season2/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/watakon-season2/",
+      "source": "/posts/watakon-season2",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yorukura/",
+      "source": "/note/yorukura/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yorukura/",
+      "source": "/note/yorukura",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yorukura/",
+      "source": "/post/yorukura/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yorukura/",
+      "source": "/post/yorukura",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yorukura/",
+      "source": "/posts/yorukura/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yorukura/",
+      "source": "/posts/yorukura",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yubisaki-to-renren/",
+      "source": "/note/yubisaki-to-renren/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yubisaki-to-renren/",
+      "source": "/note/yubisaki-to-renren",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yubisaki-to-renren/",
+      "source": "/post/yubisaki_to_renren/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yubisaki-to-renren/",
+      "source": "/post/yubisaki_to_renren",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yubisaki-to-renren/",
+      "source": "/posts/yubisaki_to_renren/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yubisaki-to-renren/",
+      "source": "/posts/yubisaki_to_renren",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yubisaki-to-renren/",
+      "source": "/posts/yubisaki-to-renren/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yubisaki-to-renren/",
+      "source": "/posts/yubisaki-to-renren",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yuru-camp-season3/",
+      "source": "/note/yuru-camp-season3/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yuru-camp-season3/",
+      "source": "/note/yuru-camp-season3",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yuru-camp-season3/",
+      "source": "/post/yuru_camp_season3/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yuru-camp-season3/",
+      "source": "/post/yuru_camp_season3",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yuru-camp-season3/",
+      "source": "/post/yurukyan_season3/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yuru-camp-season3/",
+      "source": "/post/yurukyan_season3",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yuru-camp-season3/",
+      "source": "/posts/yuru_camp_season3/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yuru-camp-season3/",
+      "source": "/posts/yuru_camp_season3",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yuru-camp-season3/",
+      "source": "/posts/yuru-camp-season3/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/yuru-camp-season3/",
+      "source": "/posts/yuru-camp-season3",
+      "statusCode": 308
+    },
+    {
+      "destination": "/achieve-the-sublime/",
+      "source": "/jotting/achieve-the-sublime/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/achieve-the-sublime/",
+      "source": "/jotting/achieve-the-sublime",
+      "statusCode": 308
+    },
+    {
+      "destination": "/achieve-the-sublime/",
+      "source": "/post/achieve_the_sublime/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/achieve-the-sublime/",
+      "source": "/post/achieve_the_sublime",
+      "statusCode": 308
+    },
+    {
+      "destination": "/achieve-the-sublime/",
+      "source": "/posts/achieve_the_sublime/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/achieve-the-sublime/",
+      "source": "/posts/achieve_the_sublime",
+      "statusCode": 308
+    },
+    {
+      "destination": "/achieve-the-sublime/",
+      "source": "/posts/achieve-the-sublime/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/achieve-the-sublime/",
+      "source": "/posts/achieve-the-sublime",
+      "statusCode": 308
+    },
+    {
+      "destination": "/astra-strategic-retreat/",
+      "source": "/jotting/astra-strategic-retreat/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/astra-strategic-retreat/",
+      "source": "/jotting/astra-strategic-retreat",
+      "statusCode": 308
+    },
+    {
+      "destination": "/exploring-vitepress/",
+      "source": "/note/exploring-vitepress/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/exploring-vitepress/",
+      "source": "/note/exploring-vitepress",
+      "statusCode": 308
+    },
+    {
+      "destination": "/exploring-vitepress/",
+      "source": "/posts/exploring_vitepress/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/exploring-vitepress/",
+      "source": "/posts/exploring_vitepress",
+      "statusCode": 308
+    },
+    {
+      "destination": "/exploring-vitepress/",
+      "source": "/posts/exploring-vitepress/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/exploring-vitepress/",
+      "source": "/posts/exploring-vitepress",
+      "statusCode": 308
+    },
+    {
+      "destination": "/from-supabase-to-neon/",
+      "source": "/note/from-supabase-to-neon/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/from-supabase-to-neon/",
+      "source": "/note/from-supabase-to-neon",
+      "statusCode": 308
+    },
+    {
+      "destination": "/from-supabase-to-neon/",
+      "source": "/post/from_supabase_to_neon/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/from-supabase-to-neon/",
+      "source": "/post/from_supabase_to_neon",
+      "statusCode": 308
+    },
+    {
+      "destination": "/from-supabase-to-neon/",
+      "source": "/posts/from_supabase_to_neon/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/from-supabase-to-neon/",
+      "source": "/posts/from_supabase_to_neon",
+      "statusCode": 308
+    },
+    {
+      "destination": "/from-supabase-to-neon/",
+      "source": "/posts/from-supabase-to-neon/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/from-supabase-to-neon/",
+      "source": "/posts/from-supabase-to-neon",
+      "statusCode": 308
+    },
+    {
+      "destination": "/fuwari-is-all-you-need/",
+      "source": "/note/fuwari-is-all-you-need/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/fuwari-is-all-you-need/",
+      "source": "/note/fuwari-is-all-you-need",
+      "statusCode": 308
+    },
+    {
+      "destination": "/fuwari-is-all-you-need/",
+      "source": "/posts/fuwari_is_all_you_need/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/fuwari-is-all-you-need/",
+      "source": "/posts/fuwari_is_all_you_need",
+      "statusCode": 308
+    },
+    {
+      "destination": "/fuwari-is-all-you-need/",
+      "source": "/posts/fuwari-is-all-you-need/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/fuwari-is-all-you-need/",
+      "source": "/posts/fuwari-is-all-you-need",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hina-youmiya-seven-deadly-sins/",
+      "source": "/note/hina-youmiya-seven-deadly-sins/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/hina-youmiya-seven-deadly-sins/",
+      "source": "/note/hina-youmiya-seven-deadly-sins",
+      "statusCode": 308
+    },
+    {
+      "destination": "/indieweb-book-club-may-2026-to-live/",
+      "source": "/jotting/indieweb-book-club-may-2026-to-live/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/indieweb-book-club-may-2026-to-live/",
+      "source": "/jotting/indieweb-book-club-may-2026-to-live",
+      "statusCode": 308
+    },
+    {
+      "destination": "/saving-an-iphone-8-plus/",
+      "source": "/jotting/saving-an-iphone-8-plus/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/saving-an-iphone-8-plus/",
+      "source": "/jotting/saving-an-iphone-8-plus",
+      "statusCode": 308
+    },
+    {
+      "destination": "/set-sail-call-up-girls/",
+      "source": "/jotting/set-sail-call-up-girls/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/set-sail-call-up-girls/",
+      "source": "/jotting/set-sail-call-up-girls",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shinosawa-hiro-art/",
+      "source": "/jotting/shinosawa-hiro-art/",
+      "statusCode": 308
+    },
+    {
+      "destination": "/shinosawa-hiro-art/",
+      "source": "/jotting/shinosawa-hiro-art",
+      "statusCode": 308
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+@keyframes page-enter {
+  from {
+    opacity: 0.01;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  --color-border: oklch(77% 0.013 96);
+  --color-link-hover: oklch(41% 0.07 188);
+  --color-muted: oklch(45% 0.005 92);
+  --font-size-reduced: 0.9rem;
+  --font-size-small: 0.8rem;
+  --line-height-compact: 1.3;
+  --page-gutter: 1rem;
+  --space-flow: 1.6ch;
+  --space-l: 3ch;
+  --space-m: 2ch;
+  --space-s: 1ch;
+  --space-xl: 5ch;
+  --space-xs: 0.5ch;
+
+  font-family:
+    "Noto Sans CJK SC", "Noto Sans SC", "Source Han Sans", "Source Han Sans SC",
+    "Source Han Sans CN", source-han-sans-sc, system-ui, ui-sans-serif, sans-serif;
+  font-size: clamp(1.25rem, 0.5vw + 1rem, 1.5rem);
+  line-height: 1.6;
+  color: oklch(32% 0.004 85);
+  background-color: oklch(95% 0.015 98);
+  accent-color: var(--color-link-hover);
+  color-scheme: light;
+  overflow-wrap: break-word;
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+  scroll-padding-block-start: 3rlh;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  line-break: loose;
+  text-autospace: normal;
+  text-rendering: optimizelegibility;
+}
+
+.agent-directive,
+.message-form-honeypot {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  inset-block-start: var(--space-s);
+  inset-inline-start: var(--page-gutter);
+  transform: translateY(calc(-100% - var(--space-s)));
+
+  &:focus-visible {
+    transform: none;
+  }
+}
+
+main {
+  width: min(calc(100% - var(--page-gutter)), 46em);
+  margin-inline: auto;
+  padding-block-end: var(--space-xl);
+  animation: page-enter 300ms ease-out both;
+}
+
+.is-narrow-page main {
+  width: min(calc(100% - var(--page-gutter)), 34em);
+}
+
+sub,
+sup {
+  line-height: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family:
+    Georgia, "Noto Serif CJK SC", "Noto Serif SC", "Source Han Serif", "Source Han Serif SC",
+    "Source Han Serif CN", source-han-serif-sc, ui-serif, serif;
+}
+
+p,
+figure,
+hr,
+blockquote,
+ul,
+ol {
+  margin: var(--space-flow) auto;
+}
+
+:not(pre) > code,
+blockquote,
+pre:has(code) {
+  font-size: var(--font-size-reduced);
+}
+
+/* Keep the quote rule flush with body text and use a list-like gap before quote text. */
+blockquote {
+  margin-inline: 0;
+  border-inline-start: 0.25em solid var(--color-border);
+  padding-inline-start: 0.6em;
+}
+
+hr {
+  border: 0;
+  border-block-start: 1px solid var(--color-border);
+}
+
+code,
+pre {
+  font-family:
+    "SFMono-Regular", Menlo, Consolas, "Liberation Mono", "Ubuntu Mono", Monaco, monospace;
+}
+
+pre,
+table {
+  width: fit-content;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+figure figcaption {
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+  text-align: right;
+}
+
+table {
+  display: block;
+  margin-inline: auto;
+  border-collapse: collapse;
+
+  & th,
+  & td {
+    padding: 0.25em var(--space-s);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  & .table-cell-align-left {
+    text-align: left;
+  }
+
+  & .table-cell-align-center {
+    text-align: center;
+  }
+
+  & .table-cell-align-right {
+    text-align: right;
+  }
+}
+
+a,
+.message-form-submit {
+  color: oklch(49% 0.065 188);
+  text-decoration: underline color-mix(in oklab, currentColor 50%, transparent);
+  transition:
+    color 150ms,
+    text-decoration-color 150ms;
+
+  &:hover {
+    color: var(--color-link-hover);
+    text-decoration-color: currentColor;
+  }
+}
+
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 2px solid var(--color-link-hover);
+  outline-offset: 0.22em;
+}
+
+.page-nav {
+  margin: var(--space-m) 0;
+  font-size: var(--font-size-reduced);
+
+  & > nav {
+    display: flex;
+    gap: var(--space-s);
+    justify-content: space-between;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  main {
+    animation: none;
+  }
+
+  a,
+  .message-form-submit {
+    transition: none;
+  }
+}

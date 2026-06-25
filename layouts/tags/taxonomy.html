@@ -1,0 +1,18 @@
+{{ define "main" }}
+<nav class="page-nav" aria-label="标签页导航">
+	<a href="{{ "/" | relURL }}">返回首页</a>
+</nav>
+<h1>标签</h1>
+{{ $terms := .Data.Terms.Alphabetical }}
+{{ if gt (len $terms) 0 }}
+	<div class="compact-list-grid">
+		{{ partial "compact-list-columns.html" (dict
+			"items" $terms
+			"itemsPerColumn" 4
+			"itemKind" "tag"
+			"location" "layouts/tags/taxonomy.html"
+			)
+		}}
+	</div>
+{{ end }}
+{{ end }}

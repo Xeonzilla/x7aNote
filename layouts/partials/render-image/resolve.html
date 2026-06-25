@@ -1,0 +1,46 @@
+{{- $destination := .Destination -}}
+{{- $siteConfig := partialCached "site-config.html" site "site-config" -}}
+{{- $baseURL := $siteConfig.remoteImages.baseURL -}}
+{{- $resolved := "" -}}
+
+{{- if not (in $destination "://") -}}
+	{{- $destination = printf "%s/%s/%s" $baseURL .Page.File.BaseFileName $destination -}}
+{{- end -}}
+
+{{- if not (strings.HasPrefix $destination (printf "%s/" $baseURL)) -}}
+	{{- partial "fail.html" (dict
+		"area" "remote image"
+		"problem" "URL is outside configured base URL"
+		"location" .Page.File.Path
+		"expected" (printf "a relative image path or URL starting with %q" (printf "%s/" $baseURL))
+		"got" (printf "%q" $destination)
+		"fix" "move the image under params.remote_images.base_url or use a relative image path"
+		)
+	-}}
+{{- else -}}
+	{{- $remotePath := strings.TrimPrefix (printf "%s/" $baseURL) $destination -}}
+	{{- if or (not $remotePath) (strings.HasSuffix $remotePath "/") (in (split $remotePath "/") "..") (in $remotePath "?") (in $remotePath "#") -}}
+		{{- partial "fail.html" (dict
+			"area" "remote image"
+			"problem" "unsupported remote image path"
+			"location" .Page.File.Path
+			"expected" "a non-empty path without trailing slash, .., query, or fragment"
+			"got" (printf "%q" $remotePath)
+			"fix" "use a direct image path under params.remote_images.base_url"
+			)
+		-}}
+	{{- else -}}
+		{{- $destinationHash := sha256 $destination -}}
+		{{- $resolved = dict
+			"destination" $destination
+			"hash" $destinationHash
+			"location" .Page.File.Path
+			"options" (dict
+			"headers" (dict $siteConfig.remoteImages.fetchHeaderName $siteConfig.remoteImages.fetchHeaderValue)
+			"key" (printf "remote-images/%s" $destinationHash)
+			)
+		-}}
+	{{- end -}}
+{{- end -}}
+
+{{- return $resolved -}}

@@ -1,0 +1,112 @@
+.article-grid,
+.compact-list-grid {
+  display: grid;
+  gap: var(--space-m) var(--space-l);
+  margin-block-start: var(--space-m);
+
+  @media (min-width: 36em) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 72em) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.article-card {
+  display: grid;
+
+  & > .article-card-title {
+    margin: 0 0 var(--space-xs);
+    font-size: 1.3rem;
+    line-height: var(--line-height-compact);
+  }
+
+  & > .article-card-date {
+    padding-top: var(--space-xs);
+    color: var(--color-muted);
+    font-size: var(--font-size-small);
+  }
+
+  & > .article-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--space-s);
+    min-block-size: 1.6em;
+    margin: var(--space-xs) 0 0;
+    font-size: var(--font-size-small);
+  }
+}
+
+.article-grid > .article-card {
+  grid-row: span 3;
+  grid-template-rows: subgrid;
+  /* Subgrid inherits the parent row gap unless the card opts out. */
+  row-gap: 0;
+}
+
+.compact-list {
+  font-size: var(--font-size-small);
+
+  & > div + div {
+    margin-block-start: var(--space-xs);
+  }
+}
+
+.tag-count {
+  margin-inline-start: var(--space-xs);
+  color: var(--color-muted);
+}
+
+.article-card > .article-card-date,
+.tag-count,
+.index-section-heading {
+  font-variant-numeric: tabular-nums;
+}
+
+.index-grid {
+  margin-block-start: var(--page-gutter);
+
+  & > .index-welcome {
+    display: grid;
+    align-content: center;
+  }
+
+  & > .index-welcome > .index-welcome-tagline {
+    margin-block-end: var(--space-l);
+    color: var(--color-muted);
+    line-height: var(--line-height-compact);
+    transform: scaleY(1.5);
+    transform-origin: top;
+  }
+
+  & > .index-welcome > .index-welcome-title {
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  & > :is(.index-section-nav, .index-site-links) {
+    display: grid;
+    align-content: center;
+    gap: var(--space-xs);
+    font-size: var(--font-size-reduced);
+  }
+
+  & > .index-section-heading {
+    grid-column: 1 / -1;
+    margin: auto 0;
+  }
+
+  @media (min-width: 36em) {
+    & > :is(.index-section-nav, .index-site-links) {
+      grid-column: 2;
+    }
+  }
+
+  @media (min-width: 72em) {
+    & > .index-site-links {
+      grid-column: 3;
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{{- /* Build-time Open Graph images are generated PNGs; config owns remote font sources. */ -}}
+{{- $mode := .mode -}}
+{{- $title := .title -}}
+{{- $title = $title | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace -}}
+{{- $description := .description -}}
+{{- $description = $description | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace -}}
+{{- $date := .date -}}
+{{- $date = $date | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace -}}
+{{- $path := .path -}}
+{{- $image := "" -}}
+
+{{- $baseImage := resources.Get "images/open-graph-base.png" -}}
+{{- if not $baseImage -}}
+	{{- partial "fail.html" (dict
+		"area" "asset"
+		"problem" "missing Open Graph base image"
+		"location" "assets/images/open-graph-base.png"
+		"expected" "a PNG image asset"
+		"got" "<not found>"
+		"fix" "restore assets/images/open-graph-base.png"
+		)
+	-}}
+{{- else -}}
+	{{- $openGraphFonts := partialCached "open-graph-fonts.html" site "open-graph-fonts" -}}
+	{{- $regularFont := index $openGraphFonts "regular" -}}
+	{{- $mediumFont := index $openGraphFonts "medium" -}}
+
+	{{- if and $regularFont $mediumFont -}}
+		{{- $fontSize := 68 -}}
+		{{- /* Hugo image text has no wrapping; shrink long titles to preserve the card layout. */ -}}
+		{{- if gt (len $title) 72 -}}
+			{{- $fontSize = 42 -}}
+		{{- else if gt (len $title) 48 -}}
+			{{- $fontSize = 46 -}}
+		{{- else if gt (len $title) 32 -}}
+			{{- $fontSize = 52 -}}
+		{{- else if gt (len $title) 24 -}}
+			{{- $fontSize = 60 -}}
+		{{- end -}}
+
+		{{- $titleY := div $baseImage.Height 2 -}}
+		{{- if eq $mode "default" -}}
+			{{- $fontSize = 82 -}}
+			{{- $titleY = sub (div $baseImage.Height 2) 42 -}}
+		{{- end -}}
+
+		{{- $image = $baseImage | images.Filter (images.Text $title (dict
+			"alignx" "center"
+			"aligny" "center"
+			"color" "#2f2822"
+			"font" $mediumFont
+			"linespacing" 10
+			"size" $fontSize
+			"x" (div $baseImage.Width 2)
+			"y" $titleY
+			)
+			)
+		-}}
+		{{- if eq $mode "article" -}}
+			{{- $image = $image | images.Filter (images.Text site.Title (dict
+				"alignx" "left"
+				"aligny" "top"
+				"color" "#5f564d"
+				"font" $regularFont
+				"linespacing" 8
+				"size" 34
+				"x" 84
+				"y" 72
+				)
+				)
+			-}}
+			{{- $image = $image | images.Filter (images.Text $date (dict
+				"alignx" "right"
+				"aligny" "bottom"
+				"color" "#756b61"
+				"font" $regularFont
+				"linespacing" 8
+				"size" 30
+				"x" (sub $baseImage.Width 84)
+				"y" (sub $baseImage.Height 72)
+				)
+				)
+			-}}
+		{{- end -}}
+		{{- if and (eq $mode "default") $description -}}
+			{{- $image = $image | images.Filter (images.Text $description (dict
+				"alignx" "center"
+				"aligny" "center"
+				"color" "#5f564d"
+				"font" $regularFont
+				"linespacing" 8
+				"size" 32
+				"x" (div $baseImage.Width 2)
+				"y" (add (div $baseImage.Height 2) 64)
+				)
+				)
+			-}}
+		{{- end -}}
+
+		{{- $image = resources.Copy $path $image -}}
+		{{- $image = $image | fingerprint "sha256" -}}
+	{{- end -}}
+{{- end -}}
+
+{{- return $image -}}

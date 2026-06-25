@@ -1,0 +1,56 @@
+{{- $openGraphTitle := .siteTitle -}}
+{{- $openGraphDescription := .siteDescription -}}
+{{- $openGraphDate := "" -}}
+{{- $openGraphMode := "default" -}}
+{{- $openGraphPath := "open-graph/default.png" -}}
+{{- if .isArticle -}}
+	{{- $openGraphTitle = .pageTitle -}}
+	{{- $openGraphDescription = "" -}}
+	{{- $openGraphMode = "article" -}}
+	{{- $openGraphPath = printf "open-graph/%s.png" .page.File.BaseFileName -}}
+	{{- $openGraphDate = .page.Date.Format "2006-01-02" -}}
+{{- end -}}
+{{- $openGraphContext := dict
+	"date" $openGraphDate
+	"description" $openGraphDescription
+	"mode" $openGraphMode
+	"path" $openGraphPath
+	"title" $openGraphTitle
+-}}
+{{- $openGraphImage := "" -}}
+{{- if eq $openGraphMode "default" -}}
+	{{- $openGraphImage = partialCached "open-graph-image.html" $openGraphContext "default-open-graph-image" -}}
+{{- else -}}
+	{{- $openGraphImage = partial "open-graph-image.html" $openGraphContext -}}
+{{- end -}}
+<meta property="og:type" content="{{ cond .isArticle "article" "website" }}">
+<meta property="og:url" content="{{ .page.Permalink }}">
+<meta property="og:title" content="{{ .pageTitle }}">
+<meta property="og:description" content="{{ .description }}">
+<meta property="og:locale" content="{{ replace site.Language.Locale "-" "_" }}">
+<meta property="og:site_name" content="{{ .siteTitle }}">
+{{- if $openGraphImage }}
+	<meta property="og:image" content="{{ $openGraphImage.Permalink }}">
+	<meta property="og:image:alt" content="{{ $openGraphTitle }}">
+	<meta property="og:image:type" content="image/png">
+	<meta property="og:image:width" content="{{ $openGraphImage.Width }}">
+	<meta property="og:image:height" content="{{ $openGraphImage.Height }}">
+{{- end }}
+{{- if .isArticle }}
+	<meta property="article:published_time" content="{{ .page.Date.Format "2006-01-02T15:04:05Z07:00" }}">
+	{{- $modified := .page.Lastmod -}}
+	{{- if .page.Lastmod.IsZero -}}
+		{{- $modified = .page.Date -}}
+	{{- end -}}
+	<meta property="article:modified_time" content="{{ $modified.Format "2006-01-02T15:04:05Z07:00" }}">
+	{{- range .page.GetTerms "tags" }}
+		<meta property="article:tag" content="{{ .Title }}">
+	{{- end }}
+{{- end }}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="{{ .page.Permalink }}">
+<meta name="twitter:title" content="{{ .pageTitle }}">
+<meta name="twitter:description" content="{{ .description }}">
+{{- if $openGraphImage }}
+	<meta name="twitter:image" content="{{ $openGraphImage.Permalink }}">
+{{- end }}

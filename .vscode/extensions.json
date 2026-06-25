@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "budparr.language-hugo-vscode",
+    "gohugoio.gotmplfmt",
+    "oxc.oxc-vscode",
+    "tamasfe.even-better-toml"
+  ]
+}

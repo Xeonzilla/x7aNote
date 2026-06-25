@@ -1,0 +1,11 @@
+{{- /* Central project error format for LLM-readable build failures. */ -}}
+{{- if not (index . "noop") -}}
+	{{- $area := index . "area" | default "error" -}}
+	{{- $problem := index . "problem" | default "unspecified problem" -}}
+	{{- $location := index . "location" | default "unknown location" -}}
+	{{- $expected := index . "expected" | default "a valid value" -}}
+	{{- $got := index . "got" | default "<unknown>" -}}
+	{{- $fix := index . "fix" | default "fix the source data or template call" -}}
+
+	{{- errorf "%s: %s in %s. Expected: %s. Got: %s. Fix: %s." $area $problem $location $expected $got $fix -}}
+{{- end -}}

@@ -1,0 +1,13 @@
+{{ define "head-extra" }}
+<meta name="robots" content="noindex">
+{{ end }}
+
+{{ define "main" }}
+<nav class="page-nav" aria-label="留言结果页导航">
+	<a href="{{ "/" | relURL }}">返回首页</a>
+</nav>
+<article>
+	<h1>{{ .Title }}</h1>
+	{{ .Content }}
+</article>
+{{ end }}

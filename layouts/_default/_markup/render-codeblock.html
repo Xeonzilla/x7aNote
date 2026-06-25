@@ -1,0 +1,5 @@
+{{- if eq .Type "astro" -}}
+	{{- transform.Highlight .Inner "html" .Options -}}
+{{- else -}}
+	{{- (transform.HighlightCodeBlock .).Wrapped -}}
+{{- end -}}

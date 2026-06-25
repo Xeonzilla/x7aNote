@@ -1,0 +1,122 @@
+.article-meta,
+.comment-date,
+.comment-reply {
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+}
+
+.article-meta {
+  margin: var(--space-flow) 0;
+  text-align: right;
+
+  & > .article-meta-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0 var(--space-s);
+  }
+}
+
+.comment-date {
+  white-space: nowrap;
+}
+
+.article-meta time,
+.comment-number,
+.comment-date,
+.comment-reply,
+.message-form-control[name="replyto"] {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Keep semantic h3 comment headers visually aligned with body text. */
+.comment-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--space-s);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.comment-reply {
+  margin: 0 0 var(--space-xs);
+}
+
+.message-form {
+  font-size: var(--font-size-reduced);
+}
+
+.message-form-grid,
+.message-form-options {
+  display: grid;
+}
+
+.message-form-grid {
+  gap: var(--space-flow) var(--space-m);
+}
+
+.message-form-fieldset {
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  & > legend {
+    padding: 0;
+  }
+}
+
+.message-form-options {
+  gap: var(--space-xs) var(--space-m);
+}
+
+.message-form-label {
+  color: var(--color-muted);
+}
+
+.message-form-control {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 1rem;
+
+  &:focus-visible {
+    border-color: var(--color-link-hover);
+  }
+}
+
+/* User-selected and entered values stay at body size. */
+.message-form-option {
+  font-size: 1rem;
+}
+
+.message-form-submit {
+  display: block;
+  inline-size: fit-content;
+  margin: var(--space-flow) 0 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+.footer-nav > nav {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+@media (min-width: 54em) {
+  .message-form-grid,
+  .message-form-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .message-form-wide {
+    grid-column: 1 / -1;
+  }
+}

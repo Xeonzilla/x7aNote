@@ -1,0 +1,61 @@
+{{- $siteConfig := partialCached "site-config.html" site "site-config" -}}
+{{- $regularFontURL := $siteConfig.openGraph.regularFontURL -}}
+{{- $regularFontCacheKey := $siteConfig.openGraph.regularFontCacheKey -}}
+{{- $mediumFontURL := $siteConfig.openGraph.mediumFontURL -}}
+{{- $mediumFontCacheKey := $siteConfig.openGraph.mediumFontCacheKey -}}
+{{- $regularFont := "" -}}
+{{- $mediumFont := "" -}}
+
+{{- with try (resources.GetRemote $regularFontURL (dict "key" $regularFontCacheKey "timeout" "60s")) -}}
+	{{- with .Err -}}
+		{{- partial "fail.html" (dict
+			"area" "open graph"
+			"problem" "failed to fetch regular font"
+			"location" "params.open_graph.regular_font_url in hugo.toml"
+			"expected" (printf "a fetchable font at %q" $regularFontURL)
+			"got" (printf "%s" .)
+			"fix" "check the font URL and security.http.urls allowlist"
+			)
+		-}}
+	{{- else with .Value -}}
+		{{- $regularFont = . -}}
+	{{- else -}}
+		{{- partial "fail.html" (dict
+			"area" "open graph"
+			"problem" "regular font fetch returned no resource"
+			"location" "params.open_graph.regular_font_url in hugo.toml"
+			"expected" (printf "a resource value from %q" $regularFontURL)
+			"got" "<nil>"
+			"fix" "check the font URL and Hugo remote resource settings"
+			)
+		-}}
+	{{- end -}}
+{{- end -}}
+
+{{- with try (resources.GetRemote $mediumFontURL (dict "key" $mediumFontCacheKey "timeout" "60s")) -}}
+	{{- with .Err -}}
+		{{- partial "fail.html" (dict
+			"area" "open graph"
+			"problem" "failed to fetch medium font"
+			"location" "params.open_graph.medium_font_url in hugo.toml"
+			"expected" (printf "a fetchable font at %q" $mediumFontURL)
+			"got" (printf "%s" .)
+			"fix" "check the font URL and security.http.urls allowlist"
+			)
+		-}}
+	{{- else with .Value -}}
+		{{- $mediumFont = . -}}
+	{{- else -}}
+		{{- partial "fail.html" (dict
+			"area" "open graph"
+			"problem" "medium font fetch returned no resource"
+			"location" "params.open_graph.medium_font_url in hugo.toml"
+			"expected" (printf "a resource value from %q" $mediumFontURL)
+			"got" "<nil>"
+			"fix" "check the font URL and Hugo remote resource settings"
+			)
+		-}}
+	{{- end -}}
+{{- end -}}
+
+{{- return (dict "medium" $mediumFont "regular" $regularFont) -}}

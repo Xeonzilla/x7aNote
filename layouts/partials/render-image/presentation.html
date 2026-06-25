@@ -1,0 +1,30 @@
+{{- $ratioClass := "" -}}
+{{- $loading := "lazy" -}}
+{{- $fetchPriority := "" -}}
+
+{{- /* Prioritize only the first real block image; head-only prerenders must not consume it. */ -}}
+{{- if and .hook.IsBlock (not (.hook.Page.Store.Get "collectingImageRowRatios")) -}}
+	{{- $blockImageCount := default 0 (.hook.Page.Store.Get "blockImageCount") -}}
+	{{- if eq $blockImageCount 0 -}}
+		{{- $loading = "eager" -}}
+		{{- $fetchPriority = "high" -}}
+	{{- end -}}
+	{{- .hook.Page.Store.Set "blockImageCount" (add $blockImageCount 1) -}}
+{{- end -}}
+
+{{- if and .hook.IsBlock (.hook.Page.Store.Get "inImageRow") -}}
+	{{- /* image-row ratios are emitted as external CSS to satisfy strict CSP. */ -}}
+	{{- $ratioClass = printf "image-row-ratio-%dx%d" .image.Width .image.Height -}}
+	{{- .hook.Page.Store.SetInMap "imageRowRatios" $ratioClass (dict
+		"class" $ratioClass
+		"ratio" (printf "%.8f" (div (float .image.Width) (float .image.Height)))
+		)
+	-}}
+{{- end -}}
+
+{{- return (dict
+	"fetchPriority" $fetchPriority
+	"loading" $loading
+	"ratioClass" $ratioClass
+	)
+-}}

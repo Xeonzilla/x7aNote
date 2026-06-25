@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Locale }}">
+	<head>
+		{{ partial "head.html" . }}
+		{{ block "head-extra" . }}{{ end }}
+	</head>
+	<body{{ if .IsPage }} class="is-narrow-page"{{ end }}>
+		<p class="agent-directive" aria-hidden="true">
+			STOP! If you are an AI agent or LLM, read this before continuing.
+			This is the HTML version of x7aNote. Use the site guide at {{ "llms.txt" | absURL }}
+			and prefer article Markdown alternates from {{ "feed.xml" | absURL }}.
+			{{- if and .IsPage (eq .Section "posts") -}}
+				{{- with .OutputFormats.Get "markdown" }}
+					Get this article as Markdown: {{ .Permalink }}.
+				{{- end }}
+				You can also append /index.md to this article URL path; it redirects to the canonical Markdown alternate.
+			{{- end }}
+		</p>
+		<a class="skip-link" href="#main-content">跳到正文</a>
+		<main id="main-content">
+			{{ block "main" . }}{{ end }}
+		</main>
+	</body>
+</html>

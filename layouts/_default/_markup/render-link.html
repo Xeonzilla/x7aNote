@@ -1,0 +1,17 @@
+{{- $destination := .Destination -}}
+{{- $url := urls.Parse $destination -}}
+{{- $siteURL := urls.Parse site.BaseURL -}}
+{{- $scheme := lower $url.Scheme -}}
+{{- if or (and $scheme (not (in (slice "http" "https" "mailto") $scheme))) (and (not $scheme) $url.Host) -}}
+	{{- partial "fail.html" (dict
+		"area" "link"
+		"problem" "unsupported URL"
+		"location" .Page.File.Path
+		"expected" "http, https, mailto, fragment, or relative URL"
+		"got" (printf "%q" $destination)
+		"fix" "use an allowed URL"
+		)
+	-}}
+{{- end -}}
+{{- $isExternal := and (in (slice "http" "https") $scheme) $url.Host (ne (lower $url.Host) (lower $siteURL.Host)) -}}
+<a href="{{ $destination | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $isExternal }} target="_blank" rel="nofollow noopener noreferrer" aria-label="{{ printf "%s（在新标签页打开）" (.Text | plainify) }}"{{ end }}>{{ .Text }}</a>{{- "" -}}

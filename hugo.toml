@@ -1,0 +1,90 @@
+baseURL = "https://xeonzilla.top/"
+title = "x7aNote"
+defaultContentLanguage = "zh-cn"
+locale = "zh-CN"
+timeZone = "Asia/Shanghai"
+hasCJKLanguage = true
+enableRobotsTXT = true
+disableKinds = ["rss", "section"]
+
+[frontmatter]
+lastmod = ["lastmod"]
+
+[taxonomies]
+tag = "tags"
+
+[permalinks]
+posts = "/:contentbasename/"
+
+[mediaTypes."application/atom+xml"]
+suffixes = ["xml"]
+
+[outputFormats.feed]
+mediaType = "application/atom+xml"
+baseName = "feed"
+
+[outputFormats.markdown]
+mediaType = "text/markdown"
+baseName = "index"
+isPlainText = true
+ugly = true
+
+[outputs]
+home = ["html", "feed"]
+
+[[cascade]]
+outputs = ["html", "markdown"]
+
+[cascade.target]
+kind = "page"
+path = "/posts/**"
+
+[markup.goldmark.parser]
+wrapStandAloneImageWithinParagraph = false
+
+[markup.highlight]
+noClasses = false
+
+[markup.tableOfContents]
+endLevel = 4
+
+[security.http]
+mediaTypes = ["^image/avif$", "^application/octet-stream$"]
+methods = ["(?i)^(GET|HEAD)$"]
+urls = [
+  "^https://blog-static\\.xeonzilla\\.top/img/",
+  "^https://raw\\.githubusercontent\\.com/adobe-fonts/source-han-serif/release/SubsetOTF/CN/SourceHanSerifCN-Regular\\.otf$",
+  "^https://raw\\.githubusercontent\\.com/adobe-fonts/source-han-serif/release/SubsetOTF/CN/SourceHanSerifCN-Medium\\.otf$",
+]
+
+[caches.getresource]
+dir = ":resourceDir/_gen"
+
+[params]
+author = "Xeonzilla"
+description = "Yuri is life."
+theme_color = "#2d6c67"
+message_email = "admin@xeonzilla.top"
+
+[params.home]
+latest_post_count = 9
+recent_update_count = 3
+
+[params.remote_images]
+base_url = "https://blog-static.xeonzilla.top/img"
+fetch_header_name = "X-X7aNote-Image-Fetch"
+fetch_header_value = "hugo-build"
+
+[params.message_form]
+api_key = "sf_9f36badb23f5e27e0330e4ff"
+success_path = "/message-sent/"
+
+[params.license]
+name = "CC BY-NC-SA 4.0"
+url = "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+
+[params.open_graph]
+regular_font_url = "https://raw.githubusercontent.com/adobe-fonts/source-han-serif/release/SubsetOTF/CN/SourceHanSerifCN-Regular.otf"
+regular_font_cache_key = "fonts/source-han-serif-cn-regular.otf"
+medium_font_url = "https://raw.githubusercontent.com/adobe-fonts/source-han-serif/release/SubsetOTF/CN/SourceHanSerifCN-Medium.otf"
+medium_font_cache_key = "fonts/source-han-serif-cn-medium.otf"

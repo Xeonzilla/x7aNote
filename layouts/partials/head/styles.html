@@ -1,0 +1,40 @@
+{{- $styles := slice "css/base.css" -}}
+{{- if .IsPage -}}
+	{{- $styles = $styles | append "css/content.css" -}}
+	{{- $styles = $styles | append "css/syntax.css" -}}
+{{- else if or .IsHome (eq .Kind "term") (eq .Kind "taxonomy") -}}
+	{{- $styles = $styles | append "css/listing.css" -}}
+{{- end -}}
+{{- partialCached "head/static-styles.html" (dict "styles" $styles) (delimit $styles "|") -}}
+{{/* Load image-row CSS only where its selector-dependent layout is needed. */}}
+{{- if .HasShortcode "image-row" }}
+	{{- /* Render once here so image hooks can register ratio CSS before head links. */ -}}
+	{{- /* This head-only render must not consume the first block image priority slot. */ -}}
+	{{- .Store.Set "collectingImageRowRatios" true -}}
+	{{- $_ := .Content -}}
+	{{- .Store.Set "collectingImageRowRatios" false -}}
+	{{- with resources.Get "css/image-row.css" }}
+		{{- $imageRowStyle := . | minify | fingerprint }}
+		<link rel="stylesheet" href="{{ $imageRowStyle.RelPermalink }}" integrity="{{ $imageRowStyle.Data.Integrity }}" crossorigin="anonymous">
+	{{- else }}
+		{{- partial "fail.html" (dict
+			"area" "asset"
+			"problem" "missing image-row stylesheet asset"
+			"location" "assets/css/image-row.css"
+			"expected" "a CSS asset file when the image-row shortcode is used"
+			"got" "<not found>"
+			"fix" "restore assets/css/image-row.css or remove the image-row shortcode usage"
+			)
+		-}}
+	{{- end }}
+	{{- with .Store.GetSortedMapValues "imageRowRatios" }}
+		{{- $ratioRules := slice -}}
+		{{- range . }}
+			{{- $ratioRules = $ratioRules | append (printf ".%s{--image-row-ratio:%s}" .class .ratio) -}}
+		{{- end -}}
+		{{- $ratioCSS := delimit $ratioRules "" -}}
+		{{- $ratioStylePath := printf "css/image-row-ratios/%s.css" (sha256 $.RelPermalink) -}}
+		{{- $ratioStyle := resources.FromString $ratioStylePath $ratioCSS | minify | fingerprint }}
+		<link rel="stylesheet" href="{{ $ratioStyle.RelPermalink }}" integrity="{{ $ratioStyle.Data.Integrity }}" crossorigin="anonymous">
+	{{- end }}
+{{- end }}

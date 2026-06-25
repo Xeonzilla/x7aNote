@@ -1,0 +1,11 @@
+{{- /* fail.html normally runs only on error paths; this no-op satisfies strict unused-template checks. */ -}}
+{{- partial "fail.html" (dict "noop" true) -}}
+{{- $head := partial "head/context.html" . -}}
+{{- if $head.isArticle -}}
+	{{- partial "validate-post.html" $head.page -}}
+{{- end -}}
+{{ partial "head/core-meta.html" $head }}
+{{ partialCached "head/favicons.html" site "head-favicons" }}
+{{ partial "head/social-meta.html" $head }}
+{{ partial "head/alternates.html" $head }}
+{{ partial "head/styles.html" $head.page }}

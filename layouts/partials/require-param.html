@@ -1,0 +1,26 @@
+{{- $value := "" -}}
+{{- if not .scope -}}
+	{{- partial "fail.html" (dict
+		"area" "config"
+		"problem" "missing required config table"
+		"location" .location
+		"expected" (.expected | default "a configured value")
+		"got" "<missing>"
+		"fix" "restore the required configuration in hugo.toml"
+		)
+	-}}
+{{- else -}}
+	{{- $value = index .scope .key -}}
+	{{- if not $value -}}
+		{{- partial "fail.html" (dict
+			"area" "config"
+			"problem" "missing required config value"
+			"location" .location
+			"expected" (.expected | default "a configured value")
+			"got" "<missing or empty>"
+			"fix" "restore the required configuration in hugo.toml"
+			)
+		-}}
+	{{- end -}}
+{{- end -}}
+{{- return $value -}}

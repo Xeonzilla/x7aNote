@@ -1,0 +1,8 @@
+{{- $remoteImage := partial "render-image/resolve.html" . -}}
+{{- with $remoteImage -}}
+	{{- $image := partial "render-image/publish.html" . -}}
+	{{- with $image -}}
+		{{- $presentation := partial "render-image/presentation.html" (dict "hook" $ "image" .) -}}
+		{{- partial "render-image/markup.html" (dict "hook" $ "image" . "presentation" $presentation) -}}
+	{{- end -}}
+{{- end -}}

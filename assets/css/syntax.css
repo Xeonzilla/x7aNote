@@ -1,0 +1,71 @@
+.chroma {
+  text-size-adjust: none;
+
+  & .err {
+    color: #fffcf0;
+    background-color: #942822;
+  }
+
+  & .hl {
+    background-color: #e6e4d9;
+  }
+
+  & .line {
+    display: flex;
+  }
+
+  & :is(.k, .kc, .kd, .kn, .kp, .kr, .kt) {
+    color: #af3029;
+  }
+
+  & :is(.na, .nv, .vc, .vg, .vi, .vm) {
+    color: #9d4310;
+  }
+
+  & .nc {
+    color: #1c6c66;
+  }
+
+  & :is(.no, .nd, .nt, .m, .mb, .mf, .mh, .mi, .il, .mo, .o, .ow, .or) {
+    color: #205ea6;
+  }
+
+  & :is(.ni, .nb, .nf, .fm) {
+    color: #5e409d;
+  }
+
+  & .nl {
+    color: #942822;
+    font-weight: bold;
+  }
+
+  & :is(.nn, .nx, .p, .ge, .go) {
+    color: #343331;
+  }
+
+  & :is(.bp, .c, .ch, .cm, .c1, .cs, .cp, .cpf) {
+    color: #6f6e69;
+  }
+
+  & :is(.s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1) {
+    color: #536907;
+  }
+
+  & .ss {
+    color: #1a4f8c;
+  }
+
+  & .gd {
+    color: #942822;
+    background-color: #ffe1d5;
+  }
+
+  & .gi {
+    color: #536907;
+    background-color: #edeecf;
+  }
+
+  & .gl {
+    text-decoration: underline;
+  }
+}

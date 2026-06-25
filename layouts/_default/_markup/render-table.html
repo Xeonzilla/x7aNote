@@ -1,0 +1,45 @@
+{{- $location := "table render hook" -}}
+{{- with .Page.File -}}
+	{{- $location = .Path -}}
+{{- end -}}
+<table
+	{{- range $key, $value := .Attributes }}
+	{{- $attrName := lower (printf "%v" $key) -}}
+	{{- $isDataAttr := eq (len (findRE `^data-[a-z0-9]+(?:-[a-z0-9]+)*$` $attrName)) 1 -}}
+	{{- $isAllowedAttr := or (in (slice "id" "class" "aria-label" "aria-labelledby" "aria-describedby") $attrName) $isDataAttr -}}
+		{{- if not $isAllowedAttr -}}
+		{{- partial "fail.html" (dict
+			"area" "table"
+			"problem" "unsupported table attribute"
+			"location" $location
+			"expected" "id, class, aria-label, aria-labelledby, aria-describedby, or data-*"
+			"got" $key
+			"fix" "remove the attribute or use an allowed table attribute"
+			)
+		-}}
+		{{- else if $value }}
+		{{- $attrValue := printf "%v" $value -}}
+			{{- if and (eq $attrName "class") (reflect.IsSlice $value) -}}
+			{{- $attrValue = delimit $value " " -}}
+			{{- end -}}{{- printf " %s" $attrName | safeHTMLAttr }}="{{ $attrValue }}"
+		{{- end }}
+	{{- end }}>
+	<thead>
+		{{- range .THead }}
+			<tr>
+				{{- range . }}
+					<th scope="col"{{ with .Alignment }} class="table-cell-align-{{ . }}"{{ end }}>{{ .Text }}</th>
+				{{- end }}
+			</tr>
+		{{- end }}
+	</thead>
+	<tbody>
+		{{- range .TBody }}
+			<tr>
+				{{- range . }}
+					<td{{ with .Alignment }} class="table-cell-align-{{ . }}"{{ end }}>{{ .Text }}</td>
+				{{- end }}
+			</tr>
+		{{- end }}
+	</tbody>
+</table>

@@ -1,0 +1,16 @@
+{{- range $stylePath := .styles }}
+	{{- with resources.Get $stylePath }}
+		{{- $style := . | minify | fingerprint }}
+		<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" crossorigin="anonymous">
+	{{- else }}
+		{{- partial "fail.html" (dict
+			"area" "asset"
+			"problem" "missing stylesheet asset"
+			"location" (printf "assets/%s" $stylePath)
+			"expected" "a CSS asset file"
+			"got" "<not found>"
+			"fix" "restore the asset file or update the stylesheet list in layouts/partials/head/styles.html"
+			)
+		-}}
+	{{- end }}
+{{- end }}

@@ -1,0 +1,69 @@
+{{- if and .File (eq .Section "posts") -}}
+	{{- $postSlug := .File.ContentBaseName -}}
+	{{- /* Message submission stays static-first: mailto plus a no-JS hosted form. */ -}}
+	{{- $siteConfig := partialCached "site-config.html" site "site-config" -}}
+	{{- $formSuccessPath := $siteConfig.messageForm.successPath -}}
+	{{- if not (site.GetPage (strings.TrimSuffix "/" (strings.TrimPrefix "/" $formSuccessPath))) -}}
+		{{- partial "fail.html" (dict
+			"area" "config"
+			"problem" "message success page does not exist"
+			"location" "params.message_form.success_path in hugo.toml"
+			"expected" (printf "a content page at %q" $formSuccessPath)
+			"got" "<not found>"
+			"fix" "create the success page or update success_path"
+			)
+		-}}
+	{{- end -}}
+	{{- $subject := printf "关于《%s》的留言" .Title -}}
+	{{- $body := printf "文章标题：%s\n文章标识：%s\n\n留言方式（公开/私密）：\n昵称：\n邮箱（选填，仅用于回复）：\n站点（选填，公开留言时展示）：\n回复编号（选填，用于回应上方评论）：\n\n留言内容：\n" .Title $postSlug -}}
+	{{- $mailtoHref := printf "mailto:%s?%s" $siteConfig.messageEmail (querify "subject" $subject "body" $body) -}}
+	<section>
+		<h2>留言</h2>
+		<p>读完后如果想补充、回应或私下联系，可以<a href="{{ $mailtoHref | safeURL }}">发一封邮件给我</a>，也可以使用下方表单。公开留言会在阅读后整理为文章下方的评论，私密留言只会发送给我。</p>
+		<p>邮件链接会尝试打开你的默认邮件应用，并自动带上文章标题和标识；如果没有为mailto链接配置默认程序，也可以直接写信到admin@xeonzilla.top。</p>
+		<form class="message-form" method="post" action="https://api.staticforms.dev/submit" accept-charset="UTF-8">
+			<input type="hidden" name="apiKey" value="{{ $siteConfig.messageForm.apiKey }}">
+			<input type="hidden" name="redirectTo" value="{{ $formSuccessPath | absURL }}">
+			<input type="hidden" name="subject" value="{{ $subject }}">
+			<input type="hidden" name="post_title" value="{{ .Title }}">
+			<input type="hidden" name="post_slug" value="{{ $postSlug }}">
+			<input class="message-form-honeypot" type="text" name="message_honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+			<div class="message-form-grid">
+				<fieldset class="message-form-fieldset message-form-wide">
+					<legend class="message-form-label">留言方式</legend>
+					<div class="message-form-options">
+						<label class="message-form-option" for="message-visibility-public-{{ $postSlug }}">
+							<input id="message-visibility-public-{{ $postSlug }}" name="message_visibility" type="radio" value="public" required>
+							<span>公开留言（可整理为评论）</span>
+						</label>
+						<label class="message-form-option" for="message-visibility-private-{{ $postSlug }}">
+							<input id="message-visibility-private-{{ $postSlug }}" name="message_visibility" type="radio" value="private" required>
+							<span>私密留言（只发送给我）</span>
+						</label>
+					</div>
+				</fieldset>
+				<div>
+					<label class="message-form-label" for="message-author-{{ $postSlug }}">昵称</label>
+					<input class="message-form-control" id="message-author-{{ $postSlug }}" name="author" type="text" dir="auto" autocomplete="nickname" maxlength="80" enterkeyhint="next" required>
+				</div>
+				<div>
+					<label class="message-form-label" for="message-email-{{ $postSlug }}">邮箱（选填，仅用于回复）</label>
+					<input class="message-form-control" id="message-email-{{ $postSlug }}" name="email" type="email" autocomplete="email" maxlength="254" enterkeyhint="next">
+				</div>
+				<div>
+					<label class="message-form-label" for="message-site-{{ $postSlug }}">站点（选填，公开留言时展示）</label>
+					<input class="message-form-control" id="message-site-{{ $postSlug }}" name="site" type="url" autocomplete="url" maxlength="2048" enterkeyhint="next">
+				</div>
+				<div>
+					<label class="message-form-label" for="message-replyto-{{ $postSlug }}">回复编号（选填，用于回应上方评论）</label>
+					<input class="message-form-control" id="message-replyto-{{ $postSlug }}" name="replyto" type="text" inputmode="numeric" pattern="[0-9]{1,8}" maxlength="8" autocomplete="off" enterkeyhint="next">
+				</div>
+				<div class="message-form-wide">
+					<label class="message-form-label" for="message-content-{{ $postSlug }}">留言内容（支持Markdown语法，但不支持预览）</label>
+					<textarea class="message-form-control" id="message-content-{{ $postSlug }}" name="message" dir="auto" rows="6" maxlength="10000" placeholder="字数上限为10000字" required></textarea>
+				</div>
+			</div>
+			<button class="message-form-submit" type="submit">发送留言</button>
+		</form>
+	</section>
+{{- end -}}

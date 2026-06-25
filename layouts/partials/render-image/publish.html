@@ -1,0 +1,30 @@
+{{- $image := "" -}}
+
+{{- with try (resources.GetRemote .destination .options) -}}
+	{{- with .Err -}}
+		{{- partial "fail.html" (dict
+			"area" "remote image"
+			"problem" "failed to fetch remote image"
+			"location" $.location
+			"expected" (printf "a fetchable image at %q" $.destination)
+			"got" (printf "%s" .)
+			"fix" "check the remote image URL and Cloudflare allow-header rule"
+			)
+		-}}
+	{{- else with .Value -}}
+		{{- /* Public image URLs use hashes only; source paths and slugs stay private. */ -}}
+		{{- $image = resources.Copy (printf "images/%s.avif" $.hash) . | fingerprint "sha256" -}}
+	{{- else -}}
+		{{- partial "fail.html" (dict
+			"area" "remote image"
+			"problem" "remote fetch returned no resource"
+			"location" $.location
+			"expected" (printf "a resource value from %q" $.destination)
+			"got" "<nil>"
+			"fix" "check the remote image URL and Hugo remote resource settings"
+			)
+		-}}
+	{{- end -}}
+{{- end -}}
+
+{{- return $image -}}
