@@ -6,6 +6,11 @@
 
 This file follows [llms.txt](https://llmstxt.org/) conventions for LLM-readable documentation.
 
+## Scope
+
+- These instructions apply to the entire repository unless a more specific `AGENTS.md` appears in a subdirectory.
+- `CLAUDE.md` points to this file. Keep shared agent guidance here instead of duplicating it elsewhere.
+
 ## Project Rules
 
 - Keep the site static-first and Hugo-native. Prefer Hugo templates, render hooks, Markdown, static files, and no-JS external services when needed.
@@ -14,7 +19,8 @@ This file follows [llms.txt](https://llmstxt.org/) conventions for LLM-readable 
 - Use tags only. Do not introduce Hugo categories.
 - Public displayed responses are called “评论”; submission entry points are called “留言”.
 - HTML pages use trailing-slash URLs, such as `/post/`, `/tags/name/`, and `/message-sent/`. File outputs keep extensions, such as `/feed.xml`, `/sitemap.xml`, and `/post.md`.
-- Publish remote images under `/images/` with hashed public filenames. Markdown image sources should resolve through `params.remote_images.base_url`; use relative image paths for the normal per-post remote image layout. Do not use image URLs outside that base URL, query strings, fragments, directory traversal, or generated URLs that expose original R2 paths, article slugs, or source filenames.
+- Publish remote images under `/images/` with hashed public filenames. Markdown image sources should resolve through `params.remote_images.base_url`; use relative image paths for the normal per-post remote image layout.
+- Do not use image URLs outside `params.remote_images.base_url`, query strings, fragments, directory traversal, or generated URLs that expose original R2 paths, article slugs, or source filenames.
 - Use generated PNG Open Graph images only. Do not add manual Open Graph image overrides unless the project direction changes.
 
 ## Naming
@@ -44,9 +50,11 @@ This file follows [llms.txt](https://llmstxt.org/) conventions for LLM-readable 
 ## Completion
 
 - When a completed change or feature is coherent enough for its own commit, include a suggested commit message in the final response. Write the message in English, start it with a capital letter, keep it brief and clear, and do not use Conventional Commits unless explicitly requested.
+- If the turn is only an investigation, explanation, or partial status update, do not force a commit message.
 
 ## Verification
 
+- Run required formatters before builds, then report the meaningful verification commands in the final response.
 - After Hugo-related implementation changes, run the strict production build. This includes changes to Hugo config, content, layouts, assets, static files, shortcodes, render hooks, or anything else that can affect generated site output:
 
 ```powershell
@@ -79,5 +87,5 @@ hugo --environment production --cleanDestinationDir --panicOnWarning --printI18n
 
 ## Skills
 
-- [gotmplfmt](skills/gotmplfmt/SKILL.md): Auto-format Hugo templates after modifications
-- [oxfmt](skills/oxfmt/SKILL.md): Format supported non-template files after modifications
+- [gotmplfmt](.agents/skills/gotmplfmt/SKILL.md): Auto-format Hugo templates after modifications
+- [oxfmt](.agents/skills/oxfmt/SKILL.md): Format supported non-template files after modifications
