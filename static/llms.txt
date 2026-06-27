@@ -7,7 +7,7 @@ This is a static, text-first personal blog. HTML pages are canonical for humans;
 ## Reading Guide
 
 - Public content is primarily in Chinese.
-- Use `https://xeonzilla.top/feed.xml` to discover recent articles and their Markdown alternates.
+- Use `https://xeonzilla.top/feed.xml` to discover recent articles and their canonical HTML pages.
 - Use `https://xeonzilla.top/sitemap.xml` to discover public HTML pages.
 - Prefer article Markdown URLs for article text: `https://xeonzilla.top/<post-slug>.md`.
 - If starting from an article HTML URL, appending `/index.md` to the path is supported as a fallback, for example `https://xeonzilla.top/example-post/index.md`; it redirects to the canonical Markdown alternate.
@@ -24,7 +24,7 @@ This is a static, text-first personal blog. HTML pages are canonical for humans;
 
 - [Robots](https://xeonzilla.top/robots.txt): Crawling rules and content-signal policy.
 - [Sitemap](https://xeonzilla.top/sitemap.xml): Discoverable public HTML pages.
-- [Atom Feed](https://xeonzilla.top/feed.xml): Latest posts feed with plain-text summaries and `rel="alternate"` links using `type="text/markdown"`.
+- [Atom Feed](https://xeonzilla.top/feed.xml): Latest posts feed with plain-text summaries and canonical HTML entry links.
 
 ## Boundaries
 
