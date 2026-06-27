@@ -41,6 +41,10 @@ This file follows [llms.txt](https://llmstxt.org/) conventions for LLM-readable 
 - Use `compact-list-columns.html` for the shared "split a linear collection into compact-list columns" behavior. Keep callers responsible for the outer grid so homepage archive sections can continue to place year headings in the surrounding homepage grid.
 - Prefer partials for clear domains or pipelines, such as `head/` and `render-image/`. Avoid creating tiny partials for a few lines of HTML when keeping the branch inline is easier to read.
 
+## Completion
+
+- When a completed change or feature is coherent enough for its own commit, include a suggested commit message in the final response. Write the message in English, start it with a capital letter, keep it brief and clear, and do not use Conventional Commits unless explicitly requested.
+
 ## Verification
 
 - After Hugo-related implementation changes, run the strict production build. This includes changes to Hugo config, content, layouts, assets, static files, shortcodes, render hooks, or anything else that can affect generated site output:
