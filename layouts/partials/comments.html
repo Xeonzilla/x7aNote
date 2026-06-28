@@ -23,7 +23,7 @@
 							{{- with index .Params "site" }}
 								<a href="{{ . }}" target="_blank" rel="ugc nofollow noopener noreferrer" aria-label="{{ printf "%s（在新标签页打开）" $author }}">{{ $author }}</a>
 							{{- else -}}
-								<span>{{ $author }}</span>
+								{{ $author }}
 							{{- end }}
 							<time class="comment-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
 						</h3>
