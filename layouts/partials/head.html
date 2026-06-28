@@ -5,7 +5,7 @@
 	{{- partial "validate-post.html" $head.page -}}
 {{- end -}}
 {{ partial "head/core-meta.html" $head }}
-{{ partialCached "head/favicons.html" site "head-favicons" }}
-{{ partial "head/social-meta.html" $head }}
-{{ partial "head/alternates.html" $head }}
 {{ partial "head/styles.html" $head.page }}
+{{ partialCached "head/favicons.html" site "head-favicons" }}
+{{ partial "head/alternates.html" $head }}
+{{ partial "head/social-meta.html" $head }}
