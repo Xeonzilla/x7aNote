@@ -9,21 +9,21 @@
 {{ $recentlyUpdatedPosts := first $recentUpdateCount ($olderUpdatedPosts.ByLastmod.Reverse) }}
 <div class="article-grid index-grid">
 	<div class="index-welcome">
-		<div class="index-welcome-tagline">欢迎<br>来到</div>
+		<div class="index-welcome-tagline">欢迎&#10;来到</div>
 		<h1 class="index-welcome-title">{{ .Site.Title }}</h1>
 	</div>
 
 	<nav class="index-section-nav" aria-label="首页分区">
-		<div><a href="#latest">最近发布</a></div>
-		<div><a href="#recent">最近更新</a></div>
-		<div><a href="#others">其他文章</a></div>
+		<a href="#latest">最近发布</a>
+		<a href="#recent">最近更新</a>
+		<a href="#others">其他文章</a>
 	</nav>
 
 	<nav class="index-site-links" aria-label="站点链接">
-		<div><a href="{{ "about/" | relURL }}">关于</a></div>
-		<div><a href="{{ "tags/" | relURL }}">标签</a></div>
-		<div><a href="{{ "feed.xml" | relURL }}" rel="alternate" type="application/atom+xml">订阅</a></div>
-		<div><a href="https://www.travellings.cn/plain.html" target="_blank" rel="nofollow noopener noreferrer">开往</a></div>
+		<a href="{{ "about/" | relURL }}">关于</a>
+		<a href="{{ "tags/" | relURL }}">标签</a>
+		<a href="{{ "feed.xml" | relURL }}" rel="alternate" type="application/atom+xml">订阅</a>
+		<a href="https://www.travellings.cn/plain.html" target="_blank" rel="nofollow noopener noreferrer">开往</a>
 	</nav>
 
 	<h2 class="index-section-heading" id="latest">最近发布</h2>

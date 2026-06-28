@@ -10,9 +10,7 @@
 			<a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
 		</h3>
 	{{ end }}
-	<div class="article-card-date">
-		<time datetime="{{ $date }}">{{ $date }}</time>
-	</div>
+	<time class="article-card-date" datetime="{{ $date }}">{{ $date }}</time>
 	<div class="article-card-tags">
 		{{ with $page.GetTerms "tags" }}
 			{{ range . }}

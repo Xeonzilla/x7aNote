@@ -48,7 +48,7 @@
 .compact-list {
   font-size: var(--font-size-small);
 
-  & > div + div {
+  & > * + * {
     margin-block-start: var(--space-xs);
   }
 }
@@ -78,6 +78,7 @@
     line-height: var(--line-height-compact);
     transform: scaleY(1.5);
     transform-origin: top;
+    white-space: pre-line;
   }
 
   & > .index-welcome > .index-welcome-title {
@@ -90,6 +91,7 @@
     display: grid;
     align-content: center;
     gap: var(--space-xs);
+    justify-items: start;
     font-size: var(--font-size-reduced);
   }
 
