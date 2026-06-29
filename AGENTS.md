@@ -16,6 +16,7 @@ This file follows [llms.txt](https://llmstxt.org/) conventions for LLM-readable 
 - Keep the site static-first and Hugo-native. Prefer Hugo templates, render hooks, Markdown, static files, and no-JS external services when needed.
 - Do not add frontend JavaScript to the site implementation unless the user explicitly requests it. The deployed CSP uses `script-src 'none'`; historical article code samples are not part of this restriction.
 - Do not edit generated output or caches directly, including `public/`, `resources/`, and `.vercel_build_output/`.
+- Keep `static/llms.txt` as the stable, static machine-readable site guide. When changing the site title, author, base URL, feed path, sitemap path, or Markdown URL policy, update it manually.
 - Use tags only. Do not introduce Hugo categories.
 - Public displayed responses are called “评论”; submission entry points are called “留言”.
 - HTML pages use trailing-slash URLs, such as `/post/`, `/tags/name/`, and `/message-sent/`. File outputs keep extensions, such as `/feed.xml`, `/sitemap.xml`, and `/post.md`.
