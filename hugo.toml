@@ -6,8 +6,10 @@ timeZone = "Asia/Shanghai"
 hasCJKLanguage = true
 enableRobotsTXT = true
 disableKinds = ["rss", "section"]
+capitalizeListTitles = false
 
 [frontmatter]
+date = ["date"]
 lastmod = ["lastmod"]
 
 [taxonomies]
