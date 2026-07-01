@@ -39,6 +39,9 @@ outputs = ["html", "markdown"]
 kind = "page"
 path = "/posts/**"
 
+[markup.goldmark.extensions.footnote]
+enableAutoIDPrefix = true
+
 [markup.goldmark.parser]
 wrapStandAloneImageWithinParagraph = false
 
