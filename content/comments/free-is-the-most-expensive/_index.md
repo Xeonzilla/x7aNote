@@ -1,5 +1,5 @@
 ---
 cascade:
   params:
-    post: free-is-the-most-expensive
+    post: "free-is-the-most-expensive"
 ---

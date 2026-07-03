@@ -1,5 +1,5 @@
 ---
 cascade:
   params:
-    post: netlify-supabase-umami
+    post: "netlify-supabase-umami"
 ---

@@ -1,5 +1,5 @@
 ---
 cascade:
   params:
-    post: summer-pockets
+    post: "summer-pockets"
 ---

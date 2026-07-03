@@ -1,5 +1,5 @@
 ---
 cascade:
   params:
-    post: ikoku-nikki
+    post: "ikoku-nikki"
 ---

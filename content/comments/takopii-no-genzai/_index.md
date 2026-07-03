@@ -1,5 +1,5 @@
 ---
 cascade:
   params:
-    post: takopii-no-genzai
+    post: "takopii-no-genzai"
 ---

@@ -1,5 +1,5 @@
 ---
 cascade:
   params:
-    post: hina-youmiya-seven-deadly-sins
+    post: "hina-youmiya-seven-deadly-sins"
 ---

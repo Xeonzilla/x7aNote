@@ -1,5 +1,5 @@
 ---
 cascade:
   params:
-    post: wata-tabe
+    post: "wata-tabe"
 ---

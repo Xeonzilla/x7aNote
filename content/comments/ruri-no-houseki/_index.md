@@ -1,5 +1,5 @@
 ---
 cascade:
   params:
-    post: ruri-no-houseki
+    post: "ruri-no-houseki"
 ---

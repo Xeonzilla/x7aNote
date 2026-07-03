@@ -1,5 +1,5 @@
 ---
 cascade:
   params:
-    post: exploring-vitepress
+    post: "exploring-vitepress"
 ---

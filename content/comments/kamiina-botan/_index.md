@@ -1,5 +1,5 @@
 ---
 cascade:
   params:
-    post: kamiina-botan
+    post: "kamiina-botan"
 ---

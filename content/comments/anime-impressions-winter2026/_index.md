@@ -1,5 +1,5 @@
 ---
 cascade:
   params:
-    post: anime-impressions-winter2026
+    post: "anime-impressions-winter2026"
 ---

@@ -1,5 +1,5 @@
 ---
 cascade:
   params:
-    post: d4dj-first-mix
+    post: "d4dj-first-mix"
 ---

@@ -1,5 +1,5 @@
 ---
 cascade:
   params:
-    post: fuwari-is-all-you-need
+    post: "fuwari-is-all-you-need"
 ---

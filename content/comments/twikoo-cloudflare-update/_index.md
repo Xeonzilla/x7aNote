@@ -1,5 +1,5 @@
 ---
 cascade:
   params:
-    post: twikoo-cloudflare-update
+    post: "twikoo-cloudflare-update"
 ---

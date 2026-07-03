@@ -1,5 +1,5 @@
 ---
 cascade:
   params:
-    post: the-bumpy-road-to-thought-lite
+    post: "the-bumpy-road-to-thought-lite"
 ---

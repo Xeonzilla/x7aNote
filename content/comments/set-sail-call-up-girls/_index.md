@@ -1,5 +1,5 @@
 ---
 cascade:
   params:
-    post: set-sail-call-up-girls
+    post: "set-sail-call-up-girls"
 ---

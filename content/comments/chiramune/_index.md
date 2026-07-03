@@ -1,5 +1,5 @@
 ---
 cascade:
   params:
-    post: chiramune
+    post: "chiramune"
 ---

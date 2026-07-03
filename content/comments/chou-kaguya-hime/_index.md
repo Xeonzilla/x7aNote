@@ -1,5 +1,5 @@
 ---
 cascade:
   params:
-    post: chou-kaguya-hime
+    post: "chou-kaguya-hime"
 ---

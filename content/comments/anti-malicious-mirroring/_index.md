@@ -1,5 +1,5 @@
 ---
 cascade:
   params:
-    post: anti-malicious-mirroring
+    post: "anti-malicious-mirroring"
 ---
