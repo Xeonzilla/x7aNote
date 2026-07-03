@@ -1,7 +1,7 @@
 ---
 title: "留言已发送"
 date: 2026-06-18
-layout: message-sent
+layout: "message-sent"
 sitemap:
   disable: true
 ---
