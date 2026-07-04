@@ -14,4 +14,4 @@
 	-}}
 {{- end -}}
 {{- $isExternal := and (in (slice "http" "https") $scheme) $url.Host (ne (lower $url.Host) (lower $siteURL.Host)) -}}
-<a href="{{ $destination | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $isExternal }} target="_blank" rel="nofollow noopener noreferrer" aria-label="{{ printf "%s（在新标签页打开）" (.Text | plainify) }}"{{ end }}>{{ .Text }}</a>{{- "" -}}
+<a href="{{ $destination | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $isExternal }} target="_blank" rel="{{ if eq .Page.Section "comments" }}ugc {{ end }}nofollow noopener noreferrer" aria-label="{{ printf "%s（在新标签页打开）" (.Text | plainify) }}"{{ end }}>{{ .Text }}</a>{{- "" -}}
