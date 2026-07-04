@@ -22,6 +22,7 @@ This file follows [llms.txt](https://llmstxt.org/) conventions for LLM-readable 
 - HTML pages use trailing-slash URLs, such as `/post/`, `/tags/name/`, and `/message-sent/`. File outputs keep extensions, such as `/feed.xml`, `/sitemap.xml`, and `/post.md`.
 - Publish remote images under `/images/` with hashed public filenames. Markdown image sources should resolve through `params.remote_images.base_url`; use relative image paths for the normal per-post remote image layout.
 - Do not use image URLs outside `params.remote_images.base_url`, query strings, fragments, directory traversal, or generated URLs that expose original R2 paths, article slugs, or source filenames.
+- Post cover images may intentionally use empty alt text such as `![](cover.avif)`; treat them as visual entry points, not missing-alt defects. Informative in-article images should still use meaningful alt text.
 - Use generated PNG Open Graph images only. Do not add manual Open Graph image overrides unless the project direction changes.
 
 ## Naming
