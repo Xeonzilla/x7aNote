@@ -1,20 +1,14 @@
-<!DOCTYPE html>
-<html lang="{{ site.Language.Locale }}">
-	<head>
-		{{ partial "head.html" . }}
-		<meta name="robots" content="noindex">
-	</head>
-	<body class="is-narrow-page">
-		<a class="skip-link" href="#main-content">跳到正文</a>
-		<main id="main-content">
-			<nav class="page-nav" aria-label="错误页导航">
-				<a href="{{ "/" | relURL }}">返回首页</a>
-			</nav>
-			<article>
-				<h1>页面不存在</h1>
-				<p>这个地址没有对应的页面，可能是旧链接、手误，或一次普通的迷路。</p>
-				<p>你可以返回首页，从文章列表或标签重新寻找内容。</p>
-			</article>
-		</main>
-	</body>
-</html>
+{{ define "head-extra" }}
+<meta name="robots" content="noindex">
+{{ end }}
+
+{{ define "main" }}
+<nav class="page-nav" aria-label="错误页导航">
+	<a href="{{ "/" | relURL }}">返回首页</a>
+</nav>
+<article>
+	<h1>页面不存在</h1>
+	<p>这个地址没有对应的页面，可能是旧链接、手误，或一次普通的迷路。</p>
+	<p>你可以返回首页，从文章列表或标签重新寻找内容。</p>
+</article>
+{{ end }}
