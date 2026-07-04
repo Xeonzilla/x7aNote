@@ -28,6 +28,7 @@
 	{{- if and $regularFont $mediumFont -}}
 		{{- $fontSize := 68 -}}
 		{{- /* Hugo image text has no wrapping; shrink long titles to preserve the card layout. */ -}}
+		{{- /* len is a UTF-8 byte count; these thresholds preserve the current Chinese-title visual tuning. */ -}}
 		{{- if gt (len $title) 72 -}}
 			{{- $fontSize = 42 -}}
 		{{- else if gt (len $title) 48 -}}
