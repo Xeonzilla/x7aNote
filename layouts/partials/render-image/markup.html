@@ -9,8 +9,7 @@
 			{{- with .presentation.fetchPriority }}
 				fetchpriority="{{ . }}"
 			{{- end }}
-			decoding="async"
-			integrity="{{ .image.Data.Integrity }}">
+			decoding="async">
 		{{- with .hook.Title }}
 			<figcaption>{{ . }}</figcaption>
 		{{- end }}
@@ -25,6 +24,5 @@
 		decoding="async"
 		{{- with .hook.Title }}
 			title="{{ . }}"
-		{{- end }}
-		integrity="{{ .image.Data.Integrity }}">
+		{{- end }}>
 {{- end -}}
