@@ -30,7 +30,7 @@
 			)
 		-}}
 	{{- else -}}
-		{{- $destinationHash := sha256 $destination -}}
+		{{- $destinationHash := $destination | crypto.Hash "sha256" -}}
 		{{- $resolved = dict
 			"destination" $destination
 			"hash" $destinationHash
