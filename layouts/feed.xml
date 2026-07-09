@@ -13,7 +13,6 @@
 	-}}
 {{- else -}}
 	{{- $siteConfig := partialCached "site-config.html" site "site-config" }}
-	{{- $siteBaseURL := strings.TrimSuffix "/" site.BaseURL }}
 	{{- $latestFeedPage := index $feedPages 0 }}
 	{{- $updated := cond $latestFeedPage.Lastmod.IsZero $latestFeedPage.Date $latestFeedPage.Lastmod }}
 	{{- /* Feed updated tracks emitted entries, not the build timestamp. */ -}}
@@ -36,7 +35,6 @@
 		<rights>{{ printf "%s: %s" $siteConfig.license.name $siteConfig.license.url | html }}</rights>
 		{{- range $feedPages }}
 			{{- $summary := .Summary | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace }}
-			{{- $content := .Content | replaceRE `\b(href|src)="(/[^"/][^"]*)"` (printf `${1}="%s${2}"` $siteBaseURL) }}
 			<entry>
 				<id>{{ .Permalink }}</id>
 				<title>{{ .Title | html }}</title>
@@ -44,7 +42,7 @@
 				<updated>{{ (cond .Lastmod.IsZero .Date .Lastmod).Format "2006-01-02T15:04:05Z07:00" }}</updated>
 				<link href="{{ .Permalink }}" rel="alternate" type="text/html"/>
 				<summary type="text">{{ $summary | html }}</summary>
-				<content type="html">{{ $content | html }}</content>
+				<content type="html">{{ .Content | html }}</content>
 			</entry>
 		{{- end }}
 	</feed>

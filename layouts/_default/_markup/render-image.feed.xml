@@ -1,0 +1,16 @@
+{{- $remoteImage := partial "render-image/resolve.html" . -}}
+{{- with $remoteImage -}}
+	{{- $image := partial "render-image/publish.html" . -}}
+	{{- with $image -}}
+		{{- if $.IsBlock -}}
+			<figure>
+				<img src="{{ .Permalink }}" alt="{{ $.PlainText }}" width="{{ .Width }}" height="{{ .Height }}">
+				{{- with $.Title }}
+					<figcaption>{{ . }}</figcaption>
+				{{- end }}
+			</figure>
+		{{- else -}}
+			<img src="{{ .Permalink }}" alt="{{ $.PlainText }}" width="{{ .Width }}" height="{{ .Height }}"{{ with $.Title }} title="{{ . }}"{{ end }}>
+		{{- end -}}
+	{{- end -}}
+{{- end -}}

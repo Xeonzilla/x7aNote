@@ -1,0 +1,21 @@
+{{- $destination := .Destination -}}
+{{- $url := urls.Parse $destination -}}
+{{- $scheme := lower $url.Scheme -}}
+{{- if or (and $scheme (not (in (slice "http" "https" "mailto") $scheme))) (and (not $scheme) $url.Host) -}}
+	{{- partial "fail.html" (dict
+		"area" "link"
+		"problem" "unsupported URL"
+		"location" .Page.File.Path
+		"expected" "http, https, mailto, fragment, or relative URL"
+		"got" (printf "%q" $destination)
+		"fix" "use an allowed URL"
+		)
+	-}}
+{{- end -}}
+{{- $href := $destination -}}
+{{- if strings.HasPrefix $destination "#" -}}
+	{{- $href = printf "%s%s" .Page.Permalink $destination -}}
+{{- else if not $scheme -}}
+	{{- $href = $destination | absURL -}}
+{{- end -}}
+<a href="{{ $href | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text }}</a>{{- "" -}}
