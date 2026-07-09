@@ -2,8 +2,7 @@
 {{- $loading := "lazy" -}}
 {{- $fetchPriority := "" -}}
 
-{{- /* Prioritize only the first real block image; head-only prerenders must not consume it. */ -}}
-{{- if and .hook.IsBlock (not (.hook.Page.Store.Get "collectingImageRowRatios")) -}}
+{{- if .hook.IsBlock -}}
 	{{- $blockImageCount := default 0 (.hook.Page.Store.Get "blockImageCount") -}}
 	{{- if eq $blockImageCount 0 -}}
 		{{- $loading = "eager" -}}
