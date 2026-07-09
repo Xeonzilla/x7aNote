@@ -1,11 +1,17 @@
 {{- $styles := slice "css/base.css" -}}
 {{- if .IsPage -}}
 	{{- $styles = $styles | append "css/content.css" -}}
-	{{- $styles = $styles | append "css/syntax.css" -}}
 {{- else if or .IsHome (eq .Kind "term") (eq .Kind "taxonomy") -}}
 	{{- $styles = $styles | append "css/listing.css" -}}
 {{- end -}}
 {{- partialCached "head/static-styles.html" (dict "styles" $styles) (delimit $styles "|") -}}
+{{- if .IsPage }}
+	{{- with (templates.Defer (dict "key" (printf "syntax:%s" $.RelPermalink) "data" (dict "store" $.Store))) }}
+		{{- if .store.Get "hasCodeBlock" }}
+			{{- partialCached "head/static-styles.html" (dict "styles" (slice "css/syntax.css")) "css/syntax.css" -}}
+		{{- end }}
+	{{- end }}
+{{- end }}
 {{/* Load image-row CSS only where its selector-dependent layout is needed. */}}
 {{- if .HasShortcode "image-row" }}
 	{{- with resources.Get "css/image-row.css" }}

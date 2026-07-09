@@ -1,3 +1,4 @@
+{{- .Page.Store.Set "hasCodeBlock" true -}}
 {{- if eq .Type "astro" -}}
 	{{- transform.Highlight .Inner "html" .Options -}}
 {{- else -}}
