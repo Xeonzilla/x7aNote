@@ -1,6 +1,5 @@
-{{- $body := .RawContent -}}
-{{- /* Markdown alternates expose article text, not presentation shortcodes. */ -}}
-{{- $body = $body | replaceRE `(?m)^[ \t]*\{\{<\s*/?image-row(?:\s+[^>]*)?\s*>\}\}[ \t]*\r?$` `` -}}
+{{- $body := .RenderShortcodes -}}
+{{- /* Markdown alternates expose image alt text, not private image sources. */ -}}
 {{- $body = $body | replaceRE `(?m)^(> ?)?!\[([^\]]*)\]\([^\r\n]+\)[ \t]*\r?$` `$1[图片已省略：$2]` -}}
 {{- $body = replace $body `[图片已省略：]` `[图片已省略]` -}}
 {{- $date := .Date.Format "2006-01-02" -}}
