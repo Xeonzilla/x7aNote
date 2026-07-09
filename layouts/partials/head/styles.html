@@ -5,6 +5,7 @@
 	{{- $styles = $styles | append "css/listing.css" -}}
 {{- end -}}
 {{- partialCached "head/static-styles.html" (dict "styles" $styles) (delimit $styles "|") -}}
+{{/* Code block hooks mark pages that need Chroma token styles. */}}
 {{- if .IsPage }}
 	{{- with (templates.Defer (dict "key" (printf "syntax:%s" $.RelPermalink) "data" (dict "store" $.Store))) }}
 		{{- if .store.Get "hasCodeBlock" }}
@@ -28,6 +29,7 @@
 			)
 		-}}
 	{{- end }}
+	{{/* Defer ratio CSS until image render hooks have collected dimensions. */}}
 	{{- with (templates.Defer (dict "key" (printf "image-row-ratios:%s" $.RelPermalink) "data" (dict "store" $.Store "relPermalink" $.RelPermalink))) }}
 		{{- with .store.GetSortedMapValues "imageRowRatios" }}
 			{{- $ratioRules := slice -}}
