@@ -17,6 +17,7 @@ This file follows [llms.txt](https://llmstxt.org/) conventions for LLM-readable 
 - Do not add frontend JavaScript to the site implementation unless the user explicitly requests it. The deployed CSP uses `script-src 'none'`; historical article code samples are not part of this restriction.
 - Do not edit generated output or caches directly: `public/`, `resources/`, and `.vercel_build_output/`.
 - Keep `static/llms.txt` as the stable machine-readable site guide. Update it when changing the site title, author, base URL, feed path, sitemap path, or Markdown URL policy.
+- Order Atom feed entries by effective activity time (`lastmod` when present, otherwise `date`); keep entry `<published>` at `date`, entry `<updated>` at effective activity time, and feed `<updated>` at the newest emitted activity.
 - Use tags only. Do not introduce Hugo categories.
 - Public displayed responses are called “评论”; submission entry points are called “留言”.
 

@@ -10,7 +10,7 @@ capitalizeListTitles = false
 
 [frontmatter]
 date = ["date"]
-lastmod = ["lastmod"]
+lastmod = ["lastmod", "date"]
 
 [taxonomies]
 tag = "tags"

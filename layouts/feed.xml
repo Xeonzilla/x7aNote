@@ -1,5 +1,5 @@
 {{ printf "<?xml version=\"1.0\" encoding=\"utf-8\"?>" | safeHTML }}
-{{- $pages := (where site.RegularPages "Section" "posts").ByDate.Reverse }}
+{{- $pages := (where site.RegularPages "Section" "posts").ByLastmod.Reverse }}
 {{- $feedPages := first 20 $pages }}
 {{- if eq (len $feedPages) 0 -}}
 	{{- partial "fail.html" (dict
@@ -13,15 +13,8 @@
 	-}}
 {{- else -}}
 	{{- $siteConfig := partialCached "site-config.html" site "site-config" }}
-	{{- $latestFeedPage := index $feedPages 0 }}
-	{{- $updated := cond $latestFeedPage.Lastmod.IsZero $latestFeedPage.Date $latestFeedPage.Lastmod }}
-	{{- /* Feed updated tracks emitted entries, not the build timestamp. */ -}}
-	{{- range after 1 $feedPages }}
-		{{- $pageUpdated := cond .Lastmod.IsZero .Date .Lastmod }}
-		{{- if gt $pageUpdated.Unix $updated.Unix }}
-			{{- $updated = $pageUpdated }}
-		{{- end }}
-	{{- end }}
+	{{- $updated := (index $feedPages 0).Lastmod }}
+	{{- /* Pages are activity-sorted, so feed updated tracks the newest emitted activity. */ -}}
 	<feed xmlns="http://www.w3.org/2005/Atom">
 		<id>{{ .Permalink }}</id>
 		<title>{{ site.Title | html }}</title>
@@ -39,7 +32,7 @@
 				<id>{{ .Permalink }}</id>
 				<title>{{ .Title | html }}</title>
 				<published>{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}</published>
-				<updated>{{ (cond .Lastmod.IsZero .Date .Lastmod).Format "2006-01-02T15:04:05Z07:00" }}</updated>
+				<updated>{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}</updated>
 				<link href="{{ .Permalink }}" rel="alternate" type="text/html"/>
 				<summary type="text">{{ $summary | html }}</summary>
 				<content type="html">{{ .Content | html }}</content>
