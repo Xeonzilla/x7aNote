@@ -59,6 +59,7 @@ This file follows [llms.txt](https://llmstxt.org/) conventions for LLM-readable 
 - Use `compact-list-columns.html` for the shared "split a linear collection into compact-list columns" behavior. Keep callers responsible for the outer grid so homepage archive sections can place year headings in the surrounding homepage grid.
 - Prefer partials for clear domains or pipelines, such as `head/` and `render-image/`.
 - For alternate output formats such as `feed` and `markdown`, prefer Hugo output-format-specific render hooks and shortcode templates over regex or string post-processing of `.Content`, `.RawContent`, or rendered HTML.
+- Treat Markdown alternate image replacement as a presentation transform for standalone images, not as a general Markdown sanitizer; `render-image/resolve.html` owns source URL safety.
 - Avoid tiny partials for a few lines of HTML when keeping the branch inline is easier to read.
 
 ## Verification

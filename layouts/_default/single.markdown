@@ -1,5 +1,5 @@
 {{- $body := .RenderShortcodes -}}
-{{- /* Markdown alternates expose image alt text, not private image sources. */ -}}
+{{- /* Replace standalone Markdown images with alt-text placeholders for presentation; resolve.html owns source URL safety. */ -}}
 {{- $body = $body | replaceRE `(?m)^(> ?)?!\[([^\]]*)\]\([^\r\n]+\)[ \t]*\r?$` `$1[图片已省略：$2]` -}}
 {{- $body = replace $body `[图片已省略：]` `[图片已省略]` -}}
 {{- $date := .Date.Format "2006-01-02" -}}
