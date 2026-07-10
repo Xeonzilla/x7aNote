@@ -1,24 +1,21 @@
-{{- $destination := .Destination -}}
+{{- $sourcePath := .Destination -}}
 {{- $siteConfig := partialCached "site-config.html" site "site-config" -}}
 {{- $baseURL := $siteConfig.remoteImages.baseURL -}}
 {{- $resolved := "" -}}
+{{- $sourceURL := urls.Parse $sourcePath -}}
 
-{{- if not (in $destination "://") -}}
-	{{- $destination = printf "%s/%s/%s" $baseURL .Page.File.BaseFileName $destination -}}
-{{- end -}}
-
-{{- if not (strings.HasPrefix $destination (printf "%s/" $baseURL)) -}}
+{{- if or $sourceURL.Scheme $sourceURL.Host (strings.HasPrefix $sourcePath "/") -}}
 	{{- partial "fail.html" (dict
 		"area" "remote image"
-		"problem" "URL is outside configured base URL"
+		"problem" "non-relative image path"
 		"location" .Page.File.Path
-		"expected" (printf "a relative image path or URL starting with %q" (printf "%s/" $baseURL))
-		"got" (printf "%q" $destination)
-		"fix" "move the image under params.remote_images.base_url or use a relative image path"
+		"expected" "a relative image path without scheme, host, or leading slash"
+		"got" (printf "%q" $sourcePath)
+		"fix" "replace the URL with a relative image path"
 		)
 	-}}
 {{- else -}}
-	{{- $remotePath := strings.TrimPrefix (printf "%s/" $baseURL) $destination -}}
+	{{- $remotePath := printf "%s/%s" .Page.File.BaseFileName $sourcePath -}}
 	{{- if or (not $remotePath) (strings.HasSuffix $remotePath "/") (in (split $remotePath "/") "..") (in $remotePath "?") (in $remotePath "#") -}}
 		{{- partial "fail.html" (dict
 			"area" "remote image"
@@ -26,10 +23,11 @@
 			"location" .Page.File.Path
 			"expected" "a non-empty path without trailing slash, .., query, or fragment"
 			"got" (printf "%q" $remotePath)
-			"fix" "use a direct image path under params.remote_images.base_url"
+			"fix" "use a direct relative image path without traversal, query, or fragment"
 			)
 		-}}
 	{{- else -}}
+		{{- $destination := printf "%s/%s" $baseURL $remotePath -}}
 		{{- $destinationHash := $destination | crypto.Hash "sha256" -}}
 		{{- $resolved = dict
 			"destination" $destination

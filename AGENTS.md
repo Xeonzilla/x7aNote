@@ -26,8 +26,8 @@ This file follows [llms.txt](https://llmstxt.org/) conventions for LLM-readable 
 - File outputs keep extensions, such as `/feed.xml`, `/sitemap.xml`, and `/post.md`.
 - Publish remote images under `/images/` with hashed public filenames and extensions derived from Hugo media types.
 - Reject remote image resources that lack image dimensions or a canonical media-type suffix.
-- Markdown image sources should resolve through `params.remote_images.base_url`; use relative image paths for normal per-post remote image layout.
-- Do not use image URLs outside `params.remote_images.base_url`, query strings, fragments, directory traversal, or generated URLs that expose original R2 paths, article slugs, or source filenames.
+- Markdown image sources must use relative paths resolved through `params.remote_images.base_url`.
+- Do not use absolute image URLs, query strings, fragments, directory traversal, or generated URLs that expose original R2 paths, article slugs, or source filenames.
 - Treat `security.http.mediaTypes` as trusted response types, not an allowlist. Keep `image/avif` trusted for the controlled image origin because Hugo cannot content-detect remote AVIF; `application/octet-stream` is required by the remote Open Graph fonts.
 - Post cover images may intentionally use empty alt text such as `![](cover.avif)`; treat them as visual entry points, not missing-alt defects.
 - Informative in-article images should use meaningful alt text.
