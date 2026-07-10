@@ -1,3 +1,4 @@
+{{- $altText := strings.TrimSpace .hook.PlainText -}}
 {{- if .hook.IsBlock -}}
 	<figure{{ with .presentation.ratioClass }} class="image-row-item {{ . }}"{{ end }}>
 		<img
@@ -11,7 +12,7 @@
 			{{- end }}
 			decoding="async">
 		{{- with .hook.Title }}
-			<figcaption>{{ . }}</figcaption>
+			<figcaption{{ if eq (strings.TrimSpace .) $altText }} aria-hidden="true"{{ end }}>{{ . }}</figcaption>
 		{{- end }}
 	</figure>
 {{- else -}}
