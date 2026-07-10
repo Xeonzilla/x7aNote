@@ -48,12 +48,10 @@
 	{{- range $commentDirPost, $comments := $commentsByPost -}}
 		{{- $comments = sort $comments "File.BaseFileName" -}}
 		{{- $seenNumbers := dict -}}
-		{{- $commentAuthors := dict -}}
 		{{- range $comments -}}
 			{{- $numberText := .File.BaseFileName -}}
 			{{- $commentPath := .File.Path -}}
-			{{- $author := index .Params "author" -}}
-			{{- if not $author -}}
+			{{- if not (index .Params "author") -}}
 				{{- partial "fail.html" (dict
 					"area" "comment"
 					"problem" "missing required front matter"
@@ -63,8 +61,6 @@
 					"fix" "add author to the comment front matter"
 					)
 				-}}
-			{{- else -}}
-				{{- $commentAuthors = merge $commentAuthors (dict $numberText $author) -}}
 			{{- end -}}
 			{{- if .Date.IsZero -}}
 				{{- partial "fail.html" (dict
