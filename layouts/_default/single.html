@@ -32,7 +32,8 @@
 		{{ with .GetTerms "tags" }}
 			<div class="article-meta-tags">
 				{{ range . }}
-					<a href="{{ .RelPermalink }}"{{ if $isArticle }} itemprop="keywords"{{ end }}>#{{ .Title }}</a>
+					{{ if $isArticle }}<meta itemprop="keywords" content="{{ .Title }}">{{ end }}
+					<a href="{{ .RelPermalink }}">#{{ .Title }}</a>
 				{{ end }}
 			</div>
 		{{ end }}

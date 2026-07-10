@@ -54,7 +54,7 @@
 		{{ $start := mul $columnIndex $itemsPerColumn }}
 		{{ $end := add $start $itemsPerColumn }}
 		{{ if gt $end $totalItems }}{{ $end = $totalItems }}{{ end }}
-		<article class="compact-list">
+		<div class="compact-list">
 			{{ range first (sub $end $start) (after $start $items) }}
 				{{ if eq $itemKind "post" }}
 					<div id="{{ .File.ContentBaseName | anchorize }}">
@@ -67,6 +67,6 @@
 					</div>
 				{{ end }}
 			{{ end }}
-		</article>
+		</div>
 	{{ end }}
 {{ end }}
