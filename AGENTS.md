@@ -102,6 +102,9 @@ hugo --environment production --cleanDestinationDir --panicOnWarning --printI18n
 
 - Do not use `--quiet` for verification.
 - Use `--templateMetrics --templateMetricsHints` only for template performance diagnostics, not for normal pass/fail checks.
+- Treat the strict build as the baseline rather than proof of every output contract. Add targeted checks when a change can pass Hugo while still producing semantically wrong HTML, XML, Markdown, headers, images, links, or redirects.
+- Use temporary content fixtures for relevant positive, negative, and boundary cases. Remove them after verification, and confirm the final strict build uses only tracked site content.
+- Prefer direct inspection or parsing of representative generated outputs over adding a permanent test framework. Create a reusable script or skill only after the same audit workflow recurs often enough to justify maintaining it.
 
 ## Completion
 
