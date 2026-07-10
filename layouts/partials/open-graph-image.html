@@ -26,16 +26,28 @@
 	{{- $mediumFont := index $openGraphFonts "medium" -}}
 
 	{{- if and $regularFont $mediumFont -}}
+		{{- $titleLength := len $title -}}
+		{{- $maxArticleTitleLength := 75 -}}
+		{{- if and (eq $mode "article") (gt $titleLength $maxArticleTitleLength) -}}
+			{{- partial "fail.html" (dict
+				"area" "open graph"
+				"problem" "article title exceeds the supported single-line length"
+				"location" $path
+				"expected" (printf "a normalized UTF-8 title length no greater than %d" $maxArticleTitleLength)
+				"got" (printf "%q (length %d)" $title $titleLength)
+				"fix" "shorten the article title or revise and recalibrate the single-line Open Graph layout"
+				)
+			-}}
+		{{- end -}}
 		{{- $fontSize := 68 -}}
-		{{- /* Hugo image text has no wrapping; shrink long titles to preserve the card layout. */ -}}
-		{{- /* len is a UTF-8 byte count; these thresholds preserve the current Chinese-title visual tuning. */ -}}
-		{{- if gt (len $title) 72 -}}
+		{{- /* Hugo image text has no wrapping. UTF-8 byte-length thresholds and the 75-byte limit are tuned to the current Chinese titles; 42px is the final fallback, not an extensible tier. */ -}}
+		{{- if gt $titleLength 72 -}}
 			{{- $fontSize = 42 -}}
-		{{- else if gt (len $title) 48 -}}
+		{{- else if gt $titleLength 48 -}}
 			{{- $fontSize = 46 -}}
-		{{- else if gt (len $title) 32 -}}
+		{{- else if gt $titleLength 32 -}}
 			{{- $fontSize = 52 -}}
-		{{- else if gt (len $title) 24 -}}
+		{{- else if gt $titleLength 24 -}}
 			{{- $fontSize = 60 -}}
 		{{- end -}}
 

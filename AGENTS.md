@@ -20,6 +20,7 @@ This file follows [llms.txt](https://llmstxt.org/) conventions for LLM-readable 
 - Order Atom feed entries by effective activity time (`lastmod` when present, otherwise `date`); keep entry `<published>` at `date`, entry `<updated>` at effective activity time, and feed `<updated>` at the newest emitted activity.
 - Use tags only. Do not introduce Hugo categories.
 - Public displayed responses are called “评论”; submission entry points are called “留言”.
+- Keep generated Open Graph titles complete and on one line. Do not extend the supported range by shrinking below the current minimum font size; recalibrate the guarded layout with boundary images if the font, canvas, or title design changes.
 
 ## URLs And Media
 
