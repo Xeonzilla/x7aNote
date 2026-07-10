@@ -54,6 +54,8 @@ noClasses = false
 endLevel = 4
 
 [security.http]
+# Hugo cannot resolve remote AVIF through content analysis, so trust image/avif from the controlled origin.
+# GitHub Raw serves the remote Open Graph OTF fonts as application/octet-stream.
 mediaTypes = ["^image/avif$", "^application/octet-stream$"]
 methods = ["(?i)^(GET|HEAD)$"]
 urls = [

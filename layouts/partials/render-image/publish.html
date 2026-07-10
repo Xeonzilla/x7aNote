@@ -4,16 +4,42 @@
 	{{- with .Err -}}
 		{{- partial "fail.html" (dict
 			"area" "remote image"
-			"problem" "failed to fetch remote image"
+			"problem" "failed to load remote image resource"
 			"location" $.location
-			"expected" (printf "a fetchable image at %q" $.destination)
+			"expected" (printf "a fetchable resource with a resolvable media type at %q" $.destination)
 			"got" (printf "%s" .)
-			"fix" "check the remote image URL and Cloudflare allow-header rule"
+			"fix" "check the remote image URL, Content-Type, and Cloudflare allow-header rule"
 			)
 		-}}
 	{{- else with .Value -}}
-		{{- /* Public image URLs use hashes only; source paths and slugs stay private. */ -}}
-		{{- $image = resources.Copy (printf "images/%s.avif" $.hash) . | fingerprint "sha256" -}}
+		{{- if not (reflect.IsImageResourceWithMeta .) -}}
+			{{- partial "fail.html" (dict
+				"area" "remote image"
+				"problem" "unsupported remote image resource"
+				"location" $.location
+				"expected" "an image resource with width and height metadata"
+				"got" (printf "media type %q" .MediaType.Type)
+				"fix" "serve the remote file as a Hugo-supported image format with the correct Content-Type"
+				)
+			-}}
+		{{- else -}}
+			{{- $suffixes := .MediaType.Suffixes -}}
+			{{- if eq (len $suffixes) 0 -}}
+				{{- partial "fail.html" (dict
+					"area" "remote image"
+					"problem" "missing canonical image suffix"
+					"location" $.location
+					"expected" "an image media type with at least one registered suffix"
+					"got" (printf "media type %q with suffixes %v" .MediaType.Type $suffixes)
+					"fix" "use a Hugo-supported image media type with a registered file suffix"
+					)
+				-}}
+			{{- else -}}
+				{{- $suffix := index $suffixes 0 -}}
+				{{- /* Public URLs use hashes and the canonical media-type suffix; source paths and slugs stay private. */ -}}
+				{{- $image = resources.Copy (printf "images/%s.%s" $.hash $suffix) . | fingerprint "sha256" -}}
+			{{- end -}}
+		{{- end -}}
 	{{- else -}}
 		{{- partial "fail.html" (dict
 			"area" "remote image"
