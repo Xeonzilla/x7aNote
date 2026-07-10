@@ -29,7 +29,7 @@ check_hugo_version() {
   fi
 
   latest_url="$(
-    curl -fsSLI --connect-timeout 3 --max-time 5 -o /dev/null -w '%{url_effective}' \
+    curl -fsSI --connect-timeout 3 --max-time 5 -o /dev/null -w '%{redirect_url}' \
       'https://github.com/gohugoio/hugo/releases/latest' \
       2>/dev/null \
       || true
@@ -50,9 +50,17 @@ check_hugo_version() {
   fi
 }
 
-check_hugo_version
+check_hugo_version &
+version_check_pid=$!
 
-hugo "${hugo_args[@]}"
+build_status=0
+hugo "${hugo_args[@]}" || build_status=$?
+
+wait "$version_check_pid" || true
+
+if ((build_status != 0)); then
+  exit "$build_status"
+fi
 
 mkdir -p .vercel_build_output/config
 

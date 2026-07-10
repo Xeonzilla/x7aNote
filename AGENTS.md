@@ -63,6 +63,12 @@ This file follows [llms.txt](https://llmstxt.org/) conventions for LLM-readable 
 - Treat Markdown alternate image replacement as a presentation transform for standalone images, not as a general Markdown sanitizer; `render-image/resolve.html` owns source URL safety.
 - Avoid tiny partials for a few lines of HTML when keeping the branch inline is easier to read.
 
+## Build Toolchain
+
+- Follow the latest stable Hugo release rather than pinning a repository-owned version. The maintainer keeps the local Hugo installation and Vercel `HUGO_VERSION` aligned.
+- Keep the deployment-time latest-version check non-blocking. It supports the rolling-update policy but must not prevent an otherwise valid build when GitHub is unavailable or a new release has not yet been adopted.
+- The repository does not promise that a clean clone can infer a historical Hugo version or reproduce an old commit with its original toolchain.
+
 ## Verification
 
 - Run required formatters before builds. Report the meaningful verification commands in the final response.
