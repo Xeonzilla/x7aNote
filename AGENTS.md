@@ -10,6 +10,7 @@ This file follows [llms.txt](https://llmstxt.org/) conventions for LLM-readable 
 - `CLAUDE.md` points to this file. Keep shared agent guidance here instead of duplicating it elsewhere.
 - `.claude/skills/` is a symlink to `.agents/skills/`. Only modify files in `.agents/skills/`.
 - Keep this file focused on durable repo rules. Put repeatable workflows in `.agents/skills/` when they need richer instructions.
+- Treat this repository as a personal publishing system, not a general-purpose Hugo theme. Do not add configuration switches, compatibility branches, or reusable component APIs for hypothetical adopters; abstract only for multiple current consumers, a clear domain pipeline, or a replaceable external service boundary.
 
 ## Site Rules
 
