@@ -1,4 +1,4 @@
-{{- $body := .Content | transform.HTMLToMarkdown -}}
+{{- $body := .Content | transform.HTMLToMarkdown | strings.TrimSpace -}}
 {{- $date := .Date.Format "2006-01-02" -}}
 {{- $lastmod := "" -}}
 {{- if not .Lastmod.IsZero -}}
@@ -14,5 +14,4 @@ lastmod: {{ $lastmod }}
 canonical: {{ .Permalink | jsonify }}
 ---
 {{/* gotmplfmt-ignore-end */}}
-
-{{ $body }}
+{{- printf "\n%s" $body }}
