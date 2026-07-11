@@ -1,43 +1,32 @@
-{{- $sourcePath := .Destination -}}
+{{- $imageKey := .Destination -}}
 {{- $siteConfig := partialCached "site-config.html" site "site-config" -}}
 {{- $resolved := "" -}}
-{{- $sourceURL := urls.Parse $sourcePath -}}
+{{- $namespace := .Page.File.ContentBaseName -}}
+{{- $objectKey := printf "%s/%s" $namespace $imageKey -}}
+{{- $objectKeyPattern := `^[a-z0-9][a-z0-9.-]*(/[a-z0-9][a-z0-9.-]*)*$` -}}
 
-{{- if or $sourceURL.Scheme $sourceURL.Host (strings.HasPrefix $sourcePath "/") -}}
+{{- if eq (len (findRE $objectKeyPattern $objectKey 1)) 0 -}}
 	{{- partial "fail.html" (dict
 		"area" "remote image"
-		"problem" "non-relative image path"
+		"problem" "invalid remote image object key"
 		"location" .Page.File.Path
-		"expected" "a relative image path without scheme, host, or leading slash"
-		"got" (printf "%q" $sourcePath)
-		"fix" "replace the URL with a relative image path"
+		"expected" "a lowercase relative image path using letters, digits, dots, hyphens, and forward slashes"
+		"got" (printf "%q" $objectKey)
+		"fix" "rename the image and use a canonical relative path such as gallery/frame-01.avif"
 		)
 	-}}
 {{- else -}}
-	{{- $remotePath := printf "%s/%s" .Page.File.ContentBaseName $sourcePath -}}
-	{{- if or (not $remotePath) (strings.HasSuffix $remotePath "/") (in (split $remotePath "/") "..") (in $remotePath "?") (in $remotePath "#") -}}
-		{{- partial "fail.html" (dict
-			"area" "remote image"
-			"problem" "unsupported remote image path"
-			"location" .Page.File.Path
-			"expected" "a non-empty path without trailing slash, .., query, or fragment"
-			"got" (printf "%q" $remotePath)
-			"fix" "use a direct relative image path without traversal, query, or fragment"
-			)
-		-}}
-	{{- else -}}
-		{{- $destination := printf "%s/%s" $siteConfig.remoteImages.baseURL $remotePath -}}
-		{{- $destinationHash := $destination | crypto.Hash "sha256" -}}
-		{{- $resolved = dict
-			"destination" $destination
-			"hash" $destinationHash
-			"location" .Page.File.Path
-			"options" (dict
-			"headers" (dict $siteConfig.remoteImages.fetchHeaderName $siteConfig.remoteImages.fetchHeaderValue)
-			"key" (printf "remote-images/%s" $destinationHash)
-			)
-		-}}
-	{{- end -}}
+	{{- $destination := urls.JoinPath $siteConfig.remoteImages.baseURL $objectKey -}}
+	{{- $destinationHash := $destination | crypto.Hash "sha256" -}}
+	{{- $resolved = dict
+		"destination" $destination
+		"hash" $destinationHash
+		"location" .Page.File.Path
+		"options" (dict
+		"headers" (dict $siteConfig.remoteImages.fetchHeaderName $siteConfig.remoteImages.fetchHeaderValue)
+		"key" (printf "remote-images/%s" $destinationHash)
+		)
+	-}}
 {{- end -}}
 
 {{- return $resolved -}}
