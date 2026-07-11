@@ -17,25 +17,25 @@
 	{{- /* Pages are activity-sorted, so feed updated tracks the newest emitted activity. */ -}}
 	<feed xmlns="http://www.w3.org/2005/Atom">
 		<id>{{ .Permalink }}</id>
-		<title>{{ site.Title | html }}</title>
-		<subtitle>{{ $siteConfig.description | html }}</subtitle>
+		<title>{{ site.Title | transform.XMLEscape | safeHTML }}</title>
+		<subtitle>{{ $siteConfig.description | transform.XMLEscape | safeHTML }}</subtitle>
 		<updated>{{ $updated.Format "2006-01-02T15:04:05Z07:00" }}</updated>
 		<link href="{{ .Permalink }}" rel="alternate"/>
 		<link href="{{ "feed.xml" | absURL }}" rel="self"/>
 		<author>
-			<name>{{ $siteConfig.author | html }}</name>
+			<name>{{ $siteConfig.author | transform.XMLEscape | safeHTML }}</name>
 		</author>
-		<rights>{{ printf "%s: %s" $siteConfig.license.name $siteConfig.license.url | html }}</rights>
+		<rights>{{ printf "%s: %s" $siteConfig.license.name $siteConfig.license.url | transform.XMLEscape | safeHTML }}</rights>
 		{{- range $feedPages }}
 			{{- $summary := .Summary | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace }}
 			<entry>
 				<id>{{ .Permalink }}</id>
-				<title>{{ .Title | html }}</title>
+				<title>{{ .Title | transform.XMLEscape | safeHTML }}</title>
 				<published>{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}</published>
 				<updated>{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}</updated>
 				<link href="{{ .Permalink }}" rel="alternate" type="text/html"/>
-				<summary type="text">{{ $summary | html }}</summary>
-				<content type="html">{{ .Content | html }}</content>
+				<summary type="text">{{ $summary | transform.XMLEscape | safeHTML }}</summary>
+				<content type="html">{{ .Content | transform.XMLEscape | safeHTML }}</content>
 			</entry>
 		{{- end }}
 	</feed>
