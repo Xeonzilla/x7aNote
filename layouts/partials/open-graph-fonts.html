@@ -1,12 +1,10 @@
 {{- $siteConfig := partialCached "site-config.html" site "site-config" -}}
 {{- $regularFontURL := $siteConfig.openGraph.regularFontURL -}}
-{{- $regularFontCacheKey := $siteConfig.openGraph.regularFontCacheKey -}}
 {{- $mediumFontURL := $siteConfig.openGraph.mediumFontURL -}}
-{{- $mediumFontCacheKey := $siteConfig.openGraph.mediumFontCacheKey -}}
 {{- $regularFont := "" -}}
 {{- $mediumFont := "" -}}
 
-{{- with try (resources.GetRemote $regularFontURL (dict "key" $regularFontCacheKey "timeout" "60s")) -}}
+{{- with try (resources.GetRemote $regularFontURL (dict "timeout" "60s")) -}}
 	{{- with .Err -}}
 		{{- partial "fail.html" (dict
 			"area" "open graph"
@@ -32,7 +30,7 @@
 	{{- end -}}
 {{- end -}}
 
-{{- with try (resources.GetRemote $mediumFontURL (dict "key" $mediumFontCacheKey "timeout" "60s")) -}}
+{{- with try (resources.GetRemote $mediumFontURL (dict "timeout" "60s")) -}}
 	{{- with .Err -}}
 		{{- partial "fail.html" (dict
 			"area" "open graph"

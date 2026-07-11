@@ -92,6 +92,4 @@ url = "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 
 [params.open_graph]
 regular_font_url = "https://raw.githubusercontent.com/adobe-fonts/source-han-serif/release/SubsetOTF/CN/SourceHanSerifCN-Regular.otf"
-regular_font_cache_key = "fonts/source-han-serif-cn-regular.otf"
 medium_font_url = "https://raw.githubusercontent.com/adobe-fonts/source-han-serif/release/SubsetOTF/CN/SourceHanSerifCN-Medium.otf"
-medium_font_cache_key = "fonts/source-han-serif-cn-medium.otf"
