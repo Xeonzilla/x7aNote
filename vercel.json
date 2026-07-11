@@ -154,6 +154,16 @@
   "outputDirectory": "public",
   "redirects": [
     {
+      "destination": "/",
+      "source": "/index.html",
+      "statusCode": 308
+    },
+    {
+      "destination": "/:path*/",
+      "source": "/:path*/index.html",
+      "statusCode": 308
+    },
+    {
       "destination": "/:slug.md",
       "source": "/:slug/index.md",
       "statusCode": 308
