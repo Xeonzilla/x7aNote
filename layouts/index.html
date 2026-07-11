@@ -4,9 +4,15 @@
 {{ $latestPostCount := partial "require-param.html" (dict "scope" $homeParams "key" "latest_post_count" "location" "params.home.latest_post_count in hugo.toml" "expected" "the latest post count") }}
 {{ $recentUpdateCount := partial "require-param.html" (dict "scope" $homeParams "key" "recent_update_count" "location" "params.home.recent_update_count in hugo.toml" "expected" "the recent update count") }}
 {{ $latestPosts := first $latestPostCount $posts }}
-{{ $updatedPosts := where $posts "Params.lastmod" "ne" nil }}
-{{ $olderUpdatedPosts := complement $latestPosts $updatedPosts }}
-{{ $recentlyUpdatedPosts := first $recentUpdateCount ($olderUpdatedPosts.ByLastmod.Reverse) }}
+{{/* .Lastmod falls back to .Date for feed activity ordering, so only later timestamps are actual updates. */}}
+{{ $modifiedPosts := slice }}
+{{ range $posts }}
+	{{ if gt .Lastmod.Unix .Date.Unix }}
+		{{ $modifiedPosts = $modifiedPosts | append . }}
+	{{ end }}
+{{ end }}
+{{ $olderModifiedPosts := complement $latestPosts $modifiedPosts }}
+{{ $recentlyUpdatedPosts := first $recentUpdateCount (sort $olderModifiedPosts "Lastmod" "desc") }}
 <div class="article-grid index-grid">
 	<div class="index-welcome">
 		<div class="index-welcome-tagline">欢迎&#10;来到</div>
