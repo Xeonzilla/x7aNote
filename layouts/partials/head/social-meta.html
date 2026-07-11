@@ -7,7 +7,7 @@
 	{{- $openGraphTitle = .pageTitle -}}
 	{{- $openGraphDescription = "" -}}
 	{{- $openGraphMode = "article" -}}
-	{{- $openGraphPath = printf "open-graph/%s.png" .page.File.BaseFileName -}}
+	{{- $openGraphPath = printf "open-graph/%s.png" .page.File.ContentBaseName -}}
 	{{- $openGraphDate = .page.Date.Format "2006-01-02" -}}
 {{- end -}}
 {{- $openGraphContext := dict

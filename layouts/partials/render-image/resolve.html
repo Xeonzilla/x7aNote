@@ -14,7 +14,7 @@
 		)
 	-}}
 {{- else -}}
-	{{- $remotePath := printf "%s/%s" .Page.File.BaseFileName $sourcePath -}}
+	{{- $remotePath := printf "%s/%s" .Page.File.ContentBaseName $sourcePath -}}
 	{{- if or (not $remotePath) (strings.HasSuffix $remotePath "/") (in (split $remotePath "/") "..") (in $remotePath "?") (in $remotePath "#") -}}
 		{{- partial "fail.html" (dict
 			"area" "remote image"
