@@ -79,10 +79,10 @@ This file follows [llms.txt](https://llmstxt.org/) conventions for LLM-readable 
 gotmplfmt -w layouts
 ```
 
-- If `layouts/_default/single.markdown` changed, also run:
+- The directory scan above does not discover template files ending in `.markdown` or `.md`. Treat Markdown output layouts, render hooks, and shortcode templates under `layouts/` as Go templates, and pass each changed file explicitly. Current examples include:
 
 ```powershell
-gotmplfmt -w layouts\_default\single.markdown
+gotmplfmt -w layouts\_default\single.markdown layouts\_default\_markup\render-image.markdown.md layouts\shortcodes\image-row.markdown.md
 ```
 
 - After modifying supported non-template files such as Markdown, JSON, TOML, or CSS, format only the changed files with `oxfmt`.

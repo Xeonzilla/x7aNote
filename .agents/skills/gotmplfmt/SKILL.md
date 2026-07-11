@@ -1,6 +1,6 @@
 ---
 name: gotmplfmt
-description: Format Hugo template files with gotmplfmt after edits. Use after modifying Hugo templates under layouts or other .html, .htm, .xml, .svg, .rss, .atom, .gotmpl, .tmpl, or .txt template files; also use when layouts/_default/single.markdown changes.
+description: Format Hugo template files with gotmplfmt after edits, including Markdown output layouts, render hooks, and shortcode templates under layouts with .markdown or .markdown.md names.
 ---
 
 # gotmplfmt
@@ -11,10 +11,10 @@ After editing auto-detected Hugo template files, run:
 gotmplfmt -w layouts
 ```
 
-If `layouts\_default\single.markdown` changed, also run:
+Directory scanning only discovers gotmplfmt's built-in template extensions; it does not discover files ending in `.markdown` or `.md`. Pass each changed Markdown output template explicitly. Current examples include:
 
 ```powershell
-gotmplfmt -w layouts\_default\single.markdown
+gotmplfmt -w layouts\_default\single.markdown layouts\_default\_markup\render-image.markdown.md layouts\shortcodes\image-row.markdown.md
 ```
 
 Run formatting before the Hugo build. Trust formatter output.

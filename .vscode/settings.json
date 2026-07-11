@@ -22,6 +22,7 @@
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "files.associations": {
+    "**/layouts/**/*.md": "html",
     "**/layouts/**/*.markdown": "html",
     "**/layouts/**/*.txt": "html",
     "**/layouts/**/*.xml": "html"
