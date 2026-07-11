@@ -4,7 +4,16 @@
 {{- if $head.isArticle -}}
 	{{- partial "validate-post.html" $head.page -}}
 {{- end -}}
-{{ partial "head/core-meta.html" $head }}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>{{ $head.documentTitle }}</title>
+<meta name="description" content="{{ $head.description }}">
+<meta name="author" content="{{ $head.siteAuthor }}">
+<meta name="theme-color" content="{{ $head.themeColor }}">
+<link rel="canonical" href="{{ $head.page.Permalink }}">
+<link rel="license" href="{{ $head.licenseURL }}">
+{{ hugo.Generator }}
 {{ partial "head/styles.html" $head.page }}
 {{ partialCached "head/favicons.html" site "head-favicons" }}
 {{ partial "head/alternates.html" $head }}

@@ -1,58 +1,12 @@
 {{/* Split a linear collection into compact-list columns; callers provide the outer grid. */}}
-{{ $location := .location | default "compact-list-columns.html partial call" }}
-{{ if not (isset . "items") }}
-	{{ partial "fail.html" (dict
-		"area" "template"
-		"problem" "missing compact list items"
-		"location" $location
-		"expected" "an items collection"
-		"got" "<missing>"
-		"fix" "pass items to compact-list-columns.html"
-		)
-	}}
-{{ end }}
-{{ $items := .items | default (slice) }}
-{{ $itemsPerColumn := .itemsPerColumn | default 4 }}
+{{ $items := .items }}
 {{ $itemKind := .itemKind }}
-{{ if not $itemKind }}
-	{{ partial "fail.html" (dict
-		"area" "template"
-		"problem" "missing compact list item kind"
-		"location" $location
-		"expected" "post or tag"
-		"got" "<missing>"
-		"fix" "pass itemKind to compact-list-columns.html"
-		)
-	}}
-{{ end }}
-{{ if and (ne $itemKind "post") (ne $itemKind "tag") }}
-	{{ partial "fail.html" (dict
-		"area" "template"
-		"problem" "unsupported compact list item kind"
-		"location" $location
-		"expected" "post or tag"
-		"got" $itemKind
-		"fix" "use a supported itemKind value"
-		)
-	}}
-{{ end }}
-{{ if le $itemsPerColumn 0 }}
-	{{ partial "fail.html" (dict
-		"area" "template"
-		"problem" "invalid compact list column size"
-		"location" $location
-		"expected" "itemsPerColumn greater than 0"
-		"got" $itemsPerColumn
-		"fix" "pass a positive itemsPerColumn value"
-		)
-	}}
-{{ end }}
 {{ $totalItems := len $items }}
 {{ if gt $totalItems 0 }}
-	{{ $columnCount := div (add $totalItems (sub $itemsPerColumn 1)) $itemsPerColumn }}
+	{{ $columnCount := div (add $totalItems 3) 4 }}
 	{{ range $columnIndex := seq 0 (sub $columnCount 1) }}
-		{{ $start := mul $columnIndex $itemsPerColumn }}
-		{{ $end := add $start $itemsPerColumn }}
+		{{ $start := mul $columnIndex 4 }}
+		{{ $end := add $start 4 }}
 		{{ if gt $end $totalItems }}{{ $end = $totalItems }}{{ end }}
 		<div class="compact-list">
 			{{ range first (sub $end $start) (after $start $items) }}

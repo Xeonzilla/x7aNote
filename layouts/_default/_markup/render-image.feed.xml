@@ -1,7 +1,5 @@
-{{- $remoteImage := partial "render-image/resolve.html" . -}}
-{{- with $remoteImage -}}
-	{{- $image := partial "render-image/publish.html" . -}}
-	{{- with $image -}}
+{{- with partial "render-image/resolve.html" . -}}
+	{{- with partial "render-image/publish.html" . -}}
 		{{- if $.IsBlock -}}
 			<figure>
 				<img src="{{ .Permalink }}" alt="{{ $.PlainText }}" width="{{ .Width }}" height="{{ .Height }}">

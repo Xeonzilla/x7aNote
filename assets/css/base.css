@@ -26,7 +26,6 @@ html {
   --space-l: 3ch;
   --space-m: 2ch;
   --space-s: 1ch;
-  --space-xl: 5ch;
   --space-xs: 0.5ch;
 
   font-family:
@@ -80,7 +79,7 @@ body {
 main {
   width: min(calc(100% - var(--page-gutter)), 46em);
   margin-inline: auto;
-  padding-block-end: var(--space-xl);
+  padding-block-end: 5ch;
   animation: page-enter 300ms ease-out both;
 }
 

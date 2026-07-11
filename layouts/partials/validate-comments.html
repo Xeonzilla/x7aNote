@@ -2,8 +2,7 @@
 	{{- $commentsByPost := dict -}}
 	{{- range .RegularPagesRecursive -}}
 		{{- $commentPath := .File.Path -}}
-		{{- $commentFileDir := replace .File.Dir "\\" "/" -}}
-		{{- $commentDirPost := strings.TrimSuffix "/" (strings.TrimPrefix "comments/" $commentFileDir) -}}
+		{{- $commentDirPost := strings.TrimSuffix "/" (strings.TrimPrefix "comments/" (replace .File.Dir "\\" "/")) -}}
 		{{- $commentPost := index .Params "post" -}}
 		{{- if not $commentPost -}}
 			{{- partial "fail.html" (dict

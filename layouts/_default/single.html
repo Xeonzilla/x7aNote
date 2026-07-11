@@ -45,8 +45,10 @@
 	<div{{ if $isArticle }} itemprop="articleBody"{{ end }}>
 		{{ .Content }}
 	</div>
-	{{ partial "comments.html" . }}
-	{{ partial "message-form.html" . }}
+	{{ if $isArticle }}
+		{{ partial "comments.html" . }}
+		{{ partial "message-form.html" . }}
+	{{ end }}
 </article>
 <footer class="page-nav footer-nav">
 	<nav aria-label="文章页脚导航">

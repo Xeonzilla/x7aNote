@@ -35,9 +35,8 @@
 					)
 				-}}
 			{{- else -}}
-				{{- $suffix := index $suffixes 0 -}}
 				{{- /* Public URLs use hashes and the canonical media-type suffix; source paths and slugs stay private. */ -}}
-				{{- $image = resources.Copy (printf "images/%s.%s" $.hash $suffix) . | fingerprint "sha256" -}}
+				{{- $image = resources.Copy (printf "images/%s.%s" $.hash (index $suffixes 0)) . | fingerprint "sha256" -}}
 			{{- end -}}
 		{{- end -}}
 	{{- else -}}

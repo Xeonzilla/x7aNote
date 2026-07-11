@@ -37,6 +37,9 @@
 	{{ end }}
 
 	<h2 class="index-section-heading" id="others">其他文章</h2>
-	{{ partial "article-archive.html" (complement (union $latestPosts $recentlyUpdatedPosts) $posts) }}
+	{{ range (complement (union $latestPosts $recentlyUpdatedPosts) $posts).GroupByDate "2006" }}
+		<h3 class="index-section-heading">{{ .Key }}</h3>
+		{{ partial "compact-list-columns.html" (dict "items" .Pages "itemKind" "post") }}
+	{{ end }}
 </div>
 {{ end }}
