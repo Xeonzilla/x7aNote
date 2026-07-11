@@ -1,11 +1,11 @@
-{{- if not .Title -}}
+{{- if not (strings.TrimSpace .Title) -}}
 	{{- partial "fail.html" (dict
 		"area" "content"
 		"problem" "missing required front matter"
 		"location" .File.Path
-		"expected" "title"
-		"got" "<missing or empty>"
-		"fix" "add title to the post front matter"
+		"expected" "a non-empty title"
+		"got" "<missing, empty, or whitespace-only>"
+		"fix" "add a non-empty title to the post front matter"
 		)
 	-}}
 {{- end -}}

@@ -1,19 +1,20 @@
 {{ define "main" }}
-{{- if not .Title -}}
+{{- $title := strings.TrimSpace .Title -}}
+{{- if not $title -}}
 	{{- partial "fail.html" (dict
 		"area" "content"
 		"problem" "missing required front matter"
 		"location" .File.Path
-		"expected" "title"
-		"got" "<missing or empty>"
-		"fix" "add title to the tag term front matter"
+		"expected" "a non-empty title"
+		"got" "<missing, empty, or whitespace-only>"
+		"fix" "add a non-empty title to the tag term front matter"
 		)
 	-}}
 {{- end }}
 <nav class="page-nav" aria-label="标签文章导航">
 	<a href="{{ "tags/" | relURL }}">返回标签页</a>
 </nav>
-<h1>#{{ .Title }}</h1>
+<h1>#{{ $title }}</h1>
 <div class="article-grid">
 	{{ range .Pages }}
 		{{ partial "article-card.html" (dict "page" . "date" .Date "headingLevel" 2) }}

@@ -4,14 +4,17 @@
 		{{- $commentPath := .File.Path -}}
 		{{- $commentDirPost := strings.TrimSuffix "/" (strings.TrimPrefix "comments/" (replace .File.Dir "\\" "/")) -}}
 		{{- $commentPost := index .Params "post" -}}
+		{{- if $commentPost -}}
+			{{- $commentPost = strings.TrimSpace $commentPost -}}
+		{{- end -}}
 		{{- if not $commentPost -}}
 			{{- partial "fail.html" (dict
 				"area" "comment"
 				"problem" "missing inherited post"
 				"location" $commentPath
 				"expected" "params.post inherited from the comment directory _index.md"
-				"got" "<missing or empty>"
-				"fix" (printf "add cascade.params.post = %q to content/comments/%s/_index.md" $commentDirPost $commentDirPost)
+				"got" "<missing, empty, or whitespace-only>"
+				"fix" (printf "add a non-empty cascade.params.post = %q to content/comments/%s/_index.md" $commentDirPost $commentDirPost)
 				)
 			-}}
 		{{- else -}}
@@ -50,14 +53,18 @@
 		{{- range $comments -}}
 			{{- $numberText := .File.BaseFileName -}}
 			{{- $commentPath := .File.Path -}}
-			{{- if not (index .Params "author") -}}
+			{{- $commentAuthor := index .Params "author" -}}
+			{{- if $commentAuthor -}}
+				{{- $commentAuthor = strings.TrimSpace $commentAuthor -}}
+			{{- end -}}
+			{{- if not $commentAuthor -}}
 				{{- partial "fail.html" (dict
 					"area" "comment"
 					"problem" "missing required front matter"
 					"location" $commentPath
 					"expected" "author"
-					"got" "<missing or empty>"
-					"fix" "add author to the comment front matter"
+					"got" "<missing, empty, or whitespace-only>"
+					"fix" "add a non-empty author to the comment front matter"
 					)
 				-}}
 			{{- end -}}

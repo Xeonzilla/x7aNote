@@ -11,13 +11,16 @@
 	-}}
 {{- else -}}
 	{{- $value = index .scope .key -}}
+	{{- if and .trimSpace $value -}}
+		{{- $value = strings.TrimSpace $value -}}
+	{{- end -}}
 	{{- if not $value -}}
 		{{- partial "fail.html" (dict
 			"area" "config"
 			"problem" "missing required config value"
 			"location" .location
 			"expected" (.expected | default "a configured value")
-			"got" "<missing or empty>"
+			"got" "<missing, empty, or whitespace-only>"
 			"fix" "restore the required configuration in hugo.toml"
 			)
 		-}}
