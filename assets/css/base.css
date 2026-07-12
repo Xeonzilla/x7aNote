@@ -141,9 +141,13 @@ pre {
     "SFMono-Regular", Menlo, Consolas, "Liberation Mono", "Ubuntu Mono", Monaco, monospace;
 }
 
-pre,
-table {
+pre {
   width: fit-content;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.table-scroll {
   max-width: 100%;
   overflow-x: auto;
 }
@@ -155,7 +159,6 @@ figure figcaption {
 }
 
 table {
-  display: block;
   margin-inline: auto;
   border-collapse: collapse;
 
@@ -192,7 +195,7 @@ a,
   }
 }
 
-:where(a, button, input, textarea, select):focus-visible {
+:where(a, button, input, textarea, select, .table-scroll):focus-visible {
   outline: 2px solid var(--color-link-hover);
   outline-offset: 0.22em;
 }
