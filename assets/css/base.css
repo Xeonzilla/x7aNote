@@ -77,14 +77,16 @@ body {
 }
 
 main {
-  width: min(calc(100% - var(--page-gutter)), 46em);
+  width: min(100%, calc(46em + var(--page-gutter) + var(--page-gutter)));
   margin-inline: auto;
   padding-block-end: 5ch;
+  padding-inline-start: max(var(--page-gutter), env(safe-area-inset-left, 0px));
+  padding-inline-end: max(var(--page-gutter), env(safe-area-inset-right, 0px));
   animation: page-enter 300ms ease-out both;
 }
 
 .is-narrow-page main {
-  width: min(calc(100% - var(--page-gutter)), 34em);
+  width: min(100%, calc(34em + var(--page-gutter) + var(--page-gutter)));
 }
 
 sub,
