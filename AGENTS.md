@@ -12,6 +12,23 @@ This file follows [llms.txt](https://llmstxt.org/) conventions for LLM-readable 
 - Keep this file focused on durable repo rules. Put repeatable workflows in `.agents/skills/` when they need richer instructions.
 - Treat this repository as a personal publishing system, not a general-purpose Hugo theme. Do not add configuration switches, compatibility branches, or reusable component APIs for hypothetical adopters; abstract only for multiple current consumers, a clear domain pipeline, or a replaceable external service boundary.
 
+## Product Shape And Complexity
+
+- Optimize the project for one author publishing and maintaining a personal blog, and for readers consuming it. Do not optimize for theme users, editors, administrators, plugins, or deployment targets that do not currently exist.
+- The current product includes authored HTML pages, tag browsing, curated static comments, no-JS message submission, Atom and sitemap discovery, article Markdown alternates, machine-readable site guidance, canonical and social metadata, generated Open Graph images, accessible responsive presentation, and controlled remote image publication. Treat these as product surfaces rather than optional theme features.
+- Preserve stable public URLs, readable content, media privacy, accessibility, and correct output across the formats the site actually publishes. Complexity that is necessary for those outcomes is justified even when the implementation is site-specific.
+- Prefer the smallest Hugo-native implementation that expresses the current product. Direct template access, content-derived values, and a small amount of local duplication are preferable to forwarding wrappers, parallel data models, generic helpers, or configuration-driven indirection with no current choice to represent.
+- Keep one source of truth for each fact. Do not store metadata that can be derived reliably from a content path, Hugo page data, or an existing configuration value.
+- Add an abstraction only when it serves multiple current consumers, owns a coherent domain pipeline, or isolates a replaceable external service. A file or partial that merely renames values, forwards one call, or anticipates a second consumer is over-designed.
+- Add a configuration value only when the maintainer can currently make a meaningful choice. Fixed layout decisions and stable implementation details belong with the code that owns them.
+- Add a build-time rejection only when all three conditions hold: the mistake is plausible in the current authoring or deployment workflow; it could silently publish broken behavior, incorrect content relationships, or a security, privacy, or accessibility defect; and the failure can provide a specific actionable fix. Prefer Hugo's native failure, harmless normalization, omission, or preview for repository-owned constants, cosmetic differences, and hypothetical states.
+- Do not reject harmless source differences solely to keep repository data pristine. Normalize them when the result is unambiguous and normalization materially helps output; otherwise accept them.
+- Add permanent scripts, fixtures, compatibility branches, or test infrastructure only for recurring workflows or contracts that simpler build and output inspection cannot cover. Remove temporary audit machinery after use.
+- Treat every external service, remote build dependency, alternate output format, and deployment hook as an ongoing maintenance cost. Keep it only while it provides a current author or reader benefit that is not simpler to provide locally.
+- Complexity is measured across the whole maintenance path: authoring rules, content schema, templates, configuration, build behavior, deployment, and debugging. Line count alone does not make a feature too complex, and concise code does not justify an unnecessary feature.
+- When a product decision removes a concept, remove its associated content metadata, archetypes, configuration, validation, documentation, and compatibility code in the same change. Do not leave dormant infrastructure for possible future reuse.
+- Before adding or retaining complexity, be able to name its current consumer, the concrete failure or product limitation it addresses, and why a simpler Hugo-native approach is insufficient. If those answers are weak, simplify or omit it.
+
 ## Site Rules
 
 - Keep the site static-first and Hugo-native. Prefer Hugo templates, render hooks, Markdown, static files, and no-JS external services.
