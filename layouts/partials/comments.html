@@ -1,40 +1,47 @@
 {{- $_ := partialCached "validate-comments.html" site "comments-global-validation" -}}
 {{- $postSlug := .File.ContentBaseName -}}
 {{- /* The comment directory name is the target post slug. */ -}}
-{{- with site.GetPage (printf "comments/%s" $postSlug) -}}
-	{{- $comments := sort .RegularPages "File.BaseFileName" -}}
-	{{- if gt (len $comments) 0 -}}
-		{{- $commentAuthors := dict -}}
-		{{- range $comments -}}
-			{{- $numberText := .File.BaseFileName -}}
-			{{- with index .Params "author" -}}
-				{{- $commentAuthors = merge $commentAuthors (dict $numberText .) -}}
-			{{- end -}}
+{{- $comments := slice -}}
+{{- with site.GetPage "comments" -}}
+	{{- range .RegularPagesRecursive -}}
+		{{- $commentPostSlug := strings.TrimSuffix "/" (strings.TrimPrefix "comments/" (replace .File.Dir "\\" "/")) -}}
+		{{- if eq $commentPostSlug $postSlug -}}
+			{{- $comments = $comments | append . -}}
 		{{- end -}}
-		<section>
-			<h2>评论</h2>
-			{{- range $comments }}
-				{{- $numberText := .File.BaseFileName -}}
-				{{- $author := index .Params "author" -}}
-				<section>
-					<h3 class="comment-heading">
-						<span class="comment-number">#{{ $numberText }}</span>
-						{{- with index .Params "site" }}
-							<a href="{{ . }}" target="_blank" rel="ugc nofollow noopener noreferrer" aria-label="{{ printf "%s（在新标签页打开）" $author }}">{{ $author }}</a>
-						{{- else -}}
-							{{ $author }}
-						{{- end }}
-						<time class="comment-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
-					</h3>
-					{{- with index .Params "replyto" }}
-						{{- $replyKey := printf "%02d" (int .) -}}
-						<p class="comment-reply">
-							回复 @{{ index $commentAuthors $replyKey }}（#{{ $replyKey }}）
-						</p>
-					{{- end }}
-					{{ .Content }}
-				</section>
-			{{- end }}
-		</section>
 	{{- end -}}
+{{- end -}}
+{{- $comments = sort $comments "File.BaseFileName" -}}
+{{- if gt (len $comments) 0 -}}
+	{{- $commentAuthors := dict -}}
+	{{- range $comments -}}
+		{{- $numberText := .File.BaseFileName -}}
+		{{- with index .Params "author" -}}
+			{{- $commentAuthors = merge $commentAuthors (dict $numberText .) -}}
+		{{- end -}}
+	{{- end -}}
+	<section>
+		<h2>评论</h2>
+		{{- range $comments }}
+			{{- $numberText := .File.BaseFileName -}}
+			{{- $author := index .Params "author" -}}
+			<section>
+				<h3 class="comment-heading">
+					<span class="comment-number">#{{ $numberText }}</span>
+					{{- with index .Params "site" }}
+						<a href="{{ . }}" target="_blank" rel="ugc nofollow noopener noreferrer" aria-label="{{ printf "%s（在新标签页打开）" $author }}">{{ $author }}</a>
+					{{- else -}}
+						{{ $author }}
+					{{- end }}
+					<time class="comment-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+				</h3>
+				{{- with index .Params "replyto" }}
+					{{- $replyKey := printf "%02d" (int .) -}}
+					<p class="comment-reply">
+						回复 @{{ index $commentAuthors $replyKey }}（#{{ $replyKey }}）
+					</p>
+				{{- end }}
+				{{ .Content }}
+			</section>
+		{{- end }}
+	</section>
 {{- end -}}
