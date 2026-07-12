@@ -73,10 +73,6 @@ description = "Yuri is life."
 theme_color = "#2d6c67"
 message_email = "admin@xeonzilla.top"
 
-[params.home]
-latest_post_count = 9
-recent_update_count = 3
-
 [params.remote_images]
 base_url = "https://blog-static.xeonzilla.top/img"
 fetch_header_name = "X-X7aNote-Image-Fetch"

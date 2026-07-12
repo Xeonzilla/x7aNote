@@ -1,8 +1,8 @@
 {{ define "main" }}
 {{ $posts := (where .Site.RegularPages "Section" "posts").ByDate.Reverse }}
-{{ $homeParams := partial "require-param.html" (dict "scope" site.Params "key" "home" "location" "[params.home] in hugo.toml" "expected" "the home page count table") }}
-{{ $latestPostCount := partial "require-param.html" (dict "scope" $homeParams "key" "latest_post_count" "location" "params.home.latest_post_count in hugo.toml" "expected" "the latest post count") }}
-{{ $recentUpdateCount := partial "require-param.html" (dict "scope" $homeParams "key" "recent_update_count" "location" "params.home.recent_update_count in hugo.toml" "expected" "the recent update count") }}
+{{/* Counts are calibrated for a 3x3 latest grid and one recent-update row on three-column layouts. */}}
+{{ $latestPostCount := 9 }}
+{{ $recentUpdateCount := 3 }}
 {{ $latestPosts := first $latestPostCount $posts }}
 {{/* .Lastmod falls back to .Date for feed activity ordering, so only later timestamps are actual updates. */}}
 {{ $modifiedPosts := slice }}
