@@ -1,31 +1,43 @@
 {{- $imageKey := .Destination -}}
-{{- $siteConfig := partialCached "site-config.html" site "site-config" -}}
 {{- $resolved := "" -}}
-{{- $namespace := .Page.File.ContentBaseName -}}
-{{- $objectKey := printf "%s/%s" $namespace $imageKey -}}
-{{- $objectKeyPattern := `^[a-z0-9][a-z0-9.-]*(/[a-z0-9][a-z0-9.-]*)*$` -}}
 
-{{- if eq (len (findRE $objectKeyPattern $objectKey 1)) 0 -}}
+{{- if eq .Page.Section "comments" -}}
 	{{- partial "fail.html" (dict
-		"area" "remote image"
-		"problem" "invalid remote image object key"
+		"area" "comment"
+		"problem" "images are not supported"
 		"location" .Page.File.Path
-		"expected" "a lowercase relative image path using letters, digits, dots, hyphens, and forward slashes"
-		"got" (printf "%q" $objectKey)
-		"fix" "rename the image and use a canonical relative path such as gallery/frame-01.avif"
+		"expected" "comment Markdown without images"
+		"got" (printf "image destination %q" $imageKey)
+		"fix" "remove the image or replace it with an ordinary external link"
 		)
 	-}}
 {{- else -}}
-	{{- $destination := urls.JoinPath $siteConfig.remoteImages.baseURL $objectKey -}}
-	{{- $destinationHash := $destination | crypto.Hash "sha256" -}}
-	{{- $resolved = dict
-		"destination" $destination
-		"hash" $destinationHash
-		"location" .Page.File.Path
-		"options" (dict
-		"headers" (dict $siteConfig.remoteImages.fetchHeaderName $siteConfig.remoteImages.fetchHeaderValue)
-		)
-	-}}
+	{{- $siteConfig := partialCached "site-config.html" site "site-config" -}}
+	{{- $namespace := .Page.File.ContentBaseName -}}
+	{{- $objectKey := printf "%s/%s" $namespace $imageKey -}}
+	{{- $objectKeyPattern := `^[a-z0-9][a-z0-9.-]*(/[a-z0-9][a-z0-9.-]*)*$` -}}
+	{{- if eq (len (findRE $objectKeyPattern $objectKey 1)) 0 -}}
+		{{- partial "fail.html" (dict
+			"area" "remote image"
+			"problem" "invalid remote image object key"
+			"location" .Page.File.Path
+			"expected" "a lowercase relative image path using letters, digits, dots, hyphens, and forward slashes"
+			"got" (printf "%q" $objectKey)
+			"fix" "rename the image and use a canonical relative path such as gallery/frame-01.avif"
+			)
+		-}}
+	{{- else -}}
+		{{- $destination := urls.JoinPath $siteConfig.remoteImages.baseURL $objectKey -}}
+		{{- $destinationHash := $destination | crypto.Hash "sha256" -}}
+		{{- $resolved = dict
+			"destination" $destination
+			"hash" $destinationHash
+			"location" .Page.File.Path
+			"options" (dict
+			"headers" (dict $siteConfig.remoteImages.fetchHeaderName $siteConfig.remoteImages.fetchHeaderValue)
+			)
+		-}}
+	{{- end -}}
 {{- end -}}
 
 {{- return $resolved -}}
