@@ -92,6 +92,10 @@
   }
 }
 
+textarea.message-form-control {
+  resize: vertical;
+}
+
 /* User-selected and entered values stay at body size. */
 .message-form-option {
   font-size: 1rem;
