@@ -1,5 +1,2 @@
 ---
-cascade:
-  params:
-    post: "hibimeshi"
 ---

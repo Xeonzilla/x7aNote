@@ -3,43 +3,16 @@
 	{{- range .RegularPagesRecursive -}}
 		{{- $commentPath := .File.Path -}}
 		{{- $commentDirPost := strings.TrimSuffix "/" (strings.TrimPrefix "comments/" (replace .File.Dir "\\" "/")) -}}
-		{{- $commentPost := index .Params "post" -}}
-		{{- if $commentPost -}}
-			{{- $commentPost = strings.TrimSpace $commentPost -}}
-		{{- end -}}
-		{{- if not $commentPost -}}
+		{{- if not (site.GetPage (printf "posts/%s" $commentDirPost)) -}}
 			{{- partial "fail.html" (dict
 				"area" "comment"
-				"problem" "missing inherited post"
+				"problem" "post target does not exist"
 				"location" $commentPath
-				"expected" "params.post inherited from the comment directory _index.md"
-				"got" "<missing, empty, or whitespace-only>"
-				"fix" (printf "add a non-empty cascade.params.post = %q to content/comments/%s/_index.md" $commentDirPost $commentDirPost)
+				"expected" (printf "content/posts/%s.md" $commentDirPost)
+				"got" "<not found>"
+				"fix" "rename the comment directory or create the target post"
 				)
 			-}}
-		{{- else -}}
-			{{- if ne $commentPost $commentDirPost -}}
-				{{- partial "fail.html" (dict
-					"area" "comment"
-					"problem" "post does not match comment directory"
-					"location" $commentPath
-					"expected" (printf "post = %q" $commentDirPost)
-					"got" (printf "post = %q" $commentPost)
-					"fix" "update the comment directory _index.md cascade.params.post or move the comment file"
-					)
-				-}}
-			{{- end -}}
-			{{- if not (site.GetPage (printf "posts/%s" $commentPost)) -}}
-				{{- partial "fail.html" (dict
-					"area" "comment"
-					"problem" "post target does not exist"
-					"location" $commentPath
-					"expected" (printf "content/posts/%s.md" $commentPost)
-					"got" "<not found>"
-					"fix" "fix cascade.params.post or create the target post"
-					)
-				-}}
-			{{- end -}}
 		{{- end -}}
 		{{- $comments := slice -}}
 		{{- with index $commentsByPost $commentDirPost -}}
@@ -102,17 +75,6 @@
 				-}}
 			{{- end -}}
 			{{- $number := int $numberText -}}
-			{{- if lt $number 1 -}}
-				{{- partial "fail.html" (dict
-					"area" "comment"
-					"problem" "invalid first comment number"
-					"location" $commentPath
-					"expected" "comment numbering starts at 01"
-					"got" (printf "%02d" $number)
-					"fix" "rename the first comment file to 01.md"
-					)
-				-}}
-			{{- end -}}
 			{{- $expectedNumber := add (len $seenNumbers) 1 -}}
 			{{- if ne $number $expectedNumber -}}
 				{{- partial "fail.html" (dict
@@ -127,17 +89,6 @@
 			{{- end -}}
 			{{- with index .Params "replyto" -}}
 				{{- $replyTo := int . -}}
-				{{- if ge $replyTo $number -}}
-					{{- partial "fail.html" (dict
-						"area" "comment"
-						"problem" "invalid reply target"
-						"location" $commentPath
-						"expected" "replyto points to an earlier comment"
-						"got" (printf "replyto = %02d" $replyTo)
-						"fix" "change replyto to an earlier comment number or remove it"
-						)
-					-}}
-				{{- end -}}
 				{{- $replyKey := printf "%02d" $replyTo -}}
 				{{- if not (index $seenNumbers $replyKey) -}}
 					{{- partial "fail.html" (dict

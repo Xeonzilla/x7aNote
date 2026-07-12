@@ -1,6 +1,6 @@
 {{- $_ := partialCached "validate-comments.html" site "comments-global-validation" -}}
 {{- $postSlug := .File.ContentBaseName -}}
-{{- /* Comments live at content/comments/<post-slug>/<nn>.md and inherit params.post from the directory _index.md. */ -}}
+{{- /* The comment directory name is the target post slug. */ -}}
 {{- with site.GetPage (printf "comments/%s" $postSlug) -}}
 	{{- $comments := sort .RegularPages "File.BaseFileName" -}}
 	{{- if gt (len $comments) 0 -}}
