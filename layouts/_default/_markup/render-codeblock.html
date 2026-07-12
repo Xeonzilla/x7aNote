@@ -1,6 +1,6 @@
 {{- .Page.Store.Set "hasCodeBlock" true -}}
+{{- $options := dict -}}
 {{- if eq .Type "astro" -}}
-	{{- transform.Highlight .Inner "html" .Options -}}
-{{- else -}}
-	{{- (transform.HighlightCodeBlock .).Wrapped -}}
+	{{- $options = dict "type" "html" -}}
 {{- end -}}
+{{- (transform.HighlightCodeBlock . $options).Wrapped -}}
