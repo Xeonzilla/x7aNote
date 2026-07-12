@@ -1,18 +1,7 @@
 <link rel="alternate" type="application/atom+xml" title="{{ .siteTitle }}" href="{{ "feed.xml" | absURL }}">
 {{- if .isArticle }}
-	{{- $markdownOutput := .page.OutputFormats.Get "markdown" -}}
-	{{- if not $markdownOutput -}}
-		{{- partial "fail.html" (dict
-			"area" "output"
-			"problem" "missing Markdown output"
-			"location" .page.File.Path
-			"expected" "a markdown output format for posts"
-			"got" "<missing>"
-			"fix" "restore the posts markdown output cascade in hugo.toml"
-			)
-		-}}
-	{{- else }}
-		<link rel="alternate" type="text/markdown" title="{{ .pageTitle }}" href="{{ $markdownOutput.Permalink }}">
+	{{- with .page.OutputFormats.Get "markdown" }}
+		<link rel="alternate" type="text/markdown" title="{{ $.pageTitle }}" href="{{ .Permalink }}">
 	{{- end }}
 {{- end }}
 <link rel="sitemap" href="{{ "sitemap.xml" | relURL }}">

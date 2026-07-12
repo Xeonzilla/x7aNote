@@ -1,15 +1,4 @@
 {{- $inner := strings.TrimSpace .Inner -}}
-{{- if not $inner -}}
-	{{- partial "fail.html" (dict
-		"area" "shortcode"
-		"problem" "empty shortcode body"
-		"location" .Page.File.Path
-		"expected" "inner Markdown image lines"
-		"got" "<empty>"
-		"fix" "add Markdown images inside the image-row shortcode or remove the shortcode"
-		)
-	-}}
-{{- end -}}
 {{- range split $inner "\n" -}}
 	{{- $line := strings.TrimSpace . -}}
 	{{- if $line -}}

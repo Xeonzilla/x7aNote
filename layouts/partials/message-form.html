@@ -3,17 +3,6 @@
 {{- $messageEmail := site.Params.message_email -}}
 {{- $formAPIKey := site.Params.message_form.api_key -}}
 {{- $formSuccessPath := site.Params.message_form.success_path -}}
-{{- if not (site.GetPage (strings.TrimSuffix "/" (strings.TrimPrefix "/" $formSuccessPath))) -}}
-	{{- partial "fail.html" (dict
-		"area" "config"
-		"problem" "message success page does not exist"
-		"location" "params.message_form.success_path in hugo.toml"
-		"expected" (printf "a content page at %q" $formSuccessPath)
-		"got" "<not found>"
-		"fix" "create the success page or update success_path"
-		)
-	-}}
-{{- end -}}
 {{- $subject := printf "关于《%s》的留言" .Title -}}
 {{- $body := printf "文章标题：%s\n文章标识：%s\n\n留言方式（公开/私密）：\n昵称：\n邮箱（选填，仅用于回复）：\n站点（选填，公开留言时展示）：\n回复编号（选填，用于回应上方评论）：\n\n留言内容：\n" .Title $postSlug -}}
 {{- /* querify encodes spaces as "+", but mailto URIs (RFC 6068) treat "+" literally; real plus signs are already "%2B", so only spaces need rewriting. */ -}}

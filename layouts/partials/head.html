@@ -15,6 +15,8 @@
 <link rel="license" href="{{ $head.licenseURL }}">
 {{ hugo.Generator }}
 {{ partial "head/styles.html" $head.page }}
-{{ partialCached "head/favicons.html" site "head-favicons" }}
+<link rel="icon" type="image/png" href="{{ "favicon-96x96.png" | relURL }}" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | relURL }}">
+<link rel="shortcut icon" href="{{ "favicon.ico" | relURL }}">
 {{ partial "head/alternates.html" $head }}
 {{ partial "head/social-meta.html" $head }}
