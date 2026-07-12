@@ -7,10 +7,10 @@
 {{- partialCached "head/static-styles.html" (dict "styles" $styles) (delimit $styles "|") -}}
 {{/* Code block hooks mark pages that need Chroma token styles. */}}
 {{- if .IsPage }}
-	{{- with (templates.Defer (dict "key" (printf "syntax:%s" $.RelPermalink) "data" (dict "store" $.Store))) }}
-		{{- if .store.Get "hasCodeBlock" }}
-			{{- partialCached "head/static-styles.html" (dict "styles" (slice "css/syntax.css")) "css/syntax.css" -}}
-		{{- end }}
+	{{/* Render content before reading values populated by render hooks. */}}
+	{{- $noop := .Content -}}
+	{{- if .Store.Get "hasCodeBlock" }}
+		{{- partialCached "head/static-styles.html" (dict "styles" (slice "css/syntax.css")) "css/syntax.css" -}}
 	{{- end }}
 {{- end }}
 {{/* Load image-row CSS only where its selector-dependent layout is needed. */}}
@@ -29,17 +29,14 @@
 			)
 		-}}
 	{{- end }}
-	{{/* Defer ratio CSS until image render hooks have collected dimensions. */}}
-	{{- with (templates.Defer (dict "key" (printf "image-row-ratios:%s" $.RelPermalink) "data" (dict "store" $.Store "relPermalink" $.RelPermalink))) }}
-		{{- with .store.GetSortedMapValues "imageRowRatios" }}
-			{{- $ratioRules := slice -}}
-			{{- range . }}
-				{{- $ratioRules = $ratioRules | append (printf ".%s{--image-row-ratio:%s}" .class .ratio) -}}
-			{{- end -}}
-			{{- $ratioCSS := delimit $ratioRules "" -}}
-			{{- $ratioStylePath := printf "css/image-row-ratios/%s.css" ($.relPermalink | crypto.Hash "sha256") -}}
-			{{- $ratioStyle := resources.FromString $ratioStylePath $ratioCSS | minify | fingerprint }}
-			<link rel="stylesheet" href="{{ $ratioStyle.RelPermalink }}" integrity="{{ $ratioStyle.Data.Integrity }}" crossorigin="anonymous">
-		{{- end }}
+	{{- with .Store.GetSortedMapValues "imageRowRatios" }}
+		{{- $ratioRules := slice -}}
+		{{- range . }}
+			{{- $ratioRules = $ratioRules | append (printf ".%s{--image-row-ratio:%s}" .class .ratio) -}}
+		{{- end -}}
+		{{- $ratioCSS := delimit $ratioRules "" -}}
+		{{- $ratioStylePath := printf "css/image-row-ratios/%s.css" ($.RelPermalink | crypto.Hash "sha256") -}}
+		{{- $ratioStyle := resources.FromString $ratioStylePath $ratioCSS | minify | fingerprint }}
+		<link rel="stylesheet" href="{{ $ratioStyle.RelPermalink }}" integrity="{{ $ratioStyle.Data.Integrity }}" crossorigin="anonymous">
 	{{- end }}
 {{- end }}
