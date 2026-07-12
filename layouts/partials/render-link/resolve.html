@@ -1,0 +1,43 @@
+{{- $destination := .Destination -}}
+{{- $url := urls.Parse $destination -}}
+{{- $scheme := lower $url.Scheme -}}
+
+{{- if or (and $scheme (not (in (slice "http" "https" "mailto") $scheme))) (and (not $scheme) $url.Host) -}}
+	{{- partial "fail.html" (dict
+		"area" "link"
+		"problem" "unsupported URL"
+		"location" .Page.File.Path
+		"expected" "http, https, mailto, fragment, or relative URL"
+		"got" (printf "%q" $destination)
+		"fix" "use an allowed URL"
+		)
+	-}}
+{{- else if and (not $scheme) (strings.HasPrefix $destination "/") -}}
+	{{- $routes := partialCached "render-link/routes.html" site "render-link-routes" -}}
+	{{- $staticPath := strings.TrimPrefix "/" $url.Path -}}
+	{{- $hasTraversal := gt (len (findRE `(?:^|/)\.{1,2}(?:/|$)` $staticPath 1)) 0 -}}
+	{{- $isStaticFile := false -}}
+	{{- if and $staticPath (not $hasTraversal) -}}
+		{{- with os.Stat (path.Join "static" $staticPath) -}}
+			{{- $isStaticFile = not .IsDir -}}
+		{{- end -}}
+	{{- end -}}
+	{{- if and (not (index $routes $url.Path)) (not $isStaticFile) -}}
+		{{- partial "fail.html" (dict
+			"area" "link"
+			"problem" "internal target does not exist"
+			"location" .Page.File.Path
+			"expected" "a current public page output or static file at the root-relative path"
+			"got" (printf "%q" $destination)
+			"fix" "fix the link, restore the target, or use its current canonical URL"
+			)
+		-}}
+	{{- end -}}
+{{- end -}}
+
+{{- return (dict
+	"destination" $destination
+	"scheme" $scheme
+	"url" $url
+	)
+-}}
