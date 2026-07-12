@@ -7,8 +7,8 @@
 {{- if not .IsHome -}}
 	{{- $documentTitle = printf "%s | %s" $pageTitle $siteTitle -}}
 {{- end -}}
-{{- $siteConfig := partialCached "site-config.html" site "site-config" -}}
-{{- $description := $siteConfig.description -}}
+{{- $siteDescription := site.Params.description -}}
+{{- $description := $siteDescription -}}
 {{- if .IsPage -}}
 	{{- with .Summary -}}
 		{{- $summary := . | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace -}}
@@ -23,10 +23,10 @@
 	"siteTitle" $siteTitle
 	"pageTitle" $pageTitle
 	"documentTitle" $documentTitle
-	"siteAuthor" $siteConfig.author
-	"siteDescription" $siteConfig.description
-	"themeColor" $siteConfig.themeColor
-	"licenseURL" $siteConfig.license.url
+	"siteAuthor" site.Params.author
+	"siteDescription" $siteDescription
+	"themeColor" site.Params.theme_color
+	"licenseURL" site.Params.license.url
 	"description" $description
 	"isArticle" (and .IsPage (eq .Section "posts"))
 	)

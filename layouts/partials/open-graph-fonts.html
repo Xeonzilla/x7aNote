@@ -1,6 +1,5 @@
-{{- $siteConfig := partialCached "site-config.html" site "site-config" -}}
-{{- $regularFontURL := $siteConfig.openGraph.regularFontURL -}}
-{{- $mediumFontURL := $siteConfig.openGraph.mediumFontURL -}}
+{{- $regularFontURL := site.Params.open_graph.regular_font_url -}}
+{{- $mediumFontURL := site.Params.open_graph.medium_font_url -}}
 {{- $regularFont := "" -}}
 {{- $mediumFont := "" -}}
 

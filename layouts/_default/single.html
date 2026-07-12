@@ -9,10 +9,9 @@
 </nav>
 <article{{ if $isArticle }} itemscope itemtype="https://schema.org/BlogPosting"{{ end }}>
 	{{ if $isArticle }}
-		{{ $siteConfig := partialCached "site-config.html" site "site-config" }}
 		<meta itemprop="mainEntityOfPage" content="{{ .Permalink }}">
 		<span itemprop="author" itemscope itemtype="https://schema.org/Person">
-			<meta itemprop="name" content="{{ $siteConfig.author }}">
+			<meta itemprop="name" content="{{ site.Params.author }}">
 		</span>
 	{{ end }}
 	<h1{{ if $isArticle }} itemprop="headline"{{ end }}>{{ .Title }}</h1>

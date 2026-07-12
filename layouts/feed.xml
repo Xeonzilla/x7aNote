@@ -12,20 +12,19 @@
 		)
 	-}}
 {{- else -}}
-	{{- $siteConfig := partialCached "site-config.html" site "site-config" }}
 	{{- $updated := (index $feedPages 0).Lastmod }}
 	{{- /* Pages are activity-sorted, so feed updated tracks the newest emitted activity. */ -}}
 	<feed xmlns="http://www.w3.org/2005/Atom">
 		<id>{{ .Permalink }}</id>
 		<title>{{ site.Title | transform.XMLEscape | safeHTML }}</title>
-		<subtitle>{{ $siteConfig.description | transform.XMLEscape | safeHTML }}</subtitle>
+		<subtitle>{{ site.Params.description | transform.XMLEscape | safeHTML }}</subtitle>
 		<updated>{{ $updated.Format "2006-01-02T15:04:05Z07:00" }}</updated>
 		<link href="{{ .Permalink }}" rel="alternate"/>
 		<link href="{{ "feed.xml" | absURL }}" rel="self"/>
 		<author>
-			<name>{{ $siteConfig.author | transform.XMLEscape | safeHTML }}</name>
+			<name>{{ site.Params.author | transform.XMLEscape | safeHTML }}</name>
 		</author>
-		<rights>{{ printf "%s: %s" $siteConfig.license.name $siteConfig.license.url | transform.XMLEscape | safeHTML }}</rights>
+		<rights>{{ printf "%s: %s" site.Params.license.name site.Params.license.url | transform.XMLEscape | safeHTML }}</rights>
 		{{- range $feedPages }}
 			{{- $summary := .Summary | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace }}
 			<entry>
