@@ -32,6 +32,7 @@
 ## Implementation
 
 - Follow Hugo's naming for built-ins. Use `snake_case` for project `params`, lower camel case for template locals, and `kebab-case` for CSS classes, shortcodes, assets, and public URL segments.
+- Maintenance is primarily LLM-driven, so prefer locally explicit code over names or indirection whose only benefit is readability. Do not introduce a local variable, alias, helper definition, or named intermediate merely to shorten repeated syntax or narrate a straightforward expression; keep it inline unless the name preserves context across scopes, stores a transformed or non-trivial result, carries state, or represents a real domain boundary.
 - Prefer output-format-specific render hooks and shortcodes for HTML, Feed, and Markdown instead of post-processing rendered content.
 - Use partials for real domains and pipelines; keep short one-off markup inline.
 - Preserve the existing `article-grid`, `compact-list-grid`, `compact-list`, and `compact-list-columns.html` ownership patterns when editing those layouts.
