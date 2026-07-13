@@ -56,16 +56,6 @@
 					)
 				-}}
 			{{- end -}}
-		{{- else -}}
-			{{- partial "fail.html" (dict
-				"area" "content"
-				"problem" "missing tag term page"
-				"location" $.File.Path
-				"expected" (printf "content/tags/%s/_index.md" $tag)
-				"got" "<not found>"
-				"fix" "create the tag term page so the display title is explicit"
-				)
-			-}}
 		{{- end -}}
 	{{- end -}}
 {{- end -}}
