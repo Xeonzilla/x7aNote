@@ -1,58 +1,39 @@
-{{- $regularFontURL := site.Params.open_graph.regular_font_url -}}
-{{- $mediumFontURL := site.Params.open_graph.medium_font_url -}}
-{{- $regularFont := "" -}}
-{{- $mediumFont := "" -}}
+{{- $fontSpecs := slice
+	(dict "name" "regular" "url" site.Params.open_graph.regular_font_url)
+	(dict "name" "medium" "url" site.Params.open_graph.medium_font_url)
+-}}
+{{- $fonts := dict -}}
 
-{{- with try (resources.GetRemote $regularFontURL (dict "timeout" "60s")) -}}
-	{{- with .Err -}}
-		{{- partial "fail.html" (dict
-			"area" "open graph"
-			"problem" "failed to fetch regular font"
-			"location" "params.open_graph.regular_font_url in hugo.toml"
-			"expected" (printf "a fetchable font at %q" $regularFontURL)
-			"got" (printf "%s" .)
-			"fix" "check the font URL and security.http.urls allowlist"
-			)
-		-}}
-	{{- else with .Value -}}
-		{{- $regularFont = . -}}
-	{{- else -}}
-		{{- partial "fail.html" (dict
-			"area" "open graph"
-			"problem" "regular font fetch returned no resource"
-			"location" "params.open_graph.regular_font_url in hugo.toml"
-			"expected" (printf "a resource value from %q" $regularFontURL)
-			"got" "<nil>"
-			"fix" "check the font URL and Hugo remote resource settings"
-			)
-		-}}
+{{- range $fontSpecs -}}
+	{{- $name := .name -}}
+	{{- $url := .url -}}
+	{{- $font := "" -}}
+	{{- with try (resources.GetRemote $url (dict "timeout" "60s")) -}}
+		{{- with .Err -}}
+			{{- partial "fail.html" (dict
+				"area" "open graph"
+				"problem" (printf "failed to fetch %s font" $name)
+				"location" (printf "params.open_graph.%s_font_url in hugo.toml" $name)
+				"expected" (printf "a fetchable font at %q" $url)
+				"got" (printf "%s" .)
+				"fix" "check the font URL and security.http.urls allowlist"
+				)
+			-}}
+		{{- else with .Value -}}
+			{{- $font = . -}}
+		{{- else -}}
+			{{- partial "fail.html" (dict
+				"area" "open graph"
+				"problem" (printf "%s font fetch returned no resource" $name)
+				"location" (printf "params.open_graph.%s_font_url in hugo.toml" $name)
+				"expected" (printf "a resource value from %q" $url)
+				"got" "<nil>"
+				"fix" "check the font URL and Hugo remote resource settings"
+				)
+			-}}
+		{{- end -}}
 	{{- end -}}
+	{{- $fonts = merge $fonts (dict $name $font) -}}
 {{- end -}}
 
-{{- with try (resources.GetRemote $mediumFontURL (dict "timeout" "60s")) -}}
-	{{- with .Err -}}
-		{{- partial "fail.html" (dict
-			"area" "open graph"
-			"problem" "failed to fetch medium font"
-			"location" "params.open_graph.medium_font_url in hugo.toml"
-			"expected" (printf "a fetchable font at %q" $mediumFontURL)
-			"got" (printf "%s" .)
-			"fix" "check the font URL and security.http.urls allowlist"
-			)
-		-}}
-	{{- else with .Value -}}
-		{{- $mediumFont = . -}}
-	{{- else -}}
-		{{- partial "fail.html" (dict
-			"area" "open graph"
-			"problem" "medium font fetch returned no resource"
-			"location" "params.open_graph.medium_font_url in hugo.toml"
-			"expected" (printf "a resource value from %q" $mediumFontURL)
-			"got" "<nil>"
-			"fix" "check the font URL and Hugo remote resource settings"
-			)
-		-}}
-	{{- end -}}
-{{- end -}}
-
-{{- return (dict "medium" $mediumFont "regular" $regularFont) -}}
+{{- return $fonts -}}
