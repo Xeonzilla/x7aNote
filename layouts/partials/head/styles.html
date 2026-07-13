@@ -9,7 +9,19 @@
 {{- if .IsPage }}
 	{{/* Render content before reading values populated by render hooks. */}}
 	{{- $noop := .Content -}}
-	{{- if .Store.Get "hasCodeBlock" }}
+	{{- $hasCodeBlock := .Store.Get "hasCodeBlock" -}}
+	{{- if and (not $hasCodeBlock) (eq .Section "posts") -}}
+		{{- $commentsByPost := partialCached "comments-index.html" site "comments-index" -}}
+		{{- $comments := default (slice) (index $commentsByPost .File.ContentBaseName) -}}
+		{{- range $comments -}}
+			{{- $noop := .Content -}}
+			{{- if .Store.Get "hasCodeBlock" -}}
+				{{- $hasCodeBlock = true -}}
+				{{- break -}}
+			{{- end -}}
+		{{- end -}}
+	{{- end -}}
+	{{- if $hasCodeBlock }}
 		{{- partialCached "head/static-styles.html" (dict "styles" (slice "css/syntax.css")) "css/syntax.css" -}}
 	{{- end }}
 {{- end }}
