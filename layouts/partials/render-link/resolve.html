@@ -12,6 +12,16 @@
 		"fix" "use an allowed URL"
 		)
 	-}}
+{{- else if and (in (slice "http" "https") $scheme) (not $url.Host) -}}
+	{{- partial "fail.html" (dict
+		"area" "link"
+		"problem" "missing HTTP(S) URL host"
+		"location" .Page.File.Path
+		"expected" "an absolute http or https URL with a host"
+		"got" (printf "%q" $destination)
+		"fix" "add // and a host, or replace the link with another allowed URL"
+		)
+	-}}
 {{- else if and (not $scheme) (not (strings.HasPrefix $destination "/")) (not (strings.HasPrefix $destination "#")) -}}
 	{{- partial "fail.html" (dict
 		"area" "link"
