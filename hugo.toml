@@ -80,7 +80,6 @@ fetch_header_value = "hugo-build"
 
 [params.message_form]
 api_key = "sf_9f36badb23f5e27e0330e4ff"
-success_path = "/message-sent/"
 
 [params.license]
 name = "CC BY-NC-SA 4.0"
