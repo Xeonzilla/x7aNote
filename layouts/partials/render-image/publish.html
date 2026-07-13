@@ -23,21 +23,9 @@
 				)
 			-}}
 		{{- else -}}
-			{{- $suffixes := .MediaType.Suffixes -}}
-			{{- if eq (len $suffixes) 0 -}}
-				{{- partial "fail.html" (dict
-					"area" "remote image"
-					"problem" "missing canonical image suffix"
-					"location" $.location
-					"expected" "an image media type with at least one registered suffix"
-					"got" (printf "media type %q with suffixes %v" .MediaType.Type $suffixes)
-					"fix" "use a Hugo-supported image media type with a registered file suffix"
-					)
-				-}}
-			{{- else -}}
-				{{- /* Public URLs use hashes and the canonical media-type suffix; source paths and slugs stay private. */ -}}
-				{{- $image = resources.Copy (printf "images/%s.%s" $.hash (index $suffixes 0)) . | fingerprint "sha256" -}}
-			{{- end -}}
+			{{- /* Public URLs use hashes and the canonical media-type suffix; source paths and slugs stay private. */ -}}
+			{{- $suffix := index .MediaType.Suffixes 0 -}}
+			{{- $image = resources.Copy (printf "images/%s.%s" $.hash $suffix) . | fingerprint "sha256" -}}
 		{{- end -}}
 	{{- else -}}
 		{{- partial "fail.html" (dict

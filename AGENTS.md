@@ -22,7 +22,7 @@
 - Public responses are “评论”; submission entry points are “留言”. Comments live at `content/comments/<post-slug>/<nn>.md`, use continuous two-digit numbering, and do not support images.
 - Atom entries are ordered by effective activity (`lastmod`, otherwise `date`). Keep `<published>` at `date`, entry `<updated>` at effective activity, and feed `<updated>` at the newest emitted activity.
 - HTML pages use trailing slashes; file outputs keep extensions. Internal Markdown links use current root-relative canonical paths or fragments and must resolve; page-relative links are unsupported.
-- Markdown image sources are relative paths resolved through `params.remote_images.base_url`. Reject absolute URLs, query strings, fragments, traversal, missing dimensions, or missing canonical media suffixes.
+- Markdown image sources are relative paths resolved through `params.remote_images.base_url`. Reject absolute URLs, query strings, fragments, traversal, or missing dimensions; publish fetched images using Hugo's canonical media-type suffix.
 - Publish remote images under `/images/` with hashed filenames. Public output must not expose source object paths, article slugs, or source filenames.
 - Keep `image/avif` and `application/octet-stream` trusted in `security.http.mediaTypes`; they are required for controlled AVIF images and remote Open Graph fonts.
 - Empty alt text is allowed for post cover images; informative article images need meaningful alt text.
