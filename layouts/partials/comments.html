@@ -1,16 +1,7 @@
-{{- $_ := partialCached "validate-comments.html" site "comments-global-validation" -}}
+{{- $commentsByPost := partialCached "comments-index.html" site "comments-index" -}}
 {{- $postSlug := .File.ContentBaseName -}}
 {{- /* The comment directory name is the target post slug. */ -}}
-{{- $comments := slice -}}
-{{- with site.GetPage "comments" -}}
-	{{- range .RegularPagesRecursive -}}
-		{{- $commentPostSlug := strings.TrimSuffix "/" (strings.TrimPrefix "comments/" (replace .File.Dir "\\" "/")) -}}
-		{{- if eq $commentPostSlug $postSlug -}}
-			{{- $comments = $comments | append . -}}
-		{{- end -}}
-	{{- end -}}
-{{- end -}}
-{{- $comments = sort $comments "File.BaseFileName" -}}
+{{- $comments := default (slice) (index $commentsByPost $postSlug) -}}
 {{- if gt (len $comments) 0 -}}
 	{{- $commentAuthors := dict -}}
 	{{- range $comments -}}

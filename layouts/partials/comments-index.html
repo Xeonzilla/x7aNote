@@ -1,5 +1,5 @@
+{{- $commentsByPost := dict -}}
 {{- with site.GetPage "comments" -}}
-	{{- $commentsByPost := dict -}}
 	{{- range .RegularPagesRecursive -}}
 		{{- $commentPath := .File.Path -}}
 		{{- $commentDirPost := strings.TrimSuffix "/" (strings.TrimPrefix "comments/" (replace .File.Dir "\\" "/")) -}}
@@ -118,6 +118,7 @@
 			{{- end -}}
 			{{- $seenNumbers = merge $seenNumbers (dict $numberText true) -}}
 		{{- end -}}
+		{{- $commentsByPost = merge $commentsByPost (dict $commentDirPost $comments) -}}
 	{{- end -}}
 {{- end -}}
-{{- return true -}}
+{{- return $commentsByPost -}}
