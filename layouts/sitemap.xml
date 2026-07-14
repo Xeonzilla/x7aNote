@@ -7,20 +7,20 @@
 			{{- $lastmod := "" -}}
 			{{- if or .IsHome (eq .Kind "taxonomy") }}
 				{{- range $posts }}
-					{{- $pageLastmod := cond .Lastmod.IsZero .Date .Lastmod -}}
+					{{- $pageLastmod := .Lastmod -}}
 					{{- if or (not $lastmod) (gt $pageLastmod.Unix $lastmod.Unix) }}
 						{{- $lastmod = $pageLastmod -}}
 					{{- end }}
 				{{- end }}
 			{{- else if eq .Kind "term" }}
 				{{- range .Pages }}
-					{{- $pageLastmod := cond .Lastmod.IsZero .Date .Lastmod -}}
+					{{- $pageLastmod := .Lastmod -}}
 					{{- if or (not $lastmod) (gt $pageLastmod.Unix $lastmod.Unix) }}
 						{{- $lastmod = $pageLastmod -}}
 					{{- end }}
 				{{- end }}
 			{{- else if .IsPage }}
-				{{- $lastmod = cond .Lastmod.IsZero .Date .Lastmod -}}
+				{{- $lastmod = .Lastmod -}}
 			{{- else if not .Lastmod.IsZero }}
 				{{- $lastmod = .Lastmod -}}
 			{{- end }}

@@ -1,7 +1,5 @@
-{{- $inner := strings.TrimSpace .Inner -}}
-{{- range split $inner "\n" -}}
-	{{- $line := strings.TrimSpace . -}}
-	{{- if $line -}}
-		{{- $.Page.RenderString (dict "display" "block") $line -}}
+{{- range split (strings.TrimSpace .Inner) "\n" -}}
+	{{- with strings.TrimSpace . -}}
+		{{- $.Page.RenderString (dict "display" "block") . -}}
 	{{- end -}}
 {{- end -}}

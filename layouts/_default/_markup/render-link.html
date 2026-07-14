@@ -1,7 +1,3 @@
 {{- $link := partial "render-link/resolve.html" . -}}
-{{- $destination := $link.destination -}}
-{{- $url := $link.url -}}
-{{- $siteURL := urls.Parse site.BaseURL -}}
-{{- $scheme := $link.scheme -}}
-{{- $isExternal := and (in (slice "http" "https") $scheme) $url.Host (ne (lower $url.Host) (lower $siteURL.Host)) -}}
-<a href="{{ $destination | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $isExternal }} target="_blank" rel="{{ if eq .Page.Section "comments" }}ugc {{ end }}nofollow noopener noreferrer"{{ with strings.TrimSpace .PlainText }} aria-label="{{ printf "%s（在新标签页打开）" . }}"{{ end }}{{ end }}>{{ .Text }}</a>{{- "" -}}
+{{- $isExternal := and (in (slice "http" "https") $link.scheme) $link.url.Host (ne (lower $link.url.Host) (lower (urls.Parse site.BaseURL).Host)) -}}
+<a href="{{ $link.destination | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $isExternal }} target="_blank" rel="{{ if eq .Page.Section "comments" }}ugc {{ end }}nofollow noopener noreferrer"{{ with strings.TrimSpace .PlainText }} aria-label="{{ printf "%s（在新标签页打开）" . }}"{{ end }}{{ end }}>{{ .Text }}</a>{{- "" -}}

@@ -2,18 +2,15 @@
 
 {{- range site.Pages -}}
 	{{- with .RelPermalink -}}
-		{{- $path := (urls.Parse .).Path -}}
-		{{- $routes = merge $routes (dict $path true) -}}
+		{{- $routes = merge $routes (dict (urls.Parse .).Path true) -}}
 	{{- end -}}
 	{{- range .OutputFormats -}}
-		{{- $path := (urls.Parse .RelPermalink).Path -}}
-		{{- $routes = merge $routes (dict $path true) -}}
+		{{- $routes = merge $routes (dict (urls.Parse .RelPermalink).Path true) -}}
 	{{- end -}}
 {{- end -}}
 
 {{- range slice ("robots.txt" | relURL) ("sitemap.xml" | relURL) -}}
-	{{- $path := (urls.Parse .).Path -}}
-	{{- $routes = merge $routes (dict $path true) -}}
+	{{- $routes = merge $routes (dict (urls.Parse .).Path true) -}}
 {{- end -}}
 
 {{- return $routes -}}

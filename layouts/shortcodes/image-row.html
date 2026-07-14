@@ -1,13 +1,11 @@
-{{- $inner := strings.TrimSpace .Inner -}}
 <div class="image-row">
 	<div class="image-row-items">
 		{{/* Separate fragments keep Goldmark image render hooks in block mode. */}}
 		{{/* The Store flag scopes ratio collection to images in this shortcode. */}}
 		{{- $.Page.Store.Set "inImageRow" true -}}
-		{{- range split $inner "\n" -}}
-			{{- $line := strings.TrimSpace . -}}
-			{{- if $line -}}
-				{{- $.Page.RenderString (dict "display" "block") $line -}}
+		{{- range split (strings.TrimSpace .Inner) "\n" -}}
+			{{- with strings.TrimSpace . -}}
+				{{- $.Page.RenderString (dict "display" "block") . -}}
 			{{- end -}}
 		{{- end -}}
 		{{- $.Page.Store.Set "inImageRow" false -}}
