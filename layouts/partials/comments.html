@@ -15,6 +15,7 @@
 		{{- range $comments }}
 			{{- $numberText := .File.BaseFileName -}}
 			{{- $author := index .Params "author" -}}
+			{{- $date := .Date.Format "2006-01-02" -}}
 			<section>
 				<h3 class="comment-heading">
 					<span class="comment-number">#{{ $numberText }}</span>
@@ -23,7 +24,7 @@
 					{{- else -}}
 						{{ $author }}
 					{{- end }}
-					<time class="comment-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+					<time class="comment-date" datetime="{{ $date }}">{{ $date }}</time>
 				</h3>
 				{{- with index .Params "replyto" }}
 					{{- $replyKey := printf "%02d" (int .) -}}

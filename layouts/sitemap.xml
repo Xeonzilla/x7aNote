@@ -5,15 +5,9 @@
 	{{- range site.Pages }}
 		{{- if and .Permalink (not .Sitemap.Disable) }}
 			{{- $lastmod := "" -}}
-			{{- if or .IsHome (eq .Kind "taxonomy") }}
-				{{- range $posts }}
-					{{- $pageLastmod := .Lastmod -}}
-					{{- if or (not $lastmod) (gt $pageLastmod.Unix $lastmod.Unix) }}
-						{{- $lastmod = $pageLastmod -}}
-					{{- end }}
-				{{- end }}
-			{{- else if eq .Kind "term" }}
-				{{- range .Pages }}
+			{{- if or .IsHome (eq .Kind "taxonomy") (eq .Kind "term") }}
+				{{- $activityPages := cond (eq .Kind "term") .Pages $posts -}}
+				{{- range $activityPages }}
 					{{- $pageLastmod := .Lastmod -}}
 					{{- if or (not $lastmod) (gt $pageLastmod.Unix $lastmod.Unix) }}
 						{{- $lastmod = $pageLastmod -}}
