@@ -20,6 +20,20 @@
 		)
 	-}}
 {{- end -}}
+{{- if isset .Params "cover" -}}
+	{{- $cover := index .Params "cover" -}}
+	{{- if ne (printf "%T" $cover) "bool" -}}
+		{{- partial "fail.html" (dict
+			"area" "content"
+			"problem" "invalid cover front matter type"
+			"location" .File.Path
+			"expected" "a boolean value"
+			"got" (printf "%T value %q" $cover (printf "%v" $cover))
+			"fix" "set cover to true or false without quotes"
+			)
+		-}}
+	{{- end -}}
+{{- end -}}
 {{- if and (index .Params "lastmod") (lt .Lastmod.Unix .Date.Unix) -}}
 	{{- partial "fail.html" (dict
 		"area" "content"

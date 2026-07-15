@@ -1,14 +1,1 @@
-{{- with partial "render-image/resolve.html" . -}}
-	{{- with partial "render-image/publish.html" . -}}
-		{{- if $.IsBlock -}}
-			<figure>
-				<img src="{{ .Permalink }}" alt="{{ $.PlainText }}" width="{{ .Width }}" height="{{ .Height }}">
-				{{- with $.Title }}
-					<figcaption>{{ . }}</figcaption>
-				{{- end }}
-			</figure>
-		{{- else -}}
-			<img src="{{ .Permalink }}" alt="{{ $.PlainText }}" width="{{ .Width }}" height="{{ .Height }}"{{ with $.Title }} title="{{ . }}"{{ end }}>
-		{{- end -}}
-	{{- end -}}
-{{- end -}}
+{{- partial "render-image/feed.html" . -}}

@@ -37,6 +37,11 @@
 			</div>
 		{{ end }}
 	</div>
+	{{ if $isArticle }}
+		{{ with partial "cover/context.html" . }}
+			{{ partial "render-image/html.html" (dict "hook" . "role" "cover") }}
+		{{ end }}
+	{{ end }}
 	{{ with .Fragments.Headings }}
 		<h2 id="toc-heading">目录</h2>
 		{{ replace $.TableOfContents `<nav id="TableOfContents">` `<nav id="TableOfContents" aria-labelledby="toc-heading">` | safeHTML }}

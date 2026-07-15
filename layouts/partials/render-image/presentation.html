@@ -2,7 +2,10 @@
 {{- $loading := "lazy" -}}
 {{- $fetchPriority := "" -}}
 
-{{- if .hook.IsBlock -}}
+{{- if eq .role "cover" -}}
+	{{- $loading = "eager" -}}
+	{{- $fetchPriority = "high" -}}
+{{- else if and .hook.IsBlock (not (partial "cover/enabled.html" .hook.Page)) -}}
 	{{- $blockImageCount := default 0 (.hook.Page.Store.Get "blockImageCount") -}}
 	{{- if eq $blockImageCount 0 -}}
 		{{- $loading = "eager" -}}

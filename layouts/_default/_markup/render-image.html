@@ -1,6 +1,1 @@
-{{- with partial "render-image/resolve.html" . -}}
-	{{- with partial "render-image/publish.html" . -}}
-		{{- $presentation := partial "render-image/presentation.html" (dict "hook" $ "image" .) -}}
-		{{- partial "render-image/markup.html" (dict "hook" $ "image" . "presentation" $presentation) -}}
-	{{- end -}}
-{{- end -}}
+{{- partial "render-image/html.html" (dict "hook" . "role" "content") -}}

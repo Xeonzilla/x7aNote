@@ -1,0 +1,11 @@
+{{- $context := false -}}
+{{- if partial "cover/enabled.html" . -}}
+	{{- $context = dict
+		"Destination" "cover.avif"
+		"IsBlock" true
+		"Page" .
+		"PlainText" ""
+		"Title" ""
+	-}}
+{{- end -}}
+{{- return $context -}}
