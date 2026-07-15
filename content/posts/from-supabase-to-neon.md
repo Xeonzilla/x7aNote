@@ -1,11 +1,10 @@
 ---
 title: "从Supabase迁移至Neon"
 date: 2025-02-28
+cover: true
 tags:
   - "cloud-services"
 ---
-
-![](cover.avif)
 
 ## 最速迁移
 

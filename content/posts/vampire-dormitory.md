@@ -1,12 +1,11 @@
 ---
 title: "吸血鬼男子宿舍"
 date: 2024-06-07
+cover: true
 tags:
   - "tva"
   - "tva-spring2024"
 ---
-
-![](cover.avif)
 
 ## 天才想法
 

@@ -1,12 +1,11 @@
 ---
 title: "木头风纪委员和迷你裙JK的故事"
 date: 2026-06-07
+cover: true
 tags:
   - "tva"
   - "tva-spring2026"
 ---
-
-![](cover.avif)
 
 ## 复古与现代
 

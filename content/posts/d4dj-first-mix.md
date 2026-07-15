@@ -1,12 +1,11 @@
 ---
 title: "D4DJ First Mix"
 date: 2025-03-22
+cover: true
 tags:
   - "tva"
   - "tva-fall2020"
 ---
-
-![](cover.avif)
 
 D4DJ作为Bushiroad推出的新一代多媒体企划，自然免不了与BanG Dream! 和少女☆歌剧Revue Starlight进行对比。我在观看「D4DJ First Mix」的途中，就在不停地与我脑海里的「BanG Dream!」和「少女☆歌剧Revue Starlight」系列动画对照。
 

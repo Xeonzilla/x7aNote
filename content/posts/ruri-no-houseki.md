@@ -1,12 +1,11 @@
 ---
 title: "琉璃的宝石"
 date: 2025-09-18
+cover: true
 tags:
   - "tva"
   - "tva-summer2025"
 ---
-
-![](cover.avif)
 
 ## 金钱与爱合二为一
 

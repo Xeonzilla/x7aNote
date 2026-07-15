@@ -1,13 +1,12 @@
 ---
 title: "ATRI -My Dear Moments-"
 date: 2024-10-19
+cover: true
 tags:
   - "galgame"
   - "tva"
   - "tva-summer2024"
 ---
-
-![](cover.avif)
 
 ## 浅尝游戏
 

@@ -1,11 +1,10 @@
 ---
 title: "超时空辉夜姬！"
 date: 2026-02-06
+cover: true
 tags:
   - "am-2020s"
 ---
-
-![](cover.avif)
 
 ## 被金钱蒙蔽的双眼
 

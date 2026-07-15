@@ -1,12 +1,11 @@
 ---
 title: "末班列车去哪里？"
 date: 2024-07-28
+cover: true
 tags:
   - "tva"
   - "tva-spring2024"
 ---
-
-![](cover.avif)
 
 ## 雅俗共赏
 

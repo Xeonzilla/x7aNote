@@ -1,12 +1,11 @@
 ---
 title: "升级你的twikoo-cloudflare"
 date: 2025-05-22
+cover: true
 tags:
   - "comment-system"
   - "cloud-services"
 ---
-
-![](cover.avif)
 
 ## 前言
 

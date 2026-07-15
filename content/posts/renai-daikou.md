@@ -1,11 +1,10 @@
 ---
 title: "恋爱代理"
 date: 2024-09-23
+cover: true
 tags:
   - "manga"
 ---
-
-![](cover.avif)
 
 ## 失效的“赤坂魔法”
 

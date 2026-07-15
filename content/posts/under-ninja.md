@@ -1,12 +1,11 @@
 ---
 title: "地下忍者"
 date: 2023-12-01
+cover: true
 tags:
   - "tva"
   - "tva-fall2023"
 ---
-
-![](cover.avif)
 
 ## 被欺骗的观感
 

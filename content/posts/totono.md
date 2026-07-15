@@ -2,11 +2,10 @@
 title: "你和她和她的恋爱。"
 date: 2025-11-21
 lastmod: 2025-11-25
+cover: true
 tags:
   - "galgame"
 ---
-
-![](cover.avif)
 
 > [原始图像链接](https://www.nitroplus.co.jp/secret/ttn-otes/37.php)
 

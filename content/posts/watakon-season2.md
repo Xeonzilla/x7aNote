@@ -1,12 +1,11 @@
 ---
 title: "我的幸福婚姻 第2期"
 date: 2025-03-19
+cover: true
 tags:
   - "tva"
   - "tva-winter2025"
 ---
-
-![](cover.avif)
 
 ## 小厂精品
 

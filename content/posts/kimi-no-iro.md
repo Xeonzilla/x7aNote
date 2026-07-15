@@ -1,11 +1,10 @@
 ---
 title: "你的颜色"
 date: 2025-04-09
+cover: true
 tags:
   - "am-2020s"
 ---
-
-![](cover.avif)
 
 ## 实验性氛围质感
 

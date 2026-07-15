@@ -1,11 +1,10 @@
 ---
 title: "更换博客主题：从PaperMod到Blowfish"
 date: 2024-09-19
+cover: true
 tags:
   - "hugo"
 ---
-
-![](cover.avif)
 
 花了几天的空闲时间，把我的博客主题从PaperMod[^1]更换成了Blowfish[^2]，顺便整理了一下博客目录下的各种文件。整个博客瞬间焕然一新，显得更加现代与美观了。
 

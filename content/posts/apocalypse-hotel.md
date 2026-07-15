@@ -1,12 +1,11 @@
 ---
 title: "末日后酒店"
 date: 2025-06-26
+cover: true
 tags:
   - "tva"
   - "tva-spring2025"
 ---
-
-![](cover.avif)
 
 ## 猜猜我是谁
 

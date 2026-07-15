@@ -1,11 +1,10 @@
 ---
 title: "为Fuwari定制图像服务"
 date: 2025-11-16
+cover: true
 tags:
   - "astro"
 ---
-
-![](cover.avif)
 
 ## 前言
 

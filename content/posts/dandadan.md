@@ -1,12 +1,11 @@
 ---
 title: "当哒当"
 date: 2024-12-31
+cover: true
 tags:
   - "tva"
   - "tva-fall2024"
 ---
-
-![](cover.avif)
 
 ## “末世”王者
 

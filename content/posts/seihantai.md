@@ -1,12 +1,11 @@
 ---
 title: "相反的你和我"
 date: 2026-03-06
+cover: true
 tags:
   - "tva"
   - "tva-winter2026"
 ---
-
-![](cover.avif)
 
 ## 镜像级动画化
 

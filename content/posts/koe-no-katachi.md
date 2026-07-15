@@ -2,11 +2,10 @@
 title: "声之形"
 date: 2023-12-13
 lastmod: 2024-06-22
+cover: true
 tags:
   - "am-2010s"
 ---
-
-![](cover.avif)
 
 ## 观后的第一感受
 

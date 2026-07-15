@@ -1,12 +1,11 @@
 ---
 title: "这公司有我喜欢的人"
 date: 2025-02-07
+cover: true
 tags:
   - "tva"
   - "tva-winter2025"
 ---
-
-![](cover.avif)
 
 ## “大人”的动画
 

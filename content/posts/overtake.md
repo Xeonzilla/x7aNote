@@ -1,12 +1,11 @@
 ---
 title: "Overtake!"
 date: 2023-12-21
+cover: true
 tags:
   - "tva"
   - "tva-fall2023"
 ---
-
-![](cover.avif)
 
 ## 不像原创的原创动画
 

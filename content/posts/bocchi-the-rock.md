@@ -2,12 +2,11 @@
 title: "孤独摇滚！"
 date: 2024-02-23
 lastmod: 2025-02-21
+cover: true
 tags:
   - "tva"
   - "tva-fall2022"
 ---
-
-![](cover.avif)
 
 ## 2024年生贺
 

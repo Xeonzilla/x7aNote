@@ -1,13 +1,12 @@
 ---
 title: "薰香花朵凛然绽放"
 date: 2025-08-18
+cover: true
 tags:
   - "manga"
   - "tva"
   - "tva-summer2025"
 ---
-
-![](cover.avif)
 
 ## 合格广告片
 

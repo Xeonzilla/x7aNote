@@ -1,12 +1,11 @@
 ---
 title: "单人房、日照一般、附天使。"
 date: 2024-06-13
+cover: true
 tags:
   - "tva"
   - "tva-spring2024"
 ---
-
-![](cover.avif)
 
 ## 令人安心的感觉
 

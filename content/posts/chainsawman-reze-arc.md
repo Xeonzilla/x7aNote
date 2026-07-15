@@ -1,11 +1,10 @@
 ---
 title: "剧场版 电锯人 蕾塞篇"
 date: 2025-12-24
+cover: true
 tags:
   - "am-2020s"
 ---
-
-![](cover.avif)
 
 ## 真正的电影感
 

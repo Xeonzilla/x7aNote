@@ -1,12 +1,11 @@
 ---
 title: "时光流逝，饭菜依旧美味"
 date: 2025-07-03
+cover: true
 tags:
   - "tva"
   - "tva-spring2025"
 ---
-
-![](cover.avif)
 
 ## 最佳萌豚饲料
 

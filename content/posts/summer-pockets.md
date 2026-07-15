@@ -2,13 +2,12 @@
 title: "Summer Pockets"
 date: 2024-10-31
 lastmod: 2025-10-09
+cover: true
 tags:
   - "galgame"
   - "tva"
   - "tva-spring2025"
 ---
-
-![](cover.avif)
 
 为了防止[「ATRI -My Dear Moments-」](/atri-my-dear-moments/)那样时间紧迫的情况发生，在「Summer Pockets」的TV动画定于2025年播出后，我便开始推进游戏。
 

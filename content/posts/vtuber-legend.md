@@ -2,12 +2,11 @@
 title: "身为VTuber的我因为忘记关台而成了传说"
 date: 2024-08-13
 lastmod: 2024-09-23
+cover: true
 tags:
   - "tva"
   - "tva-summer2024"
 ---
-
-![](cover.avif)
 
 ## 中期小结
 

@@ -1,12 +1,11 @@
 ---
 title: "忍者与杀手二人组的日常生活"
 date: 2025-05-07
+cover: true
 tags:
   - "tva"
   - "tva-spring2025"
 ---
-
-![](cover.avif)
 
 ## 老兵回归
 

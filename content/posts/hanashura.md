@@ -1,12 +1,11 @@
 ---
 title: "群花绽放，彷如修罗"
 date: 2025-03-08
+cover: true
 tags:
   - "tva"
   - "tva-winter2025"
 ---
-
-![](cover.avif)
 
 ## 老调重弹
 

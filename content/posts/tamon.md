@@ -1,12 +1,11 @@
 ---
 title: "现在多闻君是哪一面！？"
 date: 2026-03-26
+cover: true
 tags:
   - "tva"
   - "tva-winter2026"
 ---
-
-![](cover.avif)
 
 ## 不只是女性向作品
 

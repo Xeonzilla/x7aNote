@@ -1,11 +1,10 @@
 ---
 title: "青夏轨迹"
 date: 2025-06-14
+cover: true
 tags:
   - "galgame"
 ---
-
-![](cover.avif)
 
 ## 不寻常的夏天
 

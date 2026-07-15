@@ -1,12 +1,11 @@
 ---
 title: "我心里危险的东西 第2期"
 date: 2024-03-31
+cover: true
 tags:
   - "tva"
   - "tva-winter2024"
 ---
-
-![](cover.avif)
 
 ## 完结有感
 

@@ -2,12 +2,11 @@
 title: "轮回七次的恶役千金，在前敌国享受随心所欲的新婚生活"
 date: 2024-03-11
 lastmod: 2024-07-27
+cover: true
 tags:
   - "tva"
   - "tva-winter2024"
 ---
-
-![](cover.avif)
 
 ## 放送感想
 

@@ -1,11 +1,10 @@
 ---
 title: "Netlify+Supabase部署Umami"
 date: 2025-02-27
+cover: true
 tags:
   - "cloud-services"
 ---
-
-![](cover.avif)
 
 ## 起因
 

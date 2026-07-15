@@ -1,12 +1,11 @@
 ---
 title: "更换博客评论系统：Waline"
 date: 2024-10-07
+cover: true
 tags:
   - "comment-system"
   - "cloud-services"
 ---
-
-![](cover.avif)
 
 ## 契机
 

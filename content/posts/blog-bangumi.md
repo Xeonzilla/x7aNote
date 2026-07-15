@@ -1,11 +1,10 @@
 ---
 title: "为博客添加Bangumi页面"
 date: 2025-04-15
+cover: true
 tags:
   - "hugo"
 ---
-
-![](cover.avif)
 
 ## 另辟蹊径
 

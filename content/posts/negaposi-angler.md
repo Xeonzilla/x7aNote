@@ -1,12 +1,11 @@
 ---
 title: "悲喜渔生"
 date: 2025-01-09
+cover: true
 tags:
   - "tva"
   - "tva-fall2024"
 ---
-
-![](cover.avif)
 
 ## 神秘原创
 

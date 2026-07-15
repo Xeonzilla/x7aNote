@@ -1,12 +1,11 @@
 ---
 title: "指尖相触，恋恋不舍"
 date: 2024-02-14
+cover: true
 tags:
   - "tva"
   - "tva-winter2024"
 ---
-
-![](cover.avif)
 
 ## 男性友好的女性向动画
 

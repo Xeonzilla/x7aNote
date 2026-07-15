@@ -2,12 +2,11 @@
 title: "亦叶亦花"
 date: 2024-09-20
 lastmod: 2024-10-10
+cover: true
 tags:
   - "tva"
   - "tva-summer2024"
 ---
-
-![](cover.avif)
 
 ## 滑坡
 

@@ -1,12 +1,11 @@
 ---
 title: "可爱史莱姆噗尼露"
 date: 2024-12-14
+cover: true
 tags:
   - "tva"
   - "tva-fall2024"
 ---
-
-![](cover.avif)
 
 ## 衬托下的强者
 

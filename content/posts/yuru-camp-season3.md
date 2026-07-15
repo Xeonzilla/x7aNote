@@ -1,12 +1,11 @@
 ---
 title: "摇曳露营△ 第3期"
 date: 2024-05-26
+cover: true
 tags:
   - "tva"
   - "tva-spring2024"
 ---
-
-![](cover.avif)
 
 ## 别看，去感受
 

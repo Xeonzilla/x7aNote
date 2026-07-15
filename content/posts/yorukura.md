@@ -2,12 +2,11 @@
 title: "夜晚的水母不会游泳"
 date: 2024-05-01
 lastmod: 2024-06-23
+cover: true
 tags:
   - "tva"
   - "tva-spring2024"
 ---
-
-![](cover.avif)
 
 ## 中期评价
 

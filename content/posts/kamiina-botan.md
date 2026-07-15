@@ -1,13 +1,12 @@
 ---
 title: "上伊那牡丹，酒醉身姿似百合花般"
 date: 2026-05-05
+cover: true
 tags:
   - "manga"
   - "tva"
   - "tva-spring2026"
 ---
-
-![](cover.avif)
 
 ## 动画随心而为
 

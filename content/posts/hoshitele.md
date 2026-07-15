@@ -2,12 +2,11 @@
 title: "星灵感应"
 date: 2023-11-28
 lastmod: 2024-07-27
+cover: true
 tags:
   - "tva"
   - "tva-fall2023"
 ---
-
-![](cover.avif)
 
 ## 期待中的小问题
 

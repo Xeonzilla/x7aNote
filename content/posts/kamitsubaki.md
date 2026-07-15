@@ -1,12 +1,11 @@
 ---
 title: "神椿市建设中。"
 date: 2025-10-30
+cover: true
 tags:
   - "tva"
   - "tva-summer2025"
 ---
-
-![](cover.avif)
 
 ## 被支配的恐惧
 

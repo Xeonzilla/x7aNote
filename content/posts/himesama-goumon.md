@@ -2,12 +2,11 @@
 title: "公主殿下，“拷问”的时间到了"
 date: 2024-01-16
 lastmod: 2024-07-27
+cover: true
 tags:
   - "tva"
   - "tva-winter2024"
 ---
-
-![](cover.avif)
 
 ## 开播速评
 

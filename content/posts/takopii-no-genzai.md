@@ -1,13 +1,12 @@
 ---
 title: "章鱼哔的原罪"
 date: 2025-09-07
+cover: true
 tags:
   - "manga"
   - "tva"
   - "tva-summer2025"
 ---
-
-![](cover.avif)
 
 ## 前言
 

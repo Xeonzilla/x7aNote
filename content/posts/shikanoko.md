@@ -2,12 +2,11 @@
 title: "鹿乃子乃子虎视眈眈"
 date: 2024-03-13
 lastmod: 2024-10-09
+cover: true
 tags:
   - "tva"
   - "tva-summer2024"
 ---
-
-![](cover.avif)
 
 ## 押注
 

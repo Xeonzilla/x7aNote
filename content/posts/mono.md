@@ -1,12 +1,11 @@
 ---
 title: "mono女孩"
 date: 2025-07-30
+cover: true
 tags:
   - "tva"
   - "tva-spring2025"
 ---
-
-![](cover.avif)
 
 ## 代餐胜者
 

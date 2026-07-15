@@ -1,12 +1,11 @@
 ---
 title: "前桥魔女"
 date: 2025-05-29
+cover: true
 tags:
   - "tva"
   - "tva-spring2025"
 ---
-
-![](cover.avif)
 
 ## 全新企划
 

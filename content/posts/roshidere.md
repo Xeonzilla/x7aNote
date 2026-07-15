@@ -1,12 +1,11 @@
 ---
 title: "不时轻声地以俄语遮羞的邻座艾莉同学"
 date: 2024-08-17
+cover: true
 tags:
   - "tva"
   - "tva-summer2024"
 ---
-
-![](cover.avif)
 
 ## 本格“厕纸”
 

@@ -2,12 +2,11 @@
 title: "吹响！上低音号3"
 date: 2024-06-26
 lastmod: 2025-01-16
+cover: true
 tags:
   - "tva"
   - "tva-spring2024"
 ---
-
-![](cover.avif)
 
 ## 优秀动画代表
 

@@ -1,11 +1,10 @@
 ---
 title: "Chroma Shift与RGB Shift"
 date: 2024-09-11
+cover: true
 tags:
   - "anime-science"
 ---
-
-![](cover.avif)
 
 ## 色度的偏移
 

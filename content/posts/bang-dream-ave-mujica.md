@@ -1,12 +1,11 @@
 ---
 title: "BanG Dream! Ave Mujica"
 date: 2025-02-02
+cover: true
 tags:
   - "tva"
   - "tva-winter2025"
 ---
-
-![](cover.avif)
 
 ## 此时此刻，恰如彼时彼刻
 

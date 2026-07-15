@@ -1,13 +1,12 @@
 ---
 title: "紫云寺家的兄弟姐妹"
 date: 2025-05-21
+cover: true
 tags:
   - "manga"
   - "tva"
   - "tva-spring2025"
 ---
-
-![](cover.avif)
 
 ## 一流动画
 

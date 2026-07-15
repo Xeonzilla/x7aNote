@@ -2,12 +2,11 @@
 title: "勇气爆发BANG BRAVERN"
 date: 2024-03-22
 lastmod: 2024-03-29
+cover: true
 tags:
   - "tva"
   - "tva-winter2024"
 ---
-
-![](cover.avif)
 
 ## 第一印象
 

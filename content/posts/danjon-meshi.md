@@ -1,12 +1,11 @@
 ---
 title: "迷宫饭"
 date: 2024-03-04
+cover: true
 tags:
   - "tva"
   - "tva-winter2024"
 ---
-
-![](cover.avif)
 
 ## 真正的“冻鳗糕兽”已经下判断了
 

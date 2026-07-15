@@ -1,12 +1,11 @@
 ---
 title: "声优广播的台前幕后"
 date: 2024-05-02
+cover: true
 tags:
   - "tva"
   - "tva-spring2024"
 ---
-
-![](cover.avif)
 
 ## 水濑祈的助攻
 

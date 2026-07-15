@@ -1,12 +1,11 @@
 ---
 title: "小市民系列"
 date: 2024-09-09
+cover: true
 tags:
   - "tva"
   - "tva-summer2024"
 ---
-
-![](cover.avif)
 
 ## 时代中的比例
 
