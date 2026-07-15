@@ -1,5 +1,6 @@
 {{- $context := false -}}
-{{- if partial "cover/enabled.html" . -}}
+{{- $cover := index .Params "cover" -}}
+{{- if and (isset .Params "cover") (eq (printf "%T" $cover) "bool") $cover -}}
 	{{- $context = dict
 		"Destination" "cover.avif"
 		"IsBlock" true

@@ -1,2 +1,0 @@
-{{- $cover := index .Params "cover" -}}
-{{- return (and (isset .Params "cover") (eq (printf "%T" $cover) "bool") $cover) -}}

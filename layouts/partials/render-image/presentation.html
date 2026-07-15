@@ -5,13 +5,6 @@
 {{- if eq .role "cover" -}}
 	{{- $loading = "eager" -}}
 	{{- $fetchPriority = "high" -}}
-{{- else if and .hook.IsBlock (not (partial "cover/enabled.html" .hook.Page)) -}}
-	{{- $blockImageCount := default 0 (.hook.Page.Store.Get "blockImageCount") -}}
-	{{- if eq $blockImageCount 0 -}}
-		{{- $loading = "eager" -}}
-		{{- $fetchPriority = "high" -}}
-	{{- end -}}
-	{{- .hook.Page.Store.Set "blockImageCount" (add $blockImageCount 1) -}}
 {{- end -}}
 
 {{- if and .hook.IsBlock (.hook.Page.Store.Get "inImageRow") -}}
