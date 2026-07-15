@@ -1,43 +1,18 @@
 {{- $altText := strings.TrimSpace .hook.PlainText -}}
 {{- if .hook.IsBlock -}}
 	<figure{{ with .presentation.ratioClass }} class="image-row-item {{ . }}"{{ end }}>
-		{{- if eq .role "content" }}
-			{{- $zoomID := printf "image-zoom-%s-%d" (.image.RelPermalink | crypto.Hash "sha256") .hook.Ordinal -}}
-			<button
-				class="image-zoom-trigger"
-				type="button"
-				popovertarget="{{ $zoomID }}"
-				aria-label="{{ cond $altText (printf "放大图片：%s" $altText) "放大图片" }}">
-				<img
-					src="{{ .image.RelPermalink }}"
-					alt=""
-					width="{{ .image.Width }}"
-					height="{{ .image.Height }}"
-					loading="{{ .presentation.loading }}"
-					decoding="async">
-			</button>
-			<div class="image-zoom-popover" id="{{ $zoomID }}" popover="auto">
-				<button
-					class="image-zoom-dismiss"
-					type="button"
-					autofocus
-					popovertarget="{{ $zoomID }}"
-					popovertargetaction="hide"
-					aria-label="关闭放大图片">
-					<img
-						src="{{ .image.RelPermalink }}"
-						alt=""
-						width="{{ .image.Width }}"
-						height="{{ .image.Height }}"
-						loading="{{ .presentation.loading }}"
-						decoding="async">
-				</button>
-			</div>
-		{{- else }}
+		{{- $zoomID := printf "image-zoom-%s-%s-%d" (.image.RelPermalink | crypto.Hash "sha256") .role (default 0 .hook.Ordinal) -}}
+		<button
+			class="image-zoom-trigger"
+			type="button"
+			popovertarget="{{ $zoomID }}"
+			aria-label="{{ cond (eq .role "cover") "放大封面图" (cond $altText (printf "放大图片：%s" $altText) "放大图片") }}">
 			<img
 				src="{{ .image.RelPermalink }}"
-				itemprop="image"
-				alt="{{ .hook.PlainText }}"
+				{{- if eq .role "cover" }}
+					itemprop="image"
+				{{- end }}
+				alt=""
 				width="{{ .image.Width }}"
 				height="{{ .image.Height }}"
 				loading="{{ .presentation.loading }}"
@@ -45,7 +20,24 @@
 					fetchpriority="{{ . }}"
 				{{- end }}
 				decoding="async">
-		{{- end }}
+		</button>
+		<div class="image-zoom-popover" id="{{ $zoomID }}" popover="auto">
+			<button
+				class="image-zoom-dismiss"
+				type="button"
+				autofocus
+				popovertarget="{{ $zoomID }}"
+				popovertargetaction="hide"
+				aria-label="关闭放大图片">
+				<img
+					src="{{ .image.RelPermalink }}"
+					alt=""
+					width="{{ .image.Width }}"
+					height="{{ .image.Height }}"
+					loading="lazy"
+					decoding="async">
+			</button>
+		</div>
 		{{- with .hook.Title }}
 			<figcaption{{ if eq (strings.TrimSpace .) $altText }} aria-hidden="true"{{ end }}>{{ . }}</figcaption>
 		{{- end }}
