@@ -12,8 +12,8 @@
       min-width: 0;
       margin: 0;
 
-      & > img {
-        display: block;
+      & > .image-zoom-trigger,
+      & > .image-zoom-trigger > img {
         width: 100%;
       }
 
