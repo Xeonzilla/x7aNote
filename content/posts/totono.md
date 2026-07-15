@@ -7,7 +7,7 @@ tags:
   - "galgame"
 ---
 
-> [原始图像链接](https://www.nitroplus.co.jp/secret/ttn-otes/37.php)
+> 封面原始图像链接：<https://www.nitroplus.co.jp/secret/ttn-otes/37.php>
 
 ## 原初体验
 
