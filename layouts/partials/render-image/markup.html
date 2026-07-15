@@ -3,6 +3,9 @@
 	<figure{{ with .presentation.ratioClass }} class="image-row-item {{ . }}"{{ end }}>
 		<img
 			src="{{ .image.RelPermalink }}"
+			{{- if eq .role "cover" }}
+				itemprop="image"
+			{{- end }}
 			alt="{{ .hook.PlainText }}"
 			width="{{ .image.Width }}"
 			height="{{ .image.Height }}"
