@@ -1,6 +1,6 @@
-@keyframes page-enter {
+@keyframes fade-in {
   from {
-    opacity: 0.01;
+    opacity: 0;
   }
 
   to {
@@ -82,7 +82,7 @@ main {
   padding-block-end: 5ch;
   padding-inline-start: max(var(--page-gutter), env(safe-area-inset-left, 0px));
   padding-inline-end: max(var(--page-gutter), env(safe-area-inset-right, 0px));
-  animation: page-enter 300ms ease-out both;
+  animation: fade-in 300ms ease-out both;
 }
 
 .is-narrow-page main {

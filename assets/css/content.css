@@ -75,6 +75,16 @@
   &::backdrop {
     background: oklch(20% 0.004 85 / 80%);
   }
+
+  &:popover-open {
+    &::backdrop {
+      animation: fade-in 150ms ease-out both;
+    }
+
+    & .image-zoom-dismiss > img {
+      animation: fade-in 150ms ease-out both;
+    }
+  }
 }
 
 .image-zoom-dismiss {
@@ -111,6 +121,13 @@
 
 body:has(.image-zoom-popover:popover-open) {
   overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image-zoom-popover:popover-open::backdrop,
+  .image-zoom-popover:popover-open .image-zoom-dismiss > img {
+    animation: none;
+  }
 }
 
 .message-form {
