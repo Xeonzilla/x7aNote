@@ -63,7 +63,7 @@ date: 2026-06-24
 
 留言表单会提交到[Static Forms](https://www.staticforms.dev/)，如你不希望数据被提交到第三方服务，或是所在地区与Static Forms服务连通性较差，请避免使用表单。
 
-本站CSS面向现代浏览器：Chrome/Edge 121+、Firefox 121+、Safari/iOS Safari 17+。样式会使用CSS nesting、`:has()`、`oklch()`、`color-mix()`、`subgrid`等现代特性，不针对IE、旧版Android WebView或长期未更新的浏览器做完整兼容。旧浏览器通常仍可阅读语义HTML内容，但视觉效果可能退化。简单地说，请使用尽可能新、尽可能主流的浏览器以获得最佳体验。
+本站CSS面向现代浏览器：Chrome/Edge 121+、Firefox 125+、Safari/iOS Safari 17+。样式会使用CSS nesting、`:has()`、`oklch()`、`color-mix()`、`subgrid`等现代特性，不针对IE、旧版Android WebView或长期未更新的浏览器做完整兼容。旧浏览器通常仍可阅读语义HTML内容，但视觉效果可能退化。简单地说，请使用尽可能新、尽可能主流的浏览器以获得最佳体验。
 
 ## 内容与代码许可
 

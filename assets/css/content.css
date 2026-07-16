@@ -76,6 +76,7 @@
     background: oklch(20% 0.004 85 / 80%);
   }
 
+  /* TODO: Replace this fade with approximate source motion using CSS Anchor Positioning or interoperable bidirectional Popover transitions when the browser baseline allows it. */
   &:popover-open {
     &::backdrop {
       animation: fade-in 150ms ease-out both;
