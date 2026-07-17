@@ -1,5 +1,0 @@
-{{- range split (strings.TrimSpace .Inner) "\n" -}}
-	{{- with strings.TrimSpace . -}}
-		{{- $.Page.RenderString (dict "display" "block") . -}}
-	{{- end -}}
-{{- end -}}
