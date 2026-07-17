@@ -1,0 +1,4 @@
+{{- $hook := .hook -}}
+{{- $link := partial "render-link/resolve.html" $hook -}}
+{{- $isExternal := and (in (slice "http" "https") $link.scheme) $link.url.Host (ne (lower $link.url.Host) (lower (urls.Parse site.BaseURL).Host)) -}}
+<a href="{{ $link.destination | safeURL }}"{{ with $hook.Title }} title="{{ . }}"{{ end }}{{ if $isExternal }} target="_blank" rel="{{ $.externalRel }}"{{ with strings.TrimSpace $hook.PlainText }} aria-label="{{ printf "%s（在新标签页打开）" . }}"{{ end }}{{ end }}>{{ $hook.Text }}</a>{{- "" -}}
