@@ -34,12 +34,12 @@
 
 	<h2 class="index-section-heading" id="latest">最近发布</h2>
 	{{ range $latestPosts }}
-		{{ partial "article-card.html" (dict "page" . "date" .Date "anchorID" (.File.ContentBaseName | anchorize)) }}
+		{{ partial "posts/article-card.html" (dict "page" . "date" .Date "anchorID" (.File.ContentBaseName | anchorize)) }}
 	{{ end }}
 
 	<h2 class="index-section-heading" id="recent">最近更新</h2>
 	{{ range $recentlyUpdatedPosts }}
-		{{ partial "article-card.html" (dict "page" . "date" .Lastmod "anchorID" (.File.ContentBaseName | anchorize)) }}
+		{{ partial "posts/article-card.html" (dict "page" . "date" .Lastmod "anchorID" (.File.ContentBaseName | anchorize)) }}
 	{{ end }}
 
 	<h2 class="index-section-heading" id="others">其他文章</h2>

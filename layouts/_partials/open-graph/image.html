@@ -21,7 +21,7 @@
 		)
 	-}}
 {{- else -}}
-	{{- $openGraphFonts := partialCached "open-graph-fonts.html" site "open-graph-fonts" -}}
+	{{- $openGraphFonts := partialCached "open-graph/fonts.html" site "open-graph-fonts" -}}
 	{{- $regularFont := index $openGraphFonts "regular" -}}
 	{{- $mediumFont := index $openGraphFonts "medium" -}}
 

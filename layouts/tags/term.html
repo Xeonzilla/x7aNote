@@ -17,7 +17,7 @@
 <h1>#{{ $title }}</h1>
 <div class="article-grid">
 	{{ range .Pages }}
-		{{ partial "article-card.html" (dict "page" . "date" .Date "headingLevel" 2) }}
+		{{ partial "posts/article-card.html" (dict "page" . "date" .Date "headingLevel" 2) }}
 	{{ end }}
 </div>
 {{ end }}

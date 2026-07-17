@@ -1,4 +1,4 @@
-{{- $commentsByPost := partialCached "comments-index.html" site "comments-index" -}}
+{{- $commentsByPost := partialCached "comments/index.html" site "comments-index" -}}
 {{- $postSlug := .File.ContentBaseName -}}
 {{- /* The comment directory name is the target post slug. */ -}}
 {{- $comments := default (slice) (index $commentsByPost $postSlug) -}}

@@ -1,3 +1,4 @@
+{{- /* Build and validate the comment index shared by rendering and style detection. */ -}}
 {{- $commentsByPost := dict -}}
 {{- with site.GetPage "comments" -}}
 	{{- range .RegularPagesRecursive -}}

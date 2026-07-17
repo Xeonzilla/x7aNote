@@ -19,9 +19,9 @@
 -}}
 {{- $openGraphImage := "" -}}
 {{- if eq $openGraphMode "default" -}}
-	{{- $openGraphImage = partialCached "open-graph-image.html" $openGraphContext "default-open-graph-image" -}}
+	{{- $openGraphImage = partialCached "open-graph/image.html" $openGraphContext "default-open-graph-image" -}}
 {{- else -}}
-	{{- $openGraphImage = partial "open-graph-image.html" $openGraphContext -}}
+	{{- $openGraphImage = partial "open-graph/image.html" $openGraphContext -}}
 {{- end -}}
 <meta property="og:type" content="{{ cond .isArticle "article" "website" }}">
 <meta property="og:url" content="{{ .page.Permalink }}">

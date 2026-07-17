@@ -11,7 +11,7 @@
 	{{- $noop := .Content -}}
 	{{- $hasCodeBlock := .Store.Get "hasCodeBlock" -}}
 	{{- if and (not $hasCodeBlock) (eq .Section "posts") -}}
-		{{- $commentsByPost := partialCached "comments-index.html" site "comments-index" -}}
+		{{- $commentsByPost := partialCached "comments/index.html" site "comments-index" -}}
 		{{- $comments := default (slice) (index $commentsByPost .File.ContentBaseName) -}}
 		{{- range $comments -}}
 			{{- $noop := .Content -}}
