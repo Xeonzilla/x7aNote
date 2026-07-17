@@ -1,6 +1,5 @@
-{{/* Split a linear collection into compact-list columns; callers provide the outer grid. */}}
+{{/* Split a linear collection into compact-list columns; callers provide the outer grid and item renderer. */}}
 {{ $items := .items }}
-{{ $itemKind := .itemKind }}
 {{ $totalItems := len $items }}
 {{ if gt $totalItems 0 }}
 	{{ $columnCount := div (add $totalItems 3) 4 }}
@@ -10,16 +9,7 @@
 		{{ if gt $end $totalItems }}{{ $end = $totalItems }}{{ end }}
 		<div class="compact-list">
 			{{ range first (sub $end $start) (after $start $items) }}
-				{{ if eq $itemKind "post" }}
-					<div id="{{ .File.ContentBaseName | anchorize }}">
-						<a href="{{ .RelPermalink }}">{{ .Title }}</a>
-					</div>
-				{{ else if eq $itemKind "tag" }}
-					<div>
-						<a href="{{ .Page.RelPermalink }}">#{{ .Page.Title }}</a>
-						<span class="tag-count">{{ .Count }}</span>
-					</div>
-				{{ end }}
+				{{ partial $.itemPartial . }}
 			{{ end }}
 		</div>
 	{{ end }}
