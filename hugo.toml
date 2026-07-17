@@ -15,8 +15,12 @@ lastmod = ["lastmod", "date"]
 [taxonomies]
 tag = "tags"
 
-[permalinks]
-posts = "/:contentbasename/"
+[[permalinks]]
+pattern = "/:contentbasename/"
+
+[permalinks.target]
+kind = "page"
+path = "/posts/**"
 
 [mediaTypes."application/atom+xml"]
 suffixes = ["xml"]
