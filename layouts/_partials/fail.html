@@ -1,11 +1,13 @@
 {{- /* Central project error format for LLM-readable build failures. */ -}}
 {{- if not (index . "noop") -}}
-	{{- errorf "%s: %s in %s. Expected: %s. Got: %s. Fix: %s."
+	{{- /* templates.Current is experimental; verify caller lookup after Hugo upgrades. */ -}}
+	{{- errorf "%s: %s in %s. Expected: %s. Got: %s. Fix: %s. Source: layouts/%s."
 		(index . "area")
 		(index . "problem")
 		(index . "location")
 		(index . "expected")
 		(index . "got")
 		(index . "fix")
+		templates.Current.Parent.Name
 	-}}
 {{- end -}}
