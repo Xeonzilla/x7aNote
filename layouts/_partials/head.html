@@ -1,9 +1,6 @@
 {{- /* fail.html normally runs only on error paths; this no-op satisfies strict unused-template checks. */ -}}
 {{- partial "fail.html" (dict "noop" true) -}}
 {{- $head := partial "head/context.html" . -}}
-{{- if $head.isArticle -}}
-	{{- partial "validate-post.html" $head.page -}}
-{{- end -}}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light">

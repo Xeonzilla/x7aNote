@@ -1,3 +1,4 @@
+{{- /* Post validation runs before shared head work through the base validate block. */ -}}
 {{- if not (strings.TrimSpace .Title) -}}
 	{{- partial "fail.html" (dict
 		"area" "content"

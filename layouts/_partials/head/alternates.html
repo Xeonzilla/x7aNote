@@ -1,7 +1,5 @@
 <link rel="alternate" type="application/atom+xml" title="{{ .siteTitle }}" href="{{ "feed.xml" | absURL }}">
-{{- if .isArticle }}
-	{{- with .page.OutputFormats.Get "markdown" }}
-		<link rel="alternate" type="text/markdown" title="{{ $.pageTitle }}" href="{{ .Permalink }}">
-	{{- end }}
+{{- with .page.OutputFormats.Get "markdown" }}
+	<link rel="alternate" type="text/markdown" title="{{ $.pageTitle }}" href="{{ .Permalink }}">
 {{- end }}
 <link rel="sitemap" href="{{ "sitemap.xml" | relURL }}">

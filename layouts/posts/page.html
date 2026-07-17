@@ -1,3 +1,7 @@
+{{ define "validate" }}
+{{- partial "posts/validate.html" . -}}
+{{ end }}
+
 {{ define "main" }}
 {{ $homeURL := printf "%s#%s" ("/" | relURL) (.File.ContentBaseName | anchorize) }}
 <nav class="page-nav" id="top" aria-label="文章导航">
