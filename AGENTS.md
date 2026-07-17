@@ -16,6 +16,14 @@
 - Treat scripts, tests, external services, remote build dependencies, alternate formats, and deployment hooks as maintenance costs. Keep them only for recurring workflows or current author/reader value.
 - When removing a product concept, remove its metadata, archetypes, configuration, validation, documentation, and compatibility code in the same change.
 
+## Hugo Project Structure
+
+- Use Hugo's current template system directly. Keep site-wide lookup templates at `layouts/`, put real content-type differences under `layouts/<type>/`, and encode kind and output format in filenames, as in `home.feed.xml`, `posts/page.html`, `posts/page.markdown.md`, and `tags/term.html`. Do not reintroduce legacy `_default`, `partials`, or `shortcodes` paths or compatibility wrappers.
+- Let Hugo's lookup rules select distinct page domains instead of dispatching them from a catch-all template with `.Section`, `.Type`, or `.Kind` branches. Keep a generic fallback only for current generic pages, and add a type directory only when that type has distinct current behavior.
+- Reserve `layouts/_markup/`, `layouts/_shortcodes/`, and `layouts/_partials/` for their Hugo-defined roles. Prefer adjacent output-specific hook and shortcode variants for HTML, Feed, and Markdown instead of post-processing rendered content. Organize partials by coherent domain or pipeline rather than a generic component hierarchy; keep short one-off markup inline.
+- Put resources that Hugo transforms, fingerprints, or publishes in `assets/`; put byte-for-byte public files in `static/`. Do not duplicate a resource across both ownership models.
+- Keep configuration in the single `hugo.toml` while it remains cohesive. Split configuration only for a real environment or independently maintained domain, not to imitate a reusable theme or a larger project.
+
 ## Content And Output Contracts
 
 - Do not edit generated output or caches: `public/`, `resources/`, or `.vercel_build_output/`.
@@ -34,8 +42,6 @@
 
 - Follow Hugo's naming for built-ins. Use `snake_case` for project `params`, lower camel case for template locals, and `kebab-case` for CSS classes, shortcodes, assets, and public URL segments.
 - Maintenance is primarily LLM-driven, so prefer locally explicit code over names or indirection whose only benefit is readability. Do not introduce a local variable, alias, helper definition, or named intermediate merely to shorten repeated syntax or narrate a straightforward expression; keep it inline unless the name preserves context across scopes, stores a transformed or non-trivial result, carries state, or represents a real domain boundary.
-- Prefer output-format-specific render hooks and shortcodes for HTML, Feed, and Markdown instead of post-processing rendered content.
-- Use partials for real domains and pipelines; keep short one-off markup inline.
 - Preserve the existing `article-grid`, `compact-list-grid`, `compact-list`, and `compact-list-columns.html` ownership patterns when editing those layouts.
 - Follow the latest stable Hugo release. Keep the deployment version check non-blocking and the local and Vercel versions aligned.
 - `.claude/skills/` points to `.agents/skills/`; modify only `.agents/skills/`. Put reusable workflows in skills rather than expanding this file.
