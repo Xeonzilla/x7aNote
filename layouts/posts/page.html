@@ -1,36 +1,48 @@
 {{ define "main" }}
-{{ $homeURL := "/" | relURL }}
+{{ $homeURL := printf "%s#%s" ("/" | relURL) (.File.ContentBaseName | anchorize) }}
 <nav class="page-nav" id="top" aria-label="文章导航">
 	<a href="{{ $homeURL }}">返回首页</a>
 </nav>
-<article>
-	<h1>{{ .Title }}</h1>
+<article itemscope itemtype="https://schema.org/BlogPosting">
+	<meta itemprop="mainEntityOfPage" content="{{ .Permalink }}">
+	<span itemprop="author" itemscope itemtype="https://schema.org/Person">
+		<meta itemprop="name" content="{{ site.Params.author }}">
+	</span>
+	<h1 itemprop="headline">{{ .Title }}</h1>
 	{{ $date := .Date.Format "2006-01-02" }}
 	{{ $lastmod := .Lastmod.Format "2006-01-02" }}
 	<div class="article-meta">
 		<div>
-			<time datetime="{{ $date }}">{{ $date }}</time>发布
+			<time datetime="{{ $date }}" itemprop="datePublished">{{ $date }}</time>发布
 		</div>
 		{{ if and .Params.lastmod (ne $date $lastmod) }}
 			<div>
-				<time datetime="{{ $lastmod }}">{{ $lastmod }}</time>更新
+				<time datetime="{{ $lastmod }}" itemprop="dateModified">{{ $lastmod }}</time>更新
 			</div>
+		{{ else }}
+			<meta itemprop="dateModified" content="{{ $date }}">
 		{{ end }}
 		{{ with .GetTerms "tags" }}
 			<div class="article-meta-tags">
 				{{ range . }}
+					<meta itemprop="keywords" content="{{ .Title }}">
 					<a href="{{ .RelPermalink }}">#{{ .Title }}</a>
 				{{ end }}
 			</div>
 		{{ end }}
 	</div>
+	{{ with partial "cover/context.html" . }}
+		{{ partial "render-image/html.html" (dict "hook" . "role" "cover") }}
+	{{ end }}
 	{{ with .Fragments.Headings }}
 		<h2 id="toc-heading">目录</h2>
 		{{ replace $.TableOfContents `<nav id="TableOfContents">` `<nav id="TableOfContents" aria-labelledby="toc-heading">` | safeHTML }}
 	{{ end }}
-	<div>
+	<div itemprop="articleBody">
 		{{ .Content }}
 	</div>
+	{{ partial "comments.html" . }}
+	{{ partial "message-form.html" . }}
 </article>
 <footer class="page-nav footer-nav">
 	<nav aria-label="文章页脚导航">
