@@ -14,8 +14,7 @@ oxfmt path\to\file.json path\to\file.toml path\to\file.css
 
 Do not run `oxfmt` on Hugo templates:
 
-- `layouts/**`
-- `layouts\_default\single.markdown`
+- `layouts/**`, including templates ending in `.markdown`, `.markdown.md`, or `.md`
 - `archetypes/**`
 
 Hugo archetypes are content templates. Validate them with temporary `hugo new content` output instead of formatting them.

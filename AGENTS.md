@@ -45,6 +45,7 @@
 - Preserve the existing `article-grid`, `compact-list-grid`, `compact-list`, and `compact-list-columns.html` ownership patterns when editing those layouts.
 - Follow the latest stable Hugo release. Keep the deployment version check non-blocking and the local and Vercel versions aligned.
 - `.claude/skills/` points to `.agents/skills/`; modify only `.agents/skills/`. Put reusable workflows in skills rather than expanding this file.
+- When moving, renaming, adding, or removing files and paths described by a project skill, update that skill's instructions and examples in the same change and search `.agents/skills/` for stale references.
 
 ## Verification
 
