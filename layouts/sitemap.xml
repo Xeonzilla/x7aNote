@@ -1,5 +1,5 @@
 {{ printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
-{{- $posts := where site.RegularPages "Section" "posts" }}
+{{- $posts := (site.GetPage "/posts").RegularPages }}
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	{{- /* Sitemap includes permalinked rendered pages unless front matter sets sitemap.disable. */ -}}
 	{{- range site.Pages }}

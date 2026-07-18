@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ $posts := (where .Site.RegularPages "Section" "posts").ByDate.Reverse }}
+{{ $posts := (site.GetPage "/posts").RegularPages.ByDate.Reverse }}
 {{/* Counts are calibrated for a 3x3 latest grid and one recent-update row on three-column layouts. */}}
 {{ $latestPostCount := 9 }}
 {{ $recentUpdateCount := 3 }}

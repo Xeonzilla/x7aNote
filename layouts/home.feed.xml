@@ -1,5 +1,5 @@
 {{ printf "<?xml version=\"1.0\" encoding=\"utf-8\"?>" | safeHTML }}
-{{- $pages := (where site.RegularPages "Section" "posts").ByLastmod.Reverse }}
+{{- $pages := (site.GetPage "/posts").RegularPages.ByLastmod.Reverse }}
 {{- $feedPages := first 20 $pages }}
 {{- $updated := (index $feedPages 0).Lastmod }}
 {{- /* Pages are activity-sorted, so feed updated tracks the newest emitted activity. */ -}}
