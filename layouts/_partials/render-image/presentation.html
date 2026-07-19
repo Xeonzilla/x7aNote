@@ -3,7 +3,7 @@
 {{- $fetchPriority := "" -}}
 
 {{- if eq .role "cover" -}}
-	{{- $loading = "eager" -}}
+	{{- $loading = "" -}}
 	{{- $fetchPriority = "high" -}}
 {{- end -}}
 

@@ -1,7 +1,7 @@
 {{- range $stylePath := .styles }}
 	{{- with resources.Get $stylePath }}
 		{{- $style := . | minify | fingerprint }}
-		<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" crossorigin="anonymous">
+		<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" crossorigin>
 	{{- else }}
 		{{- /* templates.Current is experimental; verify caller lookup after Hugo upgrades. */ -}}
 		{{- partial "fail.html" (dict

@@ -17,13 +17,15 @@
 				alt=""
 				width="{{ .image.Width }}"
 				height="{{ .image.Height }}"
-				loading="{{ .presentation.loading }}"
+				{{- with .presentation.loading }}
+					loading="{{ . }}"
+				{{- end }}
 				{{- with .presentation.fetchPriority }}
 					fetchpriority="{{ . }}"
 				{{- end }}
 				decoding="async">
 		</button>
-		<div class="image-zoom-popover" id="{{ $zoomID }}" popover="auto">
+		<div class="image-zoom-popover" id="{{ $zoomID }}" popover>
 			<button
 				class="image-zoom-dismiss"
 				type="button"
@@ -50,7 +52,9 @@
 		alt="{{ .hook.PlainText }}"
 		width="{{ .image.Width }}"
 		height="{{ .image.Height }}"
-		loading="{{ .presentation.loading }}"
+		{{- with .presentation.loading }}
+			loading="{{ . }}"
+		{{- end }}
 		decoding="async"
 		{{- with .hook.Title }}
 			title="{{ . }}"

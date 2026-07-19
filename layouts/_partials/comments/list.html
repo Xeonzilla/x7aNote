@@ -20,7 +20,7 @@
 				<h3 class="comment-heading">
 					<span class="comment-number">#{{ $numberText }}</span>
 					{{- with index .Params "site" }}
-						<a href="{{ . }}" target="_blank" rel="ugc nofollow noopener noreferrer" aria-label="{{ printf "%s（在新标签页打开）" $author }}">{{ $author }}</a>
+						<a href="{{ . }}" target="_blank" rel="ugc nofollow noreferrer" aria-label="{{ printf "%s（在新标签页打开）" $author }}">{{ $author }}</a>
 					{{- else -}}
 						{{ $author }}
 					{{- end }}

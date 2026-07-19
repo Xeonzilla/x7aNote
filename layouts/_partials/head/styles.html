@@ -29,7 +29,7 @@
 {{- if .HasShortcode "image-row" }}
 	{{- with resources.Get "css/image-row.css" }}
 		{{- $imageRowStyle := . | minify | fingerprint }}
-		<link rel="stylesheet" href="{{ $imageRowStyle.RelPermalink }}" integrity="{{ $imageRowStyle.Data.Integrity }}" crossorigin="anonymous">
+		<link rel="stylesheet" href="{{ $imageRowStyle.RelPermalink }}" integrity="{{ $imageRowStyle.Data.Integrity }}" crossorigin>
 	{{- else }}
 		{{- partial "fail.html" (dict
 			"area" "asset"
@@ -48,6 +48,6 @@
 		{{- end -}}
 		{{- $ratioCSS := delimit $ratioRules "" -}}
 		{{- $ratioStyle := resources.FromString (printf "css/image-row-ratios/%s.css" $.File.ContentBaseName) $ratioCSS | minify | fingerprint }}
-		<link rel="stylesheet" href="{{ $ratioStyle.RelPermalink }}" integrity="{{ $ratioStyle.Data.Integrity }}" crossorigin="anonymous">
+		<link rel="stylesheet" href="{{ $ratioStyle.RelPermalink }}" integrity="{{ $ratioStyle.Data.Integrity }}" crossorigin>
 	{{- end }}
 {{- end }}
