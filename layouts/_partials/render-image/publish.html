@@ -24,7 +24,7 @@
 			-}}
 		{{- else -}}
 			{{- /* Content-addressed public URLs keep source paths and slugs private. */ -}}
-			{{- $image = resources.Copy (printf "images/%s.%s" (.Content | crypto.Hash "sha256") (index .MediaType.Suffixes 0)) . -}}
+			{{- $image = resources.Copy (printf "images/%s.%s" (substr (.Content | crypto.Hash "sha256") 0 16) (index .MediaType.Suffixes 0)) . -}}
 		{{- end -}}
 	{{- else -}}
 		{{- partial "fail.html" (dict
