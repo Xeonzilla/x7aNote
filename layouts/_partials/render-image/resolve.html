@@ -28,10 +28,8 @@
 		-}}
 	{{- else -}}
 		{{- $destination := urls.JoinPath $remoteImages.base_url $objectKey -}}
-		{{- $destinationHash := $destination | crypto.Hash "sha256" -}}
 		{{- $resolved = dict
 			"destination" $destination
-			"hash" $destinationHash
 			"location" .Page.File.Path
 			"options" (dict
 			"headers" (dict $remoteImages.fetch_header_name $remoteImages.fetch_header_value)

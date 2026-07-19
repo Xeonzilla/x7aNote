@@ -23,9 +23,8 @@
 				)
 			-}}
 		{{- else -}}
-			{{- /* Public URLs use hashes and the canonical media-type suffix; source paths and slugs stay private. */ -}}
-			{{- $suffix := index .MediaType.Suffixes 0 -}}
-			{{- $image = resources.Copy (printf "images/%s.%s" $.hash $suffix) . | fingerprint "sha256" -}}
+			{{- /* Content-addressed public URLs keep source paths and slugs private. */ -}}
+			{{- $image = resources.Copy (printf "images/%s.%s" (.Content | crypto.Hash "sha256") (index .MediaType.Suffixes 0)) . -}}
 		{{- end -}}
 	{{- else -}}
 		{{- partial "fail.html" (dict
