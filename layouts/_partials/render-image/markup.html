@@ -1,7 +1,9 @@
 {{- $altText := strings.TrimSpace .hook.PlainText -}}
 {{- if .hook.IsBlock -}}
 	<figure{{ with .presentation.ratioClass }} class="image-row-item {{ . }}"{{ end }}>
-		{{- $zoomID := printf "image-zoom-%s-%s-%d" (.image.RelPermalink | crypto.Hash "sha256") .role (default 0 .hook.Ordinal) -}}
+		{{- $zoomOrdinal := default 0 (.hook.Page.Store.Get (printf "imageZoomOrdinal-%s" .role)) -}}
+		{{- .hook.Page.Store.Set (printf "imageZoomOrdinal-%s" .role) (add $zoomOrdinal 1) -}}
+		{{- $zoomID := printf "image-zoom-%s-%d" .role $zoomOrdinal -}}
 		<button
 			class="image-zoom-trigger"
 			type="button"
