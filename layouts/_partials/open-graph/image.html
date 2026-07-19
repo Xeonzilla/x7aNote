@@ -110,8 +110,7 @@
 			-}}
 		{{- end -}}
 
-		{{- $image = resources.Copy $path $image -}}
-		{{- $image = $image | fingerprint "sha256" -}}
+		{{- $image = resources.Copy (printf "%s.%s.png" (strings.TrimSuffix ".png" $path) (substr ($image.Content | crypto.Hash "sha256") 0 12)) $image -}}
 	{{- end -}}
 {{- end -}}
 
