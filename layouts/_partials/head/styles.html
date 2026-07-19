@@ -47,8 +47,7 @@
 			{{- $ratioRules = $ratioRules | append (printf ".%s{--image-row-ratio:%s}" .class .ratio) -}}
 		{{- end -}}
 		{{- $ratioCSS := delimit $ratioRules "" -}}
-		{{- $ratioStylePath := printf "css/image-row-ratios/%s.css" ($.RelPermalink | crypto.Hash "sha256") -}}
-		{{- $ratioStyle := resources.FromString $ratioStylePath $ratioCSS | minify | fingerprint }}
+		{{- $ratioStyle := resources.FromString (printf "css/image-row-ratios/%s.css" $.File.ContentBaseName) $ratioCSS | minify | fingerprint }}
 		<link rel="stylesheet" href="{{ $ratioStyle.RelPermalink }}" integrity="{{ $ratioStyle.Data.Integrity }}" crossorigin="anonymous">
 	{{- end }}
 {{- end }}
