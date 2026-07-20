@@ -1,6 +1,6 @@
 {{- .Page.Store.Set "hasCodeBlock" true -}}
-{{- $options := dict -}}
+{{- $options := dict "hl_inline" true -}}
 {{- if eq .Type "astro" -}}
-	{{- $options = dict "type" "html" -}}
+	{{- $options = dict "hl_inline" true "type" "html" -}}
 {{- end -}}
-{{- (transform.HighlightCodeBlock . $options).Wrapped -}}
+<pre tabindex="0" class="chroma">{{- (transform.HighlightCodeBlock . $options).Wrapped -}}</pre>

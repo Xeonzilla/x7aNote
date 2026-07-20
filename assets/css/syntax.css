@@ -6,14 +6,6 @@
     background-color: #942822;
   }
 
-  & .hl {
-    background-color: #e6e4d9;
-  }
-
-  & .line {
-    display: flex;
-  }
-
   & :is(.k, .kc, .kd, .kn, .kp, .kr, .kt) {
     color: #af3029;
   }
