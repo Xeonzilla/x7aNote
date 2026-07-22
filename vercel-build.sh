@@ -56,9 +56,8 @@ version_check_pid=$!
 build_status=0
 hugo "${hugo_args[@]}" || build_status=$?
 
-wait "$version_check_pid" || true
-
 if ((build_status != 0)); then
+  wait "$version_check_pid" || true
   exit "$build_status"
 fi
 
@@ -128,6 +127,8 @@ GOTMPL
 ); then
   echo "Article word count skipped: unable to generate the report."
 fi
+
+wait "$version_check_pid" || true
 
 mkdir -p .vercel_build_output/config
 
