@@ -17,6 +17,11 @@ date: {{ $date }}
 lastmod: {{ $lastmod }}
 {{ end -}}
 canonical: {{ .Permalink | jsonify }}
+{{ with .GetTerms "tags" -}}
+tags:
+{{ range . }}  - {{ .Title | jsonify }}
+{{ end -}}
+{{ end -}}
 {{ with $coverURL -}}
 cover: {{ . | jsonify }}
 {{ end -}}
