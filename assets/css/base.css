@@ -131,6 +131,8 @@ blockquote {
   margin-inline: 0;
   border-inline-start: 0.25em solid var(--color-border);
   padding-inline-start: 0.6em;
+  /* Smaller text on a longer measure than body text, so leading scales up with it. */
+  line-height: 1.75;
 }
 
 hr {
