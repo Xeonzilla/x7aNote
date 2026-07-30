@@ -60,7 +60,7 @@
 		{{- $image = $baseImage | images.Filter (images.Text $title (dict
 			"alignx" "center"
 			"aligny" "center"
-			"color" "#2f2822"
+			"color" "#343331"
 			"font" $mediumFont
 			"linespacing" 10
 			"size" $fontSize
@@ -73,7 +73,7 @@
 			{{- $image = $image | images.Filter (images.Text site.Title (dict
 				"alignx" "left"
 				"aligny" "top"
-				"color" "#5f564d"
+				"color" "#575653"
 				"font" $regularFont
 				"linespacing" 8
 				"size" 34
@@ -85,7 +85,7 @@
 			{{- $image = $image | images.Filter (images.Text $date (dict
 				"alignx" "right"
 				"aligny" "bottom"
-				"color" "#756b61"
+				"color" "#6f6e69"
 				"font" $regularFont
 				"linespacing" 8
 				"size" 30
@@ -99,7 +99,7 @@
 			{{- $image = $image | images.Filter (images.Text $description (dict
 				"alignx" "center"
 				"aligny" "center"
-				"color" "#5f564d"
+				"color" "#575653"
 				"font" $regularFont
 				"linespacing" 8
 				"size" 32
