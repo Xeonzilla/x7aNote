@@ -168,7 +168,8 @@ body:has(.image-zoom-popover:popover-open) {
   min-block-size: 44px;
   padding-block: 0.25em;
   padding-inline: 0.5em;
-  border: 1px solid var(--color-border);
+  /* Interactive boundary needs 3:1; the structural lines deliberately do not. */
+  border: 1px solid oklch(62% 0.008 96);
   background: transparent;
   color: inherit;
   font: inherit;
