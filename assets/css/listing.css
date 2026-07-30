@@ -1,7 +1,8 @@
 .article-grid,
 .compact-list-grid {
   display: grid;
-  gap: var(--space-m) var(--space-l);
+  /* Gaps answer to the page gutter that bounds them; ch would drift with the reader's font. */
+  gap: var(--page-gutter);
   margin-block-start: var(--space-m);
 
   @media (min-width: 36em) {
@@ -10,6 +11,8 @@
 
   @media (min-width: 72em) {
     grid-template-columns: repeat(3, 1fr);
+    /* Three columns never fill the viewport, so cards can exceed the gutter. */
+    column-gap: var(--space-l);
   }
 }
 
