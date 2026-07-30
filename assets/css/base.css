@@ -145,8 +145,9 @@ pre {
 }
 
 pre {
-  width: fit-content;
-  max-width: 100%;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  margin-block: var(--space-flow);
   overflow-x: auto;
 }
 
@@ -198,7 +199,7 @@ a,
   }
 }
 
-:where(a, button, input, textarea, select, .table-scroll):focus-visible {
+:where(a, button, input, textarea, select, pre, .table-scroll):focus-visible {
   outline: 2px solid var(--color-link-hover);
   outline-offset: 0.22em;
 }
