@@ -1,0 +1,24 @@
+{{- /* A fallback-less var() with no matching declaration drops its whole declaration silently at computed-value time; fallback references are legitimately optional, like the generated image-row ratio properties. */ -}}
+{{- $declared := slice -}}
+{{- range resources.Match "css/*.css" -}}
+	{{- range findRE `(--[A-Za-z0-9_-]+)\s*:` (replaceRE `(?s)/\*.*?\*/` "" .Content) -}}
+		{{- $declared = $declared | append (replaceRE `\s*:$` "" .) -}}
+	{{- end -}}
+{{- end -}}
+{{- range resources.Match "css/*.css" -}}
+	{{- $location := .Name -}}
+	{{- range findRE `var\(\s*--[A-Za-z0-9_-]+\s*\)` (replaceRE `(?s)/\*.*?\*/` "" .Content) -}}
+		{{- $token := replaceRE `var\(\s*(--[A-Za-z0-9_-]+)\s*\)` "$1" . -}}
+		{{- if not (in $declared $token) -}}
+			{{- partial "fail.html" (dict
+				"area" "css"
+				"problem" "fallback-less var() references an undeclared custom property"
+				"location" $location
+				"expected" "a custom property declared in assets/css or a var() fallback value"
+				"got" $token
+				"fix" (printf "declare %s in assets/css or give the var() reference a fallback" $token)
+				)
+			-}}
+		{{- end -}}
+	{{- end -}}
+{{- end -}}

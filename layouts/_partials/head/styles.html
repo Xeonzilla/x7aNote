@@ -1,3 +1,4 @@
+{{- partialCached "head/css-token-check.html" site "css-token-check" -}}
 {{- $styles := slice "css/base.css" -}}
 {{- if .IsPage -}}
 	{{- $styles = $styles | append "css/content.css" -}}
