@@ -78,7 +78,7 @@ body {
 }
 
 main {
-  width: min(100%, calc(46em + var(--page-gutter) + var(--page-gutter)));
+  inline-size: min(100%, calc(46em + var(--page-gutter) + var(--page-gutter)));
   margin-inline: auto;
   /* The page-end break tops the rhythm ladder: flow, 1.5x heading, 3x here. */
   padding-block-end: calc(3 * var(--space-flow));
@@ -88,7 +88,7 @@ main {
 }
 
 .is-narrow-page main {
-  width: min(100%, calc(34em + var(--page-gutter) + var(--page-gutter)));
+  inline-size: min(100%, calc(34em + var(--page-gutter) + var(--page-gutter)));
 }
 
 sub,
@@ -97,8 +97,8 @@ sup {
 }
 
 img {
-  max-width: 100%;
-  height: auto;
+  max-inline-size: 100%;
+  block-size: auto;
 }
 
 h1,
@@ -121,7 +121,8 @@ hr,
 blockquote,
 ul,
 ol {
-  margin: var(--space-flow) auto;
+  margin-block: var(--space-flow);
+  margin-inline: auto;
 }
 
 :not(pre) > code,
@@ -158,14 +159,14 @@ pre {
 }
 
 .table-scroll {
-  max-width: 100%;
+  max-inline-size: 100%;
   overflow-x: auto;
 }
 
 figure figcaption {
   color: var(--color-muted);
   font-size: var(--font-size-small);
-  text-align: right;
+  text-align: end;
 }
 
 table {
@@ -174,12 +175,13 @@ table {
 
   & th,
   & td {
-    padding: 0.25em var(--space-s);
-    border-bottom: 1px solid var(--color-border);
+    padding-block: 0.25em;
+    padding-inline: var(--space-s);
+    border-block-end: 1px solid var(--color-border);
   }
 
   & .table-cell-align-left {
-    text-align: left;
+    text-align: start;
   }
 
   & .table-cell-align-center {
@@ -187,7 +189,7 @@ table {
   }
 
   & .table-cell-align-right {
-    text-align: right;
+    text-align: end;
   }
 }
 
@@ -211,7 +213,7 @@ a,
 }
 
 .page-nav {
-  margin: var(--space-m) 0;
+  margin-block: var(--space-m);
   font-size: var(--font-size-reduced);
 
   & > nav {

@@ -41,6 +41,7 @@
 ## Implementation
 
 - Follow Hugo's naming for built-ins. Use `snake_case` for project `params`, lower camel case for template locals, and `kebab-case` for CSS classes, shortcodes, assets, and public URL segments.
+- Write CSS with logical properties and axis shorthands (`margin-block`, `inline-size`, `text-align: end`). Keep physical forms only for bare zero resets and where no logical equivalent exists or the physical meaning is the intent: media queries, viewport units, transforms, and the visually-hidden clip pattern.
 - Maintenance is primarily LLM-driven, so prefer locally explicit code over names or indirection whose only benefit is readability. Do not introduce a local variable, alias, helper definition, or named intermediate merely to shorten repeated syntax or narrate a straightforward expression; keep it inline unless the name preserves context across scopes, stores a transformed or non-trivial result, carries state, or represents a real domain boundary.
 - Preserve the existing `article-grid`, `compact-list-grid`, `compact-list`, and `compact-list-columns.html` ownership patterns when editing those layouts.
 - Follow the latest stable Hugo release. Keep the deployment version check non-blocking and the local and Vercel versions aligned.

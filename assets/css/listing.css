@@ -20,13 +20,13 @@
   display: grid;
 
   & > .article-card-title {
-    margin: 0 0 var(--space-xs);
+    margin-block: 0 var(--space-xs);
     font-size: 1.3rem;
     line-height: var(--line-height-compact);
   }
 
   & > .article-card-date {
-    margin: var(--space-xs) 0 0;
+    margin-block-start: var(--space-xs);
     color: var(--color-muted);
     font-size: var(--font-size-small);
   }
@@ -36,7 +36,7 @@
     flex-wrap: wrap;
     gap: 0 var(--space-s);
     min-block-size: 1.6em;
-    margin: var(--space-xs) 0 0;
+    margin-block-start: var(--space-xs);
     font-size: var(--font-size-small);
   }
 }
@@ -100,7 +100,7 @@
 
   & > .index-section-heading {
     grid-column: 1 / -1;
-    margin: auto 0;
+    margin-block: auto;
   }
 
   @media (min-width: 36em) {
