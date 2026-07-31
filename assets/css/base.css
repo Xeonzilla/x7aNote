@@ -80,7 +80,8 @@ body {
 main {
   width: min(100%, calc(46em + var(--page-gutter) + var(--page-gutter)));
   margin-inline: auto;
-  padding-block-end: 5ch;
+  /* The page-end break tops the rhythm ladder: flow, 1.5x heading, 3x here. */
+  padding-block-end: calc(3 * var(--space-flow));
   padding-inline-start: max(var(--page-gutter), env(safe-area-inset-left, 0px));
   padding-inline-end: max(var(--page-gutter), env(safe-area-inset-right, 0px));
   animation: fade-in 300ms ease-out both;
@@ -206,7 +207,7 @@ a,
 
 :where(a, button, input, textarea, select, pre, .table-scroll):focus-visible {
   outline: 2px solid var(--color-link-hover);
-  outline-offset: 0.22em;
+  outline-offset: 0.25em;
 }
 
 .page-nav {

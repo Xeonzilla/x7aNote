@@ -107,7 +107,7 @@
 
     & > img {
       outline: 2px solid var(--color-link-hover);
-      outline-offset: 0.22em;
+      outline-offset: 0.25em;
     }
   }
 
