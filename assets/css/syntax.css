@@ -36,7 +36,7 @@
   }
 
   & :is(.bp, .c, .ch, .cm, .c1, .cs, .cp, .cpf) {
-    color: #6f6e69;
+    color: #575653;
   }
 
   & :is(.s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1) {
