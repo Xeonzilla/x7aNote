@@ -35,7 +35,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0 var(--space-s);
-    min-block-size: 1.6em;
+    min-block-size: 1lh;
     margin-block-start: var(--space-xs);
     font-size: var(--font-size-small);
   }
