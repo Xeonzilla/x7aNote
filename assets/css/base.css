@@ -111,6 +111,7 @@ h6 {
     "Source Han Serif CN", source-han-serif-sc, ui-serif, serif;
   /* Display-size text takes tighter leading than the body value it would inherit. */
   line-height: var(--line-height-compact);
+  margin-block: calc(1.5 * var(--space-flow)) var(--space-flow);
 }
 
 p,
