@@ -26,7 +26,7 @@
   }
 
   & > .article-card-date {
-    padding-top: var(--space-xs);
+    margin: var(--space-xs) 0 0;
     color: var(--color-muted);
     font-size: var(--font-size-small);
   }
@@ -87,7 +87,7 @@
   & > .index-welcome > .index-welcome-title {
     margin: 0;
     font-size: 1.5rem;
-    line-height: 1.2;
+    line-height: var(--line-height-compact);
   }
 
   & > :is(.index-section-nav, .index-site-links) {
