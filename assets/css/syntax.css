@@ -1,3 +1,4 @@
+/* Flexoki 700 on the paper code surface, dropping to 800 where a role must separate from its own hue. */
 .chroma {
   text-size-adjust: none;
 
@@ -7,7 +8,7 @@
   }
 
   & :is(.k, .kc, .kd, .kn, .kp, .kr, .kt) {
-    color: #af3029;
+    color: #942822;
   }
 
   & :is(.na, .nv, .vc, .vg, .vi, .vm) {
@@ -19,15 +20,15 @@
   }
 
   & :is(.no, .nd, .nt, .m, .mb, .mf, .mh, .mi, .il, .mo, .o, .ow, .or) {
-    color: #205ea6;
+    color: #1a4f8c;
   }
 
   & :is(.ni, .nb, .nf, .fm) {
-    color: #5e409d;
+    color: #4f3685;
   }
 
   & .nl {
-    color: #942822;
+    color: #6c201c;
     font-weight: bold;
   }
 
@@ -44,7 +45,7 @@
   }
 
   & .ss {
-    color: #1a4f8c;
+    color: #163b66;
   }
 
   & .gd {

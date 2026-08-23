@@ -16,6 +16,8 @@
 
 html {
   --color-border: oklch(77% 0.013 96);
+  /* Flexoki paper: lighter than the base-50 page, so syntax tokens hold at the 700 step. */
+  --color-code-surface: oklch(99% 0.016 95);
   --color-link-hover: oklch(41% 0.07 188);
   --color-muted: oklch(45% 0.005 92);
   --font-size-reduced: 0.9rem;
@@ -127,7 +129,7 @@ ol {
 
 :not(pre) > code,
 blockquote,
-pre:has(code) {
+pre {
   font-size: var(--font-size-reduced);
 }
 
@@ -151,11 +153,21 @@ pre {
     "SFMono-Regular", Menlo, Consolas, "Liberation Mono", "Ubuntu Mono", Monaco, monospace;
 }
 
+/* No block padding, so a code-bearing line keeps the body leading. */
+:not(pre) > code {
+  padding-inline: 0.2em;
+  background-color: var(--color-code-surface);
+  /* Long inline code wraps mid-flow; keep the padding on each fragment. */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Full width, not fit-content: a shrink-wrapped surface would ragged-edge the column. */
 pre {
-  inline-size: fit-content;
-  max-inline-size: 100%;
   margin-block: var(--space-flow);
+  padding: 0.6em;
   overflow-x: auto;
+  background-color: var(--color-code-surface);
 }
 
 .table-scroll {
