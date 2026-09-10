@@ -1,6 +1,11 @@
 {{- $destination := .Destination -}}
 {{- $url := urls.Parse $destination -}}
 {{- $scheme := lower $url.Scheme -}}
+{{- $link := dict
+	"destination" $destination
+	"scheme" $scheme
+	"url" $url
+-}}
 
 {{- if or (and $scheme (not (in (slice "http" "https" "mailto") $scheme))) (and (not $scheme) $url.Host) -}}
 	{{- partial "fail.html" (dict
@@ -12,7 +17,8 @@
 		"fix" "use an allowed URL"
 		)
 	-}}
-{{- else if and (in (slice "http" "https") $scheme) (not $url.Host) -}}
+{{- end -}}
+{{- if and (in (slice "http" "https") $scheme) (not $url.Host) -}}
 	{{- partial "fail.html" (dict
 		"area" "link"
 		"problem" "missing HTTP(S) URL host"
@@ -22,7 +28,11 @@
 		"fix" "add // and a host, or replace the link with another allowed URL"
 		)
 	-}}
-{{- else if and (not $scheme) (not (strings.HasPrefix $destination "/")) (not (strings.HasPrefix $destination "#")) -}}
+{{- end -}}
+{{- if or $scheme (strings.HasPrefix $destination "#") -}}
+	{{- return $link -}}
+{{- end -}}
+{{- if not (strings.HasPrefix $destination "/") -}}
 	{{- partial "fail.html" (dict
 		"area" "link"
 		"problem" "page-relative URL is not supported"
@@ -32,32 +42,26 @@
 		"fix" "replace the page-relative URL with the target's root-relative canonical URL"
 		)
 	-}}
-{{- else if and (not $scheme) (strings.HasPrefix $destination "/") -}}
-	{{- $routes := partialCached "render-link/routes.html" site "render-link-routes" -}}
-	{{- $staticPath := strings.TrimPrefix "/" $url.Path -}}
-	{{- $hasTraversal := gt (len (findRE `(?:^|/)\.{1,2}(?:/|$)` $staticPath 1)) 0 -}}
-	{{- $isStaticFile := false -}}
-	{{- if and $staticPath (not $hasTraversal) -}}
-		{{- with os.Stat (path.Join "static" $staticPath) -}}
-			{{- $isStaticFile = not .IsDir -}}
-		{{- end -}}
-	{{- end -}}
-	{{- if and (not (index $routes $url.Path)) (not $isStaticFile) -}}
-		{{- partial "fail.html" (dict
-			"area" "link"
-			"problem" "internal target does not exist"
-			"location" .Page.File.Path
-			"expected" "a current public page output or static file at the root-relative path"
-			"got" (printf "%q" $destination)
-			"fix" "fix the link, restore the target, or use its current canonical URL"
-			)
-		-}}
-	{{- end -}}
 {{- end -}}
 
-{{- return (dict
-	"destination" $destination
-	"scheme" $scheme
-	"url" $url
-	)
--}}
+{{- $routes := partialCached "render-link/routes.html" site "render-link-routes" -}}
+{{- $staticPath := strings.TrimPrefix "/" $url.Path -}}
+{{- $hasTraversal := gt (len (findRE `(?:^|/)\.{1,2}(?:/|$)` $staticPath 1)) 0 -}}
+{{- $isStaticFile := false -}}
+{{- if and $staticPath (not $hasTraversal) -}}
+	{{- with os.Stat (path.Join "static" $staticPath) -}}
+		{{- $isStaticFile = not .IsDir -}}
+	{{- end -}}
+{{- end -}}
+{{- if and (not (index $routes $url.Path)) (not $isStaticFile) -}}
+	{{- partial "fail.html" (dict
+		"area" "link"
+		"problem" "internal target does not exist"
+		"location" .Page.File.Path
+		"expected" "a current public page output or static file at the root-relative path"
+		"got" (printf "%q" $destination)
+		"fix" "fix the link, restore the target, or use its current canonical URL"
+		)
+	-}}
+{{- end -}}
+{{- return $link -}}

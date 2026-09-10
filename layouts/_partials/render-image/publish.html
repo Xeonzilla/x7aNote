@@ -1,5 +1,3 @@
-{{- $image := "" -}}
-
 {{- with try (resources.GetRemote .destination .options) -}}
 	{{- with .Err -}}
 		{{- partial "fail.html" (dict
@@ -11,7 +9,8 @@
 			"fix" "check the remote image URL, Content-Type, and Cloudflare allow-header rule"
 			)
 		-}}
-	{{- else with .Value -}}
+	{{- end -}}
+	{{- with .Value -}}
 		{{- if not (reflect.IsImageResourceWithMeta .) -}}
 			{{- partial "fail.html" (dict
 				"area" "remote image"
@@ -22,21 +21,18 @@
 				"fix" "serve the remote file as a Hugo-supported image format with the correct Content-Type"
 				)
 			-}}
-		{{- else -}}
-			{{- /* Content-addressed public URLs keep source paths and slugs private. */ -}}
-			{{- $image = resources.Copy (printf "images/%s.%s" (substr (.Content | crypto.Hash "sha256") 0 16) (index .MediaType.Suffixes 0)) . -}}
 		{{- end -}}
-	{{- else -}}
-		{{- partial "fail.html" (dict
-			"area" "remote image"
-			"problem" "remote fetch returned no resource"
-			"location" $.location
-			"expected" (printf "a resource value from %q" $.destination)
-			"got" "<nil>"
-			"fix" "check the remote image URL and Hugo remote resource settings"
-			)
-		-}}
+		{{- /* Content-addressed public URLs keep source paths and slugs private. */ -}}
+		{{- return (resources.Copy (printf "images/%s.%s" (substr (.Content | crypto.Hash "sha256") 0 16) (index .MediaType.Suffixes 0)) .) -}}
 	{{- end -}}
 {{- end -}}
 
-{{- return $image -}}
+{{- partial "fail.html" (dict
+	"area" "remote image"
+	"problem" "remote fetch returned no resource"
+	"location" .location
+	"expected" (printf "a resource value from %q" .destination)
+	"got" "<nil>"
+	"fix" "check the remote image URL and Hugo remote resource settings"
+	)
+-}}

@@ -1,41 +1,34 @@
-{{- $imageKey := .Destination -}}
-{{- $resolved := "" -}}
-
 {{- if eq .Page.Section "comments" -}}
 	{{- partial "fail.html" (dict
 		"area" "comment"
 		"problem" "images are not supported"
 		"location" .Page.File.Path
 		"expected" "comment Markdown without images"
-		"got" (printf "image destination %q" $imageKey)
+		"got" (printf "image destination %q" .Destination)
 		"fix" "remove the image or replace it with an ordinary external link"
 		)
 	-}}
-{{- else -}}
-	{{- $remoteImages := site.Params.remote_images -}}
-	{{- $namespace := .Page.File.ContentBaseName -}}
-	{{- $objectKey := printf "%s/%s" $namespace $imageKey -}}
-	{{- $objectKeyPattern := `^[a-z0-9][a-z0-9.-]*(/[a-z0-9][a-z0-9.-]*)*$` -}}
-	{{- if eq (len (findRE $objectKeyPattern $objectKey 1)) 0 -}}
-		{{- partial "fail.html" (dict
-			"area" "remote image"
-			"problem" "invalid remote image object key"
-			"location" .Page.File.Path
-			"expected" "a lowercase relative image path using letters, digits, dots, hyphens, and forward slashes"
-			"got" (printf "%q" $objectKey)
-			"fix" "rename the image and use a canonical relative path such as gallery/frame-01.avif"
-			)
-		-}}
-	{{- else -}}
-		{{- $destination := urls.JoinPath $remoteImages.base_url $objectKey -}}
-		{{- $resolved = dict
-			"destination" $destination
-			"location" .Page.File.Path
-			"options" (dict
-			"headers" (dict $remoteImages.fetch_header_name $remoteImages.fetch_header_value)
-			)
-		-}}
-	{{- end -}}
 {{- end -}}
 
-{{- return $resolved -}}
+{{- $objectKey := printf "%s/%s" .Page.File.ContentBaseName .Destination -}}
+{{- if eq (len (findRE `^[a-z0-9][a-z0-9.-]*(/[a-z0-9][a-z0-9.-]*)*$` $objectKey 1)) 0 -}}
+	{{- partial "fail.html" (dict
+		"area" "remote image"
+		"problem" "invalid remote image object key"
+		"location" .Page.File.Path
+		"expected" "a lowercase relative image path using letters, digits, dots, hyphens, and forward slashes"
+		"got" (printf "%q" $objectKey)
+		"fix" "rename the image and use a canonical relative path such as gallery/frame-01.avif"
+		)
+	-}}
+{{- end -}}
+
+{{- $remoteImages := site.Params.remote_images -}}
+{{- return (dict
+	"destination" (urls.JoinPath $remoteImages.base_url $objectKey)
+	"location" .Page.File.Path
+	"options" (dict
+	"headers" (dict $remoteImages.fetch_header_name $remoteImages.fetch_header_value)
+	)
+	)
+-}}

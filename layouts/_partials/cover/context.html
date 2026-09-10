@@ -1,12 +1,12 @@
-{{- $context := false -}}
 {{- $cover := index .Params "cover" -}}
 {{- if and (isset .Params "cover") (eq (printf "%T" $cover) "bool") $cover -}}
-	{{- $context = dict
+	{{- return (dict
 		"Destination" "cover.avif"
 		"IsBlock" true
 		"Page" .
 		"PlainText" ""
 		"Title" ""
+		)
 	-}}
 {{- end -}}
-{{- return $context -}}
+{{- return false -}}

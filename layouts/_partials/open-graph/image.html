@@ -7,7 +7,6 @@
 {{- $date := .date -}}
 {{- $date = $date | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace -}}
 {{- $path := .path -}}
-{{- $image := "" -}}
 
 {{- $baseImage := resources.Get "images/open-graph-base.png" -}}
 {{- if not $baseImage -}}
@@ -20,98 +19,94 @@
 		"fix" "restore assets/images/open-graph-base.png"
 		)
 	-}}
-{{- else -}}
-	{{- $openGraphFonts := partialCached "open-graph/fonts.html" site "open-graph-fonts" -}}
-	{{- $regularFont := index $openGraphFonts "regular" -}}
-	{{- $mediumFont := index $openGraphFonts "medium" -}}
-
-	{{- if and $regularFont $mediumFont -}}
-		{{- $titleLength := len $title -}}
-		{{- $maxArticleTitleLength := 75 -}}
-		{{- if and (eq $mode "article") (gt $titleLength $maxArticleTitleLength) -}}
-			{{- partial "fail.html" (dict
-				"area" "open graph"
-				"problem" "article title exceeds the supported single-line length"
-				"location" $path
-				"expected" (printf "a normalized UTF-8 title length no greater than %d" $maxArticleTitleLength)
-				"got" (printf "%q (length %d)" $title $titleLength)
-				"fix" "shorten the article title or revise and recalibrate the single-line Open Graph layout"
-				)
-			-}}
-		{{- end -}}
-		{{- $fontSize := 68 -}}
-		{{- /* Hugo image text has no wrapping. UTF-8 byte-length thresholds and the 75-byte limit are tuned to the current Chinese titles; 42px is the final fallback, not an extensible tier. */ -}}
-		{{- if gt $titleLength 72 -}}
-			{{- $fontSize = 42 -}}
-		{{- else if gt $titleLength 48 -}}
-			{{- $fontSize = 46 -}}
-		{{- else if gt $titleLength 32 -}}
-			{{- $fontSize = 52 -}}
-		{{- else if gt $titleLength 24 -}}
-			{{- $fontSize = 60 -}}
-		{{- end -}}
-
-		{{- $titleY := div $baseImage.Height 2 -}}
-		{{- if eq $mode "default" -}}
-			{{- $fontSize = 82 -}}
-			{{- $titleY = sub (div $baseImage.Height 2) 42 -}}
-		{{- end -}}
-
-		{{- $image = $baseImage | images.Filter (images.Text $title (dict
-			"alignx" "center"
-			"aligny" "center"
-			"color" "#343331"
-			"font" $mediumFont
-			"linespacing" 10
-			"size" $fontSize
-			"x" (div $baseImage.Width 2)
-			"y" $titleY
-			)
-			)
-		-}}
-		{{- if eq $mode "article" -}}
-			{{- $image = $image | images.Filter (images.Text site.Title (dict
-				"alignx" "left"
-				"aligny" "top"
-				"color" "#575653"
-				"font" $regularFont
-				"linespacing" 8
-				"size" 34
-				"x" 84
-				"y" 72
-				)
-				)
-			-}}
-			{{- $image = $image | images.Filter (images.Text $date (dict
-				"alignx" "right"
-				"aligny" "bottom"
-				"color" "#6f6e69"
-				"font" $regularFont
-				"linespacing" 8
-				"size" 30
-				"x" (sub $baseImage.Width 84)
-				"y" (sub $baseImage.Height 72)
-				)
-				)
-			-}}
-		{{- end -}}
-		{{- if and (eq $mode "default") $description -}}
-			{{- $image = $image | images.Filter (images.Text $description (dict
-				"alignx" "center"
-				"aligny" "center"
-				"color" "#575653"
-				"font" $regularFont
-				"linespacing" 8
-				"size" 32
-				"x" (div $baseImage.Width 2)
-				"y" (add (div $baseImage.Height 2) 64)
-				)
-				)
-			-}}
-		{{- end -}}
-
-		{{- $image = resources.Copy (printf "%s.%s.png" (strings.TrimSuffix ".png" $path) (substr ($image.Content | crypto.Hash "sha256") 0 12)) $image -}}
-	{{- end -}}
 {{- end -}}
 
-{{- return $image -}}
+{{- $openGraphFonts := partialCached "open-graph/fonts.html" site "open-graph-fonts" -}}
+{{- $regularFont := index $openGraphFonts "regular" -}}
+{{- $mediumFont := index $openGraphFonts "medium" -}}
+
+{{- $titleLength := len $title -}}
+{{- $maxArticleTitleLength := 75 -}}
+{{- if and (eq $mode "article") (gt $titleLength $maxArticleTitleLength) -}}
+	{{- partial "fail.html" (dict
+		"area" "open graph"
+		"problem" "article title exceeds the supported single-line length"
+		"location" $path
+		"expected" (printf "a normalized UTF-8 title length no greater than %d" $maxArticleTitleLength)
+		"got" (printf "%q (length %d)" $title $titleLength)
+		"fix" "shorten the article title or revise and recalibrate the single-line Open Graph layout"
+		)
+	-}}
+{{- end -}}
+{{- $fontSize := 68 -}}
+{{- /* Hugo image text has no wrapping. UTF-8 byte-length thresholds and the 75-byte limit are tuned to the current Chinese titles; 42px is the final fallback, not an extensible tier. */ -}}
+{{- if gt $titleLength 72 -}}
+	{{- $fontSize = 42 -}}
+{{- else if gt $titleLength 48 -}}
+	{{- $fontSize = 46 -}}
+{{- else if gt $titleLength 32 -}}
+	{{- $fontSize = 52 -}}
+{{- else if gt $titleLength 24 -}}
+	{{- $fontSize = 60 -}}
+{{- end -}}
+
+{{- $titleY := div $baseImage.Height 2 -}}
+{{- if eq $mode "default" -}}
+	{{- $fontSize = 82 -}}
+	{{- $titleY = sub (div $baseImage.Height 2) 42 -}}
+{{- end -}}
+
+{{- $image := $baseImage | images.Filter (images.Text $title (dict
+	"alignx" "center"
+	"aligny" "center"
+	"color" "#343331"
+	"font" $mediumFont
+	"linespacing" 10
+	"size" $fontSize
+	"x" (div $baseImage.Width 2)
+	"y" $titleY
+	)
+	)
+-}}
+{{- if eq $mode "article" -}}
+	{{- $image = $image | images.Filter (images.Text site.Title (dict
+		"alignx" "left"
+		"aligny" "top"
+		"color" "#575653"
+		"font" $regularFont
+		"linespacing" 8
+		"size" 34
+		"x" 84
+		"y" 72
+		)
+		)
+	-}}
+	{{- $image = $image | images.Filter (images.Text $date (dict
+		"alignx" "right"
+		"aligny" "bottom"
+		"color" "#6f6e69"
+		"font" $regularFont
+		"linespacing" 8
+		"size" 30
+		"x" (sub $baseImage.Width 84)
+		"y" (sub $baseImage.Height 72)
+		)
+		)
+	-}}
+{{- end -}}
+{{- if and (eq $mode "default") $description -}}
+	{{- $image = $image | images.Filter (images.Text $description (dict
+		"alignx" "center"
+		"aligny" "center"
+		"color" "#575653"
+		"font" $regularFont
+		"linespacing" 8
+		"size" 32
+		"x" (div $baseImage.Width 2)
+		"y" (add (div $baseImage.Height 2) 64)
+		)
+		)
+	-}}
+{{- end -}}
+
+{{- return (resources.Copy (printf "%s.%s.png" (strings.TrimSuffix ".png" $path) (substr ($image.Content | crypto.Hash "sha256") 0 12)) $image) -}}
