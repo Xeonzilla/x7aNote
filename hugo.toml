@@ -68,8 +68,12 @@ urls = [
   "^https://raw\\.githubusercontent\\.com/adobe-fonts/source-han-serif/release/SubsetOTF/CN/SourceHanSerifCN-Medium\\.otf$",
 ]
 
-[caches.getresource]
-dir = ":resourceDir/_gen"
+# Keep the asset and image caches in the shared cache dir so hosting platforms can persist them across builds.
+[caches.assets]
+dir = ":cacheDir/assets"
+
+[caches.images]
+dir = ":cacheDir/images"
 
 [params]
 author = "Xeonzilla"

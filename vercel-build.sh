@@ -39,6 +39,9 @@ check_hugo_version() {
 check_hugo_version &
 version_check_pid=$!
 
+# Hugo's official Vercel recipe keeps file caches under HUGO_CACHEDIR (https://gohugo.io/host-and-deploy/host-on-vercel/).
+export HUGO_CACHEDIR="${PWD}/.vercel/cache/hugo"
+
 hugo \
   --environment production \
   --panicOnWarning \
@@ -111,13 +114,3 @@ GOTMPL
 fi
 
 wait "$version_check_pid" || true
-
-mkdir -p .vercel_build_output/config
-
-cat > .vercel_build_output/config/build.json <<'JSON'
-{
-  "cache": [
-    "resources/_gen/**"
-  ]
-}
-JSON

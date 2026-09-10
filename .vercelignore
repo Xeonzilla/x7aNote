@@ -3,7 +3,6 @@
 .vscode/
 archetypes/
 public/
-resources/
 .gitattributes
 .gitignore
 .hugo_build.lock

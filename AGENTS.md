@@ -26,7 +26,7 @@
 
 ## Content And Output Contracts
 
-- Do not edit generated output or caches: `public/`, `resources/`, or `.vercel_build_output/`.
+- Do not edit generated output or caches: `public/` or `.vercel/cache/`. Hugo file caches live in the shared cache dir (`HUGO_CACHEDIR`), not in the repository.
 - Use tags only. Post tag values are lowercase `kebab-case` slugs, and every used tag has `content/tags/<slug>/_index.md`; the term page title owns public display casing. Order tags by meaning, with broad subject first and writing-nature tags last.
 - Public responses are “评论”; submission entry points are “留言”. Comments live at `content/comments/<post-slug>/<nn>.md`, use continuous two-digit numbering, and do not support images.
 - Atom entries are ordered by effective activity (`lastmod`, otherwise `date`). Keep `<published>` at `date`, entry `<updated>` at effective activity, and feed `<updated>` at the newest emitted activity.
