@@ -127,7 +127,11 @@ ol {
   margin-inline: auto;
 }
 
-:not(pre) > code,
+/* Inline code scales with its surrounding text; block quotes and pre keep root-pinned size. */
+:not(pre) > code {
+  font-size: 0.9em;
+}
+
 blockquote,
 pre {
   font-size: var(--font-size-reduced);
