@@ -60,7 +60,7 @@
           "value": "same-origin"
         }
       ],
-      "source": "/((?!favicon\\.svg$).*)"
+      "source": "/((?!favicon-96x96\\.png$|favicon\\.svg$|favicon\\.ico$|images/).*)"
     },
     {
       "headers": [
@@ -69,7 +69,7 @@
           "value": "cross-origin"
         }
       ],
-      "source": "/favicon.svg"
+      "source": "/:asset(favicon-96x96\\.png|favicon\\.svg|favicon\\.ico|images/.*)"
     },
     {
       "headers": [
