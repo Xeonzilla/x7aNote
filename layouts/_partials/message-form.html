@@ -34,19 +34,19 @@
 			</fieldset>
 			<div>
 				<label class="message-form-label" for="message-author-{{ $postSlug }}">昵称</label>
-				<input class="message-form-control" id="message-author-{{ $postSlug }}" name="author" dir="auto" autocomplete="nickname" maxlength="80" enterkeyhint="next" required>
+				<input class="message-form-control" id="message-author-{{ $postSlug }}" name="author" dir="auto" autocomplete="nickname" maxlength="80" required>
 			</div>
 			<div>
 				<label class="message-form-label" for="message-email-{{ $postSlug }}">邮箱（选填，仅用于回复）</label>
-				<input class="message-form-control" id="message-email-{{ $postSlug }}" name="email" type="email" autocomplete="email" maxlength="254" enterkeyhint="next">
+				<input class="message-form-control" id="message-email-{{ $postSlug }}" name="email" type="email" autocomplete="email" maxlength="254">
 			</div>
 			<div>
 				<label class="message-form-label" for="message-site-{{ $postSlug }}">站点（选填，公开留言时展示）</label>
-				<input class="message-form-control" id="message-site-{{ $postSlug }}" name="site" type="url" autocomplete="url" maxlength="2048" enterkeyhint="next">
+				<input class="message-form-control" id="message-site-{{ $postSlug }}" name="site" type="url" autocomplete="url" maxlength="2048">
 			</div>
 			<div>
 				<label class="message-form-label" for="message-replyto-{{ $postSlug }}">回复编号（选填，用于回应上方评论）</label>
-				<input class="message-form-control" id="message-replyto-{{ $postSlug }}" name="replyto" inputmode="numeric" pattern="[0-9]{1,8}" maxlength="8" autocomplete="off" enterkeyhint="next">
+				<input class="message-form-control" id="message-replyto-{{ $postSlug }}" name="replyto" inputmode="numeric" pattern="[0-9]{1,8}" maxlength="8" autocomplete="off">
 			</div>
 			<div class="message-form-wide">
 				<label class="message-form-label" for="message-content-{{ $postSlug }}">留言内容（支持Markdown语法，但不支持预览）</label>
