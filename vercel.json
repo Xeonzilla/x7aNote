@@ -51,7 +51,7 @@
           "value": "</robots.txt>; rel=\"describedby\"; type=\"text/plain\", </sitemap.xml>; rel=\"index\"; type=\"application/xml\", </llms.txt>; rel=\"describedby\"; type=\"text/plain\""
         }
       ],
-      "source": "/((?!.*\\.).*|404\\.html)"
+      "source": "/((?!.*\\.).*|.*/|404\\.html)"
     },
     {
       "headers": [
