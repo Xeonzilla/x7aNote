@@ -1,5 +1,12 @@
 {{ define "main" }}
 {{ $posts := (site.GetPage "/posts").RegularPages.ByDate.Reverse }}
+{{ if eq (os.Getenv "HUGO_ARTICLE_WORD_COUNT") "1" }}
+	{{ $wordCount := 0 }}
+	{{ range $posts }}
+		{{ $wordCount = add $wordCount .WordCount }}
+	{{ end }}
+	{{ (resources.FromString "article-word-count.txt" (printf "Article word count: %d words across %d articles.\n" $wordCount (len $posts))).Publish }}
+{{ end }}
 {{/* Counts are calibrated for a 3x3 latest grid and one recent-update row on three-column layouts. */}}
 {{ $latestPostCount := 9 }}
 {{ $recentUpdateCount := 3 }}

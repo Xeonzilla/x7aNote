@@ -42,7 +42,7 @@ version_check_pid=$!
 # Hugo's official Vercel recipe keeps file caches under HUGO_CACHEDIR (https://gohugo.io/host-and-deploy/host-on-vercel/).
 export HUGO_CACHEDIR="${PWD}/.vercel/cache/hugo"
 
-hugo \
+HUGO_ARTICLE_WORD_COUNT=1 hugo \
   --environment production \
   --panicOnWarning \
   --printI18nWarnings \
@@ -54,63 +54,8 @@ hugo \
   exit "$build_status"
 }
 
-# Re-render article content only; the production build above already validates public outputs and remote resources.
-if ! (
-  temp_dir="$(mktemp -d .article-word-count.XXXXXX)" || exit 1
-  trap 'rm -rf -- "$temp_dir"' EXIT
-
-  cp -R layouts "$temp_dir/layouts" || exit 1
-
-  cat > "$temp_dir/hugo.toml" <<'TOML' || exit 1
-[outputFormats.article_word_count]
-mediaType = "text/plain"
-baseName = "article-word-count"
-isPlainText = true
-notAlternative = true
-
-[outputs]
-home = ["feed", "article_word_count"]
-
-[[cascade]]
-outputs = ["html"]
-
-[cascade.target]
-kind = "page"
-path = "/posts/**"
-TOML
-
-  cat > "$temp_dir/layouts/home.article_word_count.txt" <<'GOTMPL' || exit 1
-{{- $posts := where site.RegularPages "Section" "posts" -}}
-{{- $wordCount := 0 -}}
-{{- range $posts -}}
-	{{- $wordCount = add $wordCount .WordCount -}}
-{{- end -}}
-{{- fmt.Warnf "Article word count: %d words across %d articles." $wordCount (len $posts) -}}
-GOTMPL
-
-  printf '%s\n' '{{- .Content -}}' > "$temp_dir/layouts/posts/page.html" || exit 1
-  printf '%s\n' '{{- "" -}}' > "$temp_dir/layouts/home.feed.xml" || exit 1
-
-  cat > "$temp_dir/layouts/_partials/render-image/publish.html" <<'GOTMPL' || exit 1
-{{- /* Image metadata and URLs do not contribute to Hugo's stripped-content word count. */ -}}
-{{- return (dict "RelPermalink" "" "Width" 1 "Height" 1) -}}
-GOTMPL
-
-  if ! hugo \
-    --config "hugo.toml,$temp_dir/hugo.toml" \
-    --environment production \
-    --layoutDir "$temp_dir/layouts" \
-    --renderToMemory \
-    > "$temp_dir/hugo.log" 2>&1
-  then
-    cat "$temp_dir/hugo.log" >&2
-    exit 1
-  fi
-
-  report="$(grep -m 1 '^WARN  Article word count: ' "$temp_dir/hugo.log")" || exit 1
-  printf '%s\n' "${report#WARN  }"
-); then
-  echo "Article word count skipped: unable to generate the report."
-fi
+report="$(cat public/article-word-count.txt)"
+rm -- public/article-word-count.txt
+printf '%s\n' "$report"
 
 wait "$version_check_pid" || true
