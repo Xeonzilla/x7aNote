@@ -56,7 +56,7 @@
 	{{- $titleY = sub (div $baseImage.Height 2) 42 -}}
 {{- end -}}
 
-{{- $image := $baseImage | images.Filter (images.Text $title (dict
+{{- $filters := slice (images.Text $title (dict
 	"alignx" "center"
 	"aligny" "center"
 	"color" "#343331"
@@ -69,7 +69,7 @@
 	)
 -}}
 {{- if eq $mode "article" -}}
-	{{- $image = $image | images.Filter (images.Text site.Title (dict
+	{{- $filters = $filters | append (images.Text site.Title (dict
 		"alignx" "left"
 		"aligny" "top"
 		"color" "#575653"
@@ -80,8 +80,7 @@
 		"y" 72
 		)
 		)
-	-}}
-	{{- $image = $image | images.Filter (images.Text $date (dict
+		(images.Text $date (dict
 		"alignx" "right"
 		"aligny" "bottom"
 		"color" "#6f6e69"
@@ -95,7 +94,7 @@
 	-}}
 {{- end -}}
 {{- if and (eq $mode "default") $description -}}
-	{{- $image = $image | images.Filter (images.Text $description (dict
+	{{- $filters = $filters | append (images.Text $description (dict
 		"alignx" "center"
 		"aligny" "center"
 		"color" "#575653"
@@ -108,5 +107,6 @@
 		)
 	-}}
 {{- end -}}
+{{- $image := $baseImage | images.Filter $filters -}}
 
 {{- return (resources.Copy (printf "%s.%s.png" (strings.TrimSuffix ".png" $path) (substr ($image.Content | crypto.Hash "sha256") 0 12)) $image) -}}
