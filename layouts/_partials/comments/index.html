@@ -75,29 +75,33 @@
 					)
 				-}}
 			{{- end -}}
-			{{- $number := int $numberText -}}
-			{{- $expectedNumber := add (len $seenNumbers) 1 -}}
-			{{- if ne $number $expectedNumber -}}
+			{{- $expectedNumber := printf "%02v" (add (len $seenNumbers) 1) -}}
+			{{- if ne $numberText $expectedNumber -}}
 				{{- partial "fail.html" (dict
 					"area" "comment"
 					"problem" "non-continuous comment numbering"
 					"location" $commentPath
-					"expected" (printf "%02d.md" $expectedNumber)
+					"expected" (printf "%s.md" $expectedNumber)
 					"got" (printf "%s.md" $numberText)
 					"fix" "rename the comment files so numbering is continuous"
 					)
 				-}}
 			{{- end -}}
 			{{- with index .Params "replyto" -}}
-				{{- $replyTo := int . -}}
-				{{- $replyKey := printf "%02d" $replyTo -}}
+				{{- /* replyto is int or string depending on YAML quoting and leading zeros; %02v is the only form that pads both. */ -}}
+				{{- $replyKey := printf "%02v" . -}}
 				{{- if not (index $seenNumbers $replyKey) -}}
+					{{- $expectedTarget := cond
+						(gt (len $seenNumbers) 0)
+						(printf "an earlier comment numbered %02v to %02v" 1 (len $seenNumbers))
+						"an earlier comment, but this is the first"
+					-}}
 					{{- partial "fail.html" (dict
 						"area" "comment"
 						"problem" "missing reply target"
 						"location" $commentPath
-						"expected" (printf "an earlier comment numbered %s" $replyKey)
-						"got" (printf "replyto = %s" $replyKey)
+						"expected" $expectedTarget
+						"got" (printf "replyto = %v" .)
 						"fix" "add the missing earlier comment or change replyto"
 						)
 					-}}

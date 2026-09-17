@@ -27,7 +27,7 @@
 					<time class="comment-date" datetime="{{ $date }}">{{ $date }}</time>
 				</h3>
 				{{- with index .Params "replyto" }}
-					{{- $replyKey := printf "%02d" (int .) -}}
+					{{- $replyKey := printf "%02v" . -}}
 					<p class="comment-reply">
 						回复 @{{ index $commentAuthors $replyKey }}（#{{ $replyKey }}）
 					</p>
