@@ -11,6 +11,10 @@
 	<meta itemprop="mainEntityOfPage" content="{{ .Permalink }}">
 	<span itemprop="author" itemscope itemtype="https://schema.org/Person">
 		<meta itemprop="name" content="{{ site.Params.author }}">
+		<meta itemprop="url" content="{{ "about/" | absURL }}">
+		{{ range site.Params.author_same_as }}
+			<meta itemprop="sameAs" content="{{ . }}">
+		{{ end }}
 	</span>
 	<h1 itemprop="headline">{{ .Title }}</h1>
 	{{ $date := .Date.Format "2006-01-02" }}

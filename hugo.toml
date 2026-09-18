@@ -77,6 +77,12 @@ dir = ":cacheDir/images"
 
 [params]
 author = "Xeonzilla"
+# Author profile URLs emitted as schema.org sameAs on article pages; the human-readable list lives in content/about.md.
+author_same_as = [
+  "https://t.me/XeonAnimeLog",
+  "https://bgm.tv/user/xeonzilla",
+  "https://github.com/Xeonzilla",
+]
 description = "Yuri is life."
 theme_color = "#2d6c67"
 message_email = "admin@xeonzilla.top"
