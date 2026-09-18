@@ -77,6 +77,7 @@ dir = ":cacheDir/images"
 
 [params]
 author = "Xeonzilla"
+author_description = "Yuri is life."
 author_same_as = [
   "https://t.me/XeonAnimeLog",
   "https://bgm.tv/user/xeonzilla",

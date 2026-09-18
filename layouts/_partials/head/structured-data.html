@@ -1,0 +1,29 @@
+{{- /* Homepage-only identity graph: which entity owns this domain and where else it is addressable. */ -}}
+{{- if .page.IsHome -}}
+	{{- $homeURL := .page.Permalink -}}
+	{{- $personID := printf "%s#author" $homeURL -}}
+	{{- $person := dict
+		"@type" "Person"
+		"@id" $personID
+		"name" .siteAuthor
+		"url" (absURL "about/")
+		"image" (absURL "favicon.svg")
+		"sameAs" site.Params.author_same_as
+		"email" site.Params.message_email
+		"description" site.Params.author_description
+	-}}
+	{{- $website := dict
+		"@type" "WebSite"
+		"@id" (printf "%s#website" $homeURL)
+		"url" $homeURL
+		"name" .siteTitle
+		"description" .siteDescription
+		"inLanguage" site.Language.Locale
+		"author" (dict "@id" $personID)
+	-}}
+	{{- $graph := dict
+		"@context" "https://schema.org"
+		"@graph" (slice $website $person)
+	-}}
+	<script type="application/ld+json">{{ $graph | jsonify | safeJS }}</script>
+{{- end -}}
