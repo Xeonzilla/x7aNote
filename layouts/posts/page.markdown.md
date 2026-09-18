@@ -12,6 +12,7 @@
 {{/* gotmplfmt-ignore-start */ -}}
 ---
 title: {{ .Title | jsonify }}
+author: {{ site.Params.author | jsonify }}
 date: {{ $date }}
 {{ if ne $lastmod $date -}}
 lastmod: {{ $lastmod }}
