@@ -25,6 +25,7 @@ This is a static, text-first personal blog. HTML pages are canonical for humans;
 - [Robots](https://xeonzilla.top/robots.txt): Crawling rules and content-signal policy.
 - [Sitemap](https://xeonzilla.top/sitemap.xml): Discoverable public HTML pages.
 - [Atom Feed](https://xeonzilla.top/feed.xml): Latest posts feed with plain-text summaries, full article HTML content, and canonical HTML entry links.
+- [Source Repository](https://github.com/Xeonzilla/x7aNote): Hugo sources for this site, including article Markdown, layouts, and configuration. Licensed under MPL-2.0.
 
 ## Boundaries
 
