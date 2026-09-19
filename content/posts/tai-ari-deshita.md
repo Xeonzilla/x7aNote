@@ -2,7 +2,7 @@
 title: "感谢对战。 ～大小姐才不玩格斗游戏～"
 date: 2026-09-11
 cover: true
-tags: 
+tags:
   - "tva"
   - "tva-summer2026"
 ---

@@ -17,7 +17,7 @@
 		"expected" "a PNG image asset"
 		"got" "<not found>"
 		"fix" "restore assets/images/open-graph-base.png"
-		)
+	)
 	-}}
 {{- end -}}
 
@@ -35,7 +35,7 @@
 		"expected" (printf "a normalized UTF-8 title length no greater than %d" $maxArticleTitleLength)
 		"got" (printf "%q (length %d)" $title $titleLength)
 		"fix" "shorten the article title or revise and recalibrate the single-line Open Graph layout"
-		)
+	)
 	-}}
 {{- end -}}
 {{- $fontSize := 68 -}}
@@ -65,8 +65,8 @@
 	"size" $fontSize
 	"x" (div $baseImage.Width 2)
 	"y" $titleY
-	)
-	)
+)
+)
 -}}
 {{- if eq $mode "article" -}}
 	{{- $filters = $filters | append (images.Text site.Title (dict
@@ -78,17 +78,17 @@
 		"size" 34
 		"x" 84
 		"y" 72
-		)
-		)
+	)
+	)
 		(images.Text $date (dict
-		"alignx" "right"
-		"aligny" "bottom"
-		"color" "#6f6e69"
-		"font" $regularFont
-		"linespacing" 8
-		"size" 30
-		"x" (sub $baseImage.Width 84)
-		"y" (sub $baseImage.Height 72)
+			"alignx" "right"
+			"aligny" "bottom"
+			"color" "#6f6e69"
+			"font" $regularFont
+			"linespacing" 8
+			"size" 30
+			"x" (sub $baseImage.Width 84)
+			"y" (sub $baseImage.Height 72)
 		)
 		)
 	-}}
@@ -103,8 +103,8 @@
 		"size" 32
 		"x" (div $baseImage.Width 2)
 		"y" (add (div $baseImage.Height 2) 64)
-		)
-		)
+	)
+	)
 	-}}
 {{- end -}}
 {{- $image := $baseImage | images.Filter $filters -}}

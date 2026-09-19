@@ -6,7 +6,7 @@
 		"expected" "comment Markdown without images"
 		"got" (printf "image destination %q" .Destination)
 		"fix" "remove the image or replace it with an ordinary external link"
-		)
+	)
 	-}}
 {{- end -}}
 
@@ -19,7 +19,7 @@
 		"expected" "a lowercase relative image path using letters, digits, dots, hyphens, and forward slashes"
 		"got" (printf "%q" $objectKey)
 		"fix" "rename the image and use a canonical relative path such as gallery/frame-01.avif"
-		)
+	)
 	-}}
 {{- end -}}
 
@@ -28,7 +28,7 @@
 	"destination" (urls.JoinPath $remoteImages.base_url $objectKey)
 	"location" .Page.File.Path
 	"options" (dict
-	"headers" (dict $remoteImages.fetch_header_name $remoteImages.fetch_header_value)
+		"headers" (dict $remoteImages.fetch_header_name $remoteImages.fetch_header_value)
 	)
-	)
+)
 -}}

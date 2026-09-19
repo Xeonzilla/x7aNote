@@ -15,7 +15,7 @@
 		"expected" "an http, https, or mailto URL; a root-relative URL; or a fragment"
 		"got" (printf "%q" $destination)
 		"fix" "use an allowed URL"
-		)
+	)
 	-}}
 {{- end -}}
 {{- if and (in (slice "http" "https") $scheme) (not $url.Host) -}}
@@ -26,7 +26,7 @@
 		"expected" "an absolute http or https URL with a host"
 		"got" (printf "%q" $destination)
 		"fix" "add // and a host, or replace the link with another allowed URL"
-		)
+	)
 	-}}
 {{- end -}}
 {{- if or $scheme (strings.HasPrefix $destination "#") -}}
@@ -40,7 +40,7 @@
 		"expected" "a root-relative URL for an internal target"
 		"got" (printf "%q" $destination)
 		"fix" "replace the page-relative URL with the target's root-relative canonical URL"
-		)
+	)
 	-}}
 {{- end -}}
 
@@ -61,7 +61,7 @@
 		"expected" "a current public page output or static file at the root-relative path"
 		"got" (printf "%q" $destination)
 		"fix" "fix the link, restore the target, or use its current canonical URL"
-		)
+	)
 	-}}
 {{- end -}}
 {{- return $link -}}

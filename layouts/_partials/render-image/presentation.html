@@ -13,7 +13,7 @@
 	{{- .hook.Page.Store.SetInMap "imageRowRatios" $ratioClass (dict
 		"class" $ratioClass
 		"ratio" (printf "%.8f" (div (float .image.Width) (float .image.Height)))
-		)
+	)
 	-}}
 {{- end -}}
 
@@ -21,5 +21,5 @@
 	"fetchPriority" $fetchPriority
 	"loading" $loading
 	"ratioClass" $ratioClass
-	)
+)
 -}}

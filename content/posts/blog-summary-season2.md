@@ -14,13 +14,14 @@ tags:
 博客2.0的最大功臣，非“赛博菩萨”Cloudflare莫属，我在一个平台上就完成了几乎所有的作业。如果哪天，Cloudflare提供了代码托管的功能，我甚至可以不需要GitHub。
 
 目前的站点结构如下：
-| 项目 | 框架 | 服务提供 |
-| :-: | :-: | :-: |
-| 域名解析 | / | Cloudflare |
-| CDN与防护 | / | Cloudflare |
-| 博客本体 | Astro | Cloudflare Pages |
-| 评论系统 | twikoo-cloudflare | Cloudflare Workers+Cloudflare D1+Cloudflare R2 |
-| 图床 | 无（未来或许是PicGo） | Cloudflare R2 |
+
+|   项目    |         框架          |                    服务提供                    |
+| :-------: | :-------------------: | :--------------------------------------------: |
+| 域名解析  |           /           |                   Cloudflare                   |
+| CDN与防护 |           /           |                   Cloudflare                   |
+| 博客本体  |         Astro         |                Cloudflare Pages                |
+| 评论系统  |   twikoo-cloudflare   | Cloudflare Workers+Cloudflare D1+Cloudflare R2 |
+|   图床    | 无（未来或许是PicGo） |                 Cloudflare R2                  |
 
 Cloudflare CDN的可访问性不好，这是事实，但是这并不是Cloudflare的问题，我们没有理由奢求更多。最极端的情况，如果Cloudflare CDN在中国大陆完全不可访问，关闭Cloudflare的代理也能够缓解，不是什么大问题。
 

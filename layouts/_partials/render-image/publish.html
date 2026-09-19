@@ -7,7 +7,7 @@
 			"expected" (printf "a fetchable resource with a resolvable media type at %q" $.destination)
 			"got" (printf "%s" .)
 			"fix" "check the remote image URL, Content-Type, and Cloudflare allow-header rule"
-			)
+		)
 		-}}
 	{{- end -}}
 	{{- with .Value -}}
@@ -19,7 +19,7 @@
 				"expected" "an image resource with width and height metadata"
 				"got" (printf "media type %q" .MediaType.Type)
 				"fix" "serve the remote file as a Hugo-supported image format with the correct Content-Type"
-				)
+			)
 			-}}
 		{{- end -}}
 		{{- /* Content-addressed public URLs keep source paths and slugs private. */ -}}
@@ -34,5 +34,5 @@
 	"expected" (printf "a resource value from %q" .destination)
 	"got" "<nil>"
 	"fix" "check the remote image URL and Hugo remote resource settings"
-	)
+)
 -}}

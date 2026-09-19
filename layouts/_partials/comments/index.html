@@ -12,7 +12,7 @@
 				"expected" (printf "content/posts/%s.md" $commentDirPost)
 				"got" "<not found>"
 				"fix" "rename the comment directory or create the target post"
-				)
+			)
 			-}}
 		{{- end -}}
 		{{- $comments := slice -}}
@@ -39,7 +39,7 @@
 					"expected" "author"
 					"got" "<missing, empty, or whitespace-only>"
 					"fix" "add a non-empty author to the comment front matter"
-					)
+				)
 				-}}
 			{{- end -}}
 			{{- if .Date.IsZero -}}
@@ -50,7 +50,7 @@
 					"expected" "date"
 					"got" "<missing or empty>"
 					"fix" "add date to the comment front matter"
-					)
+				)
 				-}}
 			{{- end -}}
 			{{- if not (strings.TrimSpace .RawContent) -}}
@@ -61,7 +61,7 @@
 					"expected" "non-empty Markdown content"
 					"got" "<empty>"
 					"fix" "add comment content or remove the comment file"
-					)
+				)
 				-}}
 			{{- end -}}
 			{{- if ne (len (findRE `^\d{2}$` $numberText)) 1 -}}
@@ -72,7 +72,7 @@
 					"expected" "a two-digit file name like 01.md"
 					"got" (printf "%q" (printf "%s.md" $numberText))
 					"fix" "rename the comment file"
-					)
+				)
 				-}}
 			{{- end -}}
 			{{- $expectedNumber := printf "%02v" (add (len $seenNumbers) 1) -}}
@@ -84,7 +84,7 @@
 					"expected" (printf "%s.md" $expectedNumber)
 					"got" (printf "%s.md" $numberText)
 					"fix" "rename the comment files so numbering is continuous"
-					)
+				)
 				-}}
 			{{- end -}}
 			{{- with index .Params "replyto" -}}
@@ -103,7 +103,7 @@
 						"expected" $expectedTarget
 						"got" (printf "replyto = %v" .)
 						"fix" "add the missing earlier comment or change replyto"
-						)
+					)
 					-}}
 				{{- end -}}
 			{{- end -}}
@@ -117,7 +117,7 @@
 						"expected" "an absolute http or https URL"
 						"got" (printf "%q" .)
 						"fix" "fix or remove site in the comment front matter"
-						)
+					)
 					-}}
 				{{- end -}}
 			{{- end -}}

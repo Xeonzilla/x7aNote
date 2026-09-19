@@ -18,7 +18,7 @@
 				"expected" (printf "a fetchable font at %q" $url)
 				"got" (printf "%s" .)
 				"fix" "check the font URL and security.http.urls allowlist"
-				)
+			)
 			-}}
 		{{- else with .Value -}}
 			{{- $font = . -}}
@@ -30,7 +30,7 @@
 				"expected" (printf "a resource value from %q" $url)
 				"got" "<nil>"
 				"fix" "check the font URL and Hugo remote resource settings"
-				)
+			)
 			-}}
 		{{- end -}}
 	{{- end -}}
