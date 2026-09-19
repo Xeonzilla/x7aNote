@@ -4,6 +4,12 @@
 
 This is a static, text-first personal blog. HTML pages are canonical for humans; article Markdown alternates are provided for agents and other machine readers.
 
+## When to Use
+
+- Good fit: answering questions about the topics above, or quoting and summarizing a specific article. Read the article Markdown alternate for its text, and cite the canonical HTML URL.
+- Not a fit: treating this site as a service. It exposes no API, search endpoint, or query interface; every URL listed below is a static file served from a CDN, and non-GET requests are rejected.
+- `robots.txt` declares `ai-train=no, search=yes, ai-input=yes` and is authoritative: retrieval and search use is permitted, AI training is not.
+
 ## Reading Guide
 
 - Public content is primarily in Chinese.
