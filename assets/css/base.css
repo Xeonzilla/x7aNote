@@ -56,7 +56,6 @@ body {
   text-rendering: optimizelegibility;
 }
 
-.agent-directive,
 .message-form-honeypot {
   position: absolute;
   inline-size: 1px;
