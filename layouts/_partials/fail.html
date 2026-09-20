@@ -1,4 +1,4 @@
-{{- /* Central project error format for LLM-readable build failures. */ -}}
+{{- /* Central project error format for LLM-readable build failures. errorf logs and continues, so a partial that would otherwise cascade into follow-up errors must return right after calling this. */ -}}
 {{- if not (index . "noop") -}}
 	{{- /* templates.Current is experimental; verify caller lookup after Hugo upgrades. */ -}}
 	{{- errorf "%s: %s in %s. Expected: %s. Got: %s. Fix: %s. Source: layouts/%s."

@@ -8,6 +8,7 @@
 		"fix" "remove the image or replace it with an ordinary external link"
 	)
 	-}}
+	{{- return false -}}
 {{- end -}}
 
 {{- $objectKey := printf "%s/%s" .Page.File.ContentBaseName .Destination -}}
@@ -21,6 +22,7 @@
 		"fix" "rename the image and use a canonical relative path such as gallery/frame-01.avif"
 	)
 	-}}
+	{{- return false -}}
 {{- end -}}
 
 {{- $remoteImages := site.Params.remote_images -}}

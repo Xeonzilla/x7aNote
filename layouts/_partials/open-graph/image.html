@@ -19,11 +19,16 @@
 		"fix" "restore assets/images/open-graph-base.png"
 	)
 	-}}
+	{{- return false -}}
 {{- end -}}
 
 {{- $openGraphFonts := partialCached "open-graph/fonts.html" site "open-graph-fonts" -}}
 {{- $regularFont := index $openGraphFonts "regular" -}}
 {{- $mediumFont := index $openGraphFonts "medium" -}}
+{{- /* fonts.html has already reported a failed fetch; rendering text without a font would only add a second error. */ -}}
+{{- if not (and $regularFont $mediumFont) -}}
+	{{- return false -}}
+{{- end -}}
 
 {{- $titleLength := len $title -}}
 {{- $maxArticleTitleLength := 75 -}}

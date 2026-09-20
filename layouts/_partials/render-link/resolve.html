@@ -17,6 +17,7 @@
 		"fix" "use an allowed URL"
 	)
 	-}}
+	{{- return $link -}}
 {{- end -}}
 {{- if and (in (slice "http" "https") $scheme) (not $url.Host) -}}
 	{{- partial "fail.html" (dict
@@ -28,6 +29,7 @@
 		"fix" "add // and a host, or replace the link with another allowed URL"
 	)
 	-}}
+	{{- return $link -}}
 {{- end -}}
 {{- if or $scheme (strings.HasPrefix $destination "#") -}}
 	{{- return $link -}}
@@ -42,6 +44,7 @@
 		"fix" "replace the page-relative URL with the target's root-relative canonical URL"
 	)
 	-}}
+	{{- return $link -}}
 {{- end -}}
 
 {{- $routes := partialCached "render-link/routes.html" site "render-link-routes" -}}

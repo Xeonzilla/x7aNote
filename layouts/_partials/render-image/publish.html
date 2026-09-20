@@ -9,6 +9,7 @@
 			"fix" "check the remote image URL, Content-Type, and Cloudflare allow-header rule"
 		)
 		-}}
+		{{- return false -}}
 	{{- end -}}
 	{{- with .Value -}}
 		{{- if not (reflect.IsImageResourceWithMeta .) -}}
@@ -21,6 +22,7 @@
 				"fix" "serve the remote file as a Hugo-supported image format with the correct Content-Type"
 			)
 			-}}
+			{{- return false -}}
 		{{- end -}}
 		{{- /* Content-addressed public URLs keep source paths and slugs private. */ -}}
 		{{- return (resources.Copy (printf "images/%s.%s" (substr (.Content | crypto.Hash "sha256") 0 16) (index .MediaType.Suffixes 0)) .) -}}
@@ -36,3 +38,4 @@
 	"fix" "check the remote image URL and Hugo remote resource settings"
 )
 -}}
+{{- return false -}}
