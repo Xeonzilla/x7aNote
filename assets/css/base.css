@@ -1,6 +1,8 @@
 @keyframes fade-in {
   from {
-    opacity: 0;
+    /* Non-zero floor: a fully transparent first frame withholds first-contentful-paint for as long as
+       it animates, which Lighthouse and synthetic monitors read as a page that never rendered. */
+    opacity: 0.01;
   }
 
   to {
@@ -93,6 +95,8 @@ main {
   padding-block-end: calc(3 * var(--space-flow));
   padding-inline-start: max(var(--page-gutter), env(safe-area-inset-left, 0px));
   padding-inline-end: max(var(--page-gutter), env(safe-area-inset-right, 0px));
+  /* main carries every page's content, so its animation start value is the first frame a reader or a
+     render metric ever sees. Keep it above zero when changing the shared fade-in. */
   animation: fade-in 300ms ease-out both;
 }
 
