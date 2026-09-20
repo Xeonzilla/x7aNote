@@ -1,6 +1,7 @@
 ---
 title: "关于"
 date: 2026-06-24
+outputs: ["html", "markdown"]
 ---
 
 欢迎，这里是Xeonzilla的笔记。👋
@@ -15,9 +16,9 @@ date: 2026-06-24
 
 本站使用标签组织文章，不使用分类，你可以使用标签探索某一类主题。首页展示最近发布、最近更新和余下文章索引。
 
-如果想订阅更新，可以使用[Atom Feed](/feed.xml)。文章页同时提供Markdown版本，供阅读工具、自动化工具和LLM等机器读者使用；站点根目录也有[llms.txt](/llms.txt)，说明站点结构和机器可读资源。
+如果想订阅更新，可以使用[Atom Feed](/feed.xml)。首页、关于页和文章页同时提供Markdown版本，供阅读工具、自动化工具和LLM等机器读者使用；站点根目录也有[llms.txt](/llms.txt)，说明站点结构和机器可读资源。
 
-如果你想要获取Markdown版本的文章，可以访问`https://xeonzilla.top/<slug>.md`或`https://xeonzilla.top/<slug>/index.md`。
+如果你想要获取Markdown版本的页面，可以访问`https://xeonzilla.top/<slug>.md`（首页为`https://xeonzilla.top/index.md`，关于页为`https://xeonzilla.top/about.md`），也可以使用`https://xeonzilla.top/<slug>/index.md`。
 
 ## 写作与辅助工具
 

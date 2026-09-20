@@ -1,5 +1,6 @@
 {{ define "main" }}
 {{ $posts := (site.GetPage "/posts").RegularPages.ByDate.Reverse }}
+{{ $collections := partial "home/collections.html" . }}
 {{ if eq (os.Getenv "HUGO_ARTICLE_WORD_COUNT") "1" }}
 	{{ $wordCount := 0 }}
 	{{ range $posts }}
@@ -7,19 +8,6 @@
 	{{ end }}
 	{{ (resources.FromString "article-word-count.txt" (printf "Article word count: %d words across %d articles.\n" $wordCount (len $posts))).Publish }}
 {{ end }}
-{{/* Counts are calibrated for a 3x3 latest grid and one recent-update row on three-column layouts. */}}
-{{ $latestPostCount := 9 }}
-{{ $recentUpdateCount := 3 }}
-{{ $latestPosts := first $latestPostCount $posts }}
-{{/* .Lastmod falls back to .Date for feed activity ordering, so only later timestamps are actual updates. */}}
-{{ $modifiedPosts := slice }}
-{{ range $posts }}
-	{{ if gt .Lastmod.Unix .Date.Unix }}
-		{{ $modifiedPosts = $modifiedPosts | append . }}
-	{{ end }}
-{{ end }}
-{{ $olderModifiedPosts := complement $latestPosts $modifiedPosts }}
-{{ $recentlyUpdatedPosts := first $recentUpdateCount (sort $olderModifiedPosts "Lastmod" "desc") }}
 <div class="article-grid index-grid">
 	<div class="index-welcome">
 		<div class="index-welcome-tagline">欢迎&#10;来到</div>
@@ -40,17 +28,17 @@
 	</nav>
 
 	<h2 class="index-section-heading" id="latest">最近发布</h2>
-	{{ range $latestPosts }}
+	{{ range $collections.latestPosts }}
 		{{ partial "posts/article-card.html" (dict "page" . "date" .Date "anchorID" (.File.ContentBaseName | anchorize)) }}
 	{{ end }}
 
 	<h2 class="index-section-heading" id="recent">最近更新</h2>
-	{{ range $recentlyUpdatedPosts }}
+	{{ range $collections.recentlyUpdatedPosts }}
 		{{ partial "posts/article-card.html" (dict "page" . "date" .Lastmod "anchorID" (.File.ContentBaseName | anchorize)) }}
 	{{ end }}
 
 	<h2 class="index-section-heading" id="others">其他文章</h2>
-	{{ range (complement (union $latestPosts $recentlyUpdatedPosts) $posts).GroupByDate "2006" }}
+	{{ range $collections.remainingGroups }}
 		<h3 class="index-section-heading">{{ .Key }}</h3>
 		{{ partial "compact-list-columns.html" (dict "items" .Pages "itemPartial" "posts/compact-list-item.html") }}
 	{{ end }}

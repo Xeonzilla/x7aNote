@@ -1,0 +1,19 @@
+{{- /* Home page post collections shared by the HTML page and its Markdown alternate. */ -}}
+{{- $posts := (site.GetPage "/posts").RegularPages.ByDate.Reverse -}}
+{{/* Counts are calibrated for a 3x3 latest grid and one recent-update row on three-column layouts. */ -}}
+{{- $latestPosts := first 9 $posts -}}
+{{/* .Lastmod falls back to .Date for feed activity ordering, so only later timestamps are actual updates. */ -}}
+{{- $modifiedPosts := slice -}}
+{{- range $posts -}}
+	{{- if gt .Lastmod.Unix .Date.Unix -}}
+		{{- $modifiedPosts = $modifiedPosts | append . -}}
+	{{- end -}}
+{{- end -}}
+{{- $recentlyUpdatedPosts := first 3 (sort (complement $latestPosts $modifiedPosts) "Lastmod" "desc") -}}
+{{- $remainingGroups := (complement (union $latestPosts $recentlyUpdatedPosts) $posts).GroupByDate "2006" -}}
+{{- return (dict
+	"latestPosts" $latestPosts
+	"recentlyUpdatedPosts" $recentlyUpdatedPosts
+	"remainingGroups" $remainingGroups
+)
+-}}

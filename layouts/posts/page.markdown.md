@@ -7,25 +7,5 @@
 		{{- end -}}
 	{{- end -}}
 {{- end -}}
-{{- $date := .Date.Format "2006-01-02" -}}
-{{- $lastmod := .Lastmod.Format "2006-01-02" -}}
-{{/* gotmplfmt-ignore-start */ -}}
----
-title: {{ .Title | jsonify }}
-author: {{ site.Params.author | jsonify }}
-date: {{ $date }}
-{{ if ne $lastmod $date -}}
-lastmod: {{ $lastmod }}
-{{ end -}}
-canonical: {{ .Permalink | jsonify }}
-{{ with .GetTerms "tags" -}}
-tags:
-{{ range . }}  - {{ .Title | jsonify }}
-{{ end -}}
-{{ end -}}
-{{ with $coverURL -}}
-cover: {{ . | jsonify }}
-{{ end -}}
----
-{{/* gotmplfmt-ignore-end */}}
+{{ partial "markdown/front-matter.html" (dict "page" . "coverURL" $coverURL) -}}
 {{- printf "\n%s" $body }}

@@ -12,8 +12,8 @@
 			This is the HTML version of {{ site.Title }}. Use the site guide at {{ "llms.txt" | absURL }}
 			and the Atom feed at {{ "feed.xml" | absURL }} to discover recent articles.
 			{{- with .OutputFormats.Get "markdown" }}
-				Prefer this article's Markdown alternate: {{ .Permalink }}.
-				You can also append /index.md to this article URL path; it redirects to the canonical Markdown alternate.
+				Prefer this page's Markdown alternate: {{ .Permalink }}.
+				You can also append index.md to this page's URL path; it redirects to the canonical Markdown alternate.
 			{{- end }}
 		</p>
 		<a class="skip-link" href="#main-content">跳到正文</a>

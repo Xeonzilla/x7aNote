@@ -1,0 +1,24 @@
+{{- /* YAML front matter shared by Markdown alternates of document pages. */ -}}
+{{- $page := .page -}}
+{{- $coverURL := default "" .coverURL -}}
+{{- $date := $page.Date.Format "2006-01-02" -}}
+{{- $lastmod := $page.Lastmod.Format "2006-01-02" -}}
+{{/* gotmplfmt-ignore-start */ -}}
+---
+title: {{ $page.Title | jsonify }}
+author: {{ site.Params.author | jsonify }}
+date: {{ $date }}
+{{ if ne $lastmod $date -}}
+lastmod: {{ $lastmod }}
+{{ end -}}
+canonical: {{ $page.Permalink | jsonify }}
+{{ with $page.GetTerms "tags" -}}
+tags:
+{{ range . }}  - {{ .Title | jsonify }}
+{{ end -}}
+{{ end -}}
+{{ with $coverURL -}}
+cover: {{ . | jsonify }}
+{{ end -}}
+---
+{{/* gotmplfmt-ignore-end */ -}}

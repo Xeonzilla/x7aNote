@@ -2,11 +2,11 @@
 
 > A personal Chinese-language blog by Xeonzilla about anime, manga, visual novels, reading notes, site building, and web engineering.
 
-This is a static, text-first personal blog. HTML pages are canonical for humans; article Markdown alternates are provided for agents and other machine readers.
+This is a static, text-first personal blog. HTML pages are canonical for humans; Markdown alternates are provided for agents and other machine readers on the home page, the about page, and every article.
 
 ## When to Use
 
-- Good fit: answering questions about the topics above, or quoting and summarizing a specific article. Read the article Markdown alternate for its text, and cite the canonical HTML URL.
+- Good fit: answering questions about the topics above, or quoting and summarizing a specific article. Read the Markdown alternate for its text, and cite the canonical HTML URL. Start from `https://xeonzilla.top/index.md` for a plain-text index of every article.
 - Not a fit: treating this site as a service. It exposes no API, search endpoint, or query interface; every URL listed below is a static file served from a CDN, and non-GET requests are rejected.
 - `robots.txt` declares `ai-train=no, search=yes, ai-input=yes` and is authoritative: retrieval and search use is permitted, AI training is not.
 
@@ -15,15 +15,15 @@ This is a static, text-first personal blog. HTML pages are canonical for humans;
 - Public content is primarily in Chinese.
 - Use `https://xeonzilla.top/feed.xml` to discover recent articles and their canonical HTML pages.
 - Use `https://xeonzilla.top/sitemap.xml` to discover public HTML pages.
-- Prefer article Markdown URLs for article text: `https://xeonzilla.top/<post-slug>.md`.
-- If starting from an article HTML URL, appending `/index.md` to the path is supported as a fallback, for example `https://xeonzilla.top/example-post/index.md`; it redirects to the canonical Markdown alternate.
-- HTML page URLs use trailing slashes, such as `/about/` and `/tags/hugo/`. File resources keep extensions, such as `/feed.xml`, `/sitemap.xml`, and `/<post-slug>.md`.
+- Prefer Markdown URLs for page text: the home page at `https://xeonzilla.top/index.md`, the about page at `https://xeonzilla.top/about.md`, and articles at `https://xeonzilla.top/<post-slug>.md`.
+- If starting from an HTML URL, appending `/index.md` to the path is supported as a fallback, for example `https://xeonzilla.top/example-post/index.md`; it redirects to the canonical Markdown alternate. The home page and about page Markdown URLs are the bare paths with the `.md` suffix.
+- HTML page URLs use trailing slashes, such as `/about/` and `/tags/hugo/`. File resources keep extensions, such as `/feed.xml`, `/sitemap.xml`, `/index.md`, and `/<post-slug>.md`.
 - The site uses tags, not categories.
 
 ## Main Pages
 
-- [x7aNote](https://xeonzilla.top/): Home page, latest posts, recently updated posts, and the article index.
-- [关于](https://xeonzilla.top/about/): About page and site/contact notes.
+- [x7aNote](https://xeonzilla.top/): Home page, latest posts, recently updated posts, and the article index. Markdown alternate: `https://xeonzilla.top/index.md`.
+- [关于](https://xeonzilla.top/about/): About page and site/contact notes. Markdown alternate: `https://xeonzilla.top/about.md`.
 - [标签](https://xeonzilla.top/tags/): Tag index for browsing public articles by topic.
 
 ## Machine-Readable Resources

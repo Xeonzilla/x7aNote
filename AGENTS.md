@@ -6,7 +6,7 @@
 
 - These instructions apply to the whole repository unless a nested `AGENTS.md` overrides them. `CLAUDE.md` points here; keep shared guidance in this file.
 - Treat the repository as one author's publishing system, not a reusable Hugo theme. Optimize for the current author and readers, not hypothetical users, plugins, browsers, or deployment targets.
-- The product includes HTML pages, tags, curated static comments, no-JS message submission, Atom and sitemap discovery, article Markdown alternates, `llms.txt`, generated Open Graph images, accessible responsive presentation, and controlled remote image publication.
+- The product includes HTML pages, tags, curated static comments, no-JS message submission, Atom and sitemap discovery, Markdown alternates for the home, about, and article pages, `llms.txt`, generated Open Graph images, accessible responsive presentation, and controlled remote image publication.
 - Keep the site static-first and Hugo-native. Do not add frontend JavaScript unless explicitly requested; the deployed CSP uses `script-src 'none'`.
 - Treat the declared browser baseline as a guarantee that core content, navigation, and interactions work, not that every decorative effect is identical. Adopt optional CSS enhancements early when they degrade naturally; require stable Chromium, Firefox, and Safari support for core interactions. Raise minimum versions only for a concrete reader benefit that cannot degrade cleanly, not on a mechanical schedule.
 - Preserve stable public URLs, readable content, accessibility, media privacy, and correct output across every published format.
@@ -31,6 +31,7 @@
 - Public responses are “评论”; submission entry points are “留言”. Comments live at `content/comments/<post-slug>/<nn>.md`, use continuous two-digit numbering, and do not support images.
 - Atom entries are ordered by effective activity (`lastmod`, otherwise `date`). Keep `<published>` at `date`, entry `<updated>` at effective activity, and feed `<updated>` at the newest emitted activity.
 - HTML pages use trailing slashes; file outputs keep extensions. Internal Markdown links use current root-relative canonical paths or fragments and must resolve; page-relative links are unsupported.
+- Markdown alternates exist for the home, about, and article pages; other pages stay HTML-only. A page's alternate URL is its canonical path with a `.md` suffix (`/index.md`, `/about.md`, `/<post-slug>.md`), and `/<path>/index.md` redirects to it. Shared front matter comes from `layouts/_partials/markdown/front-matter.html`; the home alternate is a generated article index, not an HTML-to-Markdown conversion of the grid.
 - Markdown image sources are relative paths resolved through `params.remote_images.base_url`. Reject absolute URLs, query strings, fragments, traversal, or missing dimensions; publish fetched images using Hugo's canonical media-type suffix.
 - Publish remote images under `/images/` with hashed filenames. Public output must not expose source object paths, article slugs, or source filenames.
 - Keep `image/avif` and `application/octet-stream` trusted in `security.http.mediaTypes`; they are required for controlled AVIF images and remote Open Graph fonts.
