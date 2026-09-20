@@ -72,8 +72,12 @@
   overflow: hidden;
   background: transparent;
 
+  /* Flexoki paper, the site's raised surface, so the page lifts instead of darkening: at 90% the page
+     falls below APCA Lc 15 while the focus ring keeps at least 6.6:1 (Lc 72) over any page pixel. A
+     literal, not var(--color-code-surface): ::backdrop inherits custom properties only from Chrome 122
+     and Safari 17.4, above the declared baseline floor. */
   &::backdrop {
-    background: oklch(20% 0.004 85 / 80%);
+    background: oklch(99% 0.016 95 / 90%);
   }
 
   /* TODO: Replace this fade with approximate source motion using CSS Anchor Positioning or interoperable bidirectional Popover transitions when the browser baseline allows it. */
