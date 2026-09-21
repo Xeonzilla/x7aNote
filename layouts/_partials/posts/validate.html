@@ -46,7 +46,12 @@
 	)
 	-}}
 {{- end -}}
-{{- range index .Params "tags" -}}
+{{- $tags := index .Params "tags" -}}
+{{- /* Hugo reads a scalar taxonomy value as a one-item list; validate the same list so a missing list dash cannot bypass the slug and term page checks. */ -}}
+{{- if and (ne $tags nil) (not (reflect.IsSlice $tags)) -}}
+	{{- $tags = slice $tags -}}
+{{- end -}}
+{{- range $tags -}}
 	{{- $tag := printf "%v" . -}}
 	{{- if ne (len (findRE `^[a-z0-9]+(?:-[a-z0-9]+)*$` $tag)) 1 -}}
 		{{- partial "fail.html" (dict
