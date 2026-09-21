@@ -1,0 +1,7 @@
+{{- /* Plain-text opening paragraph of the rendered content. Quoted material and footnote markers are skipped so that provenance notes, epigraphs, and reference numbers never become a page description. */ -}}
+{{- $content := replaceRE `(?s)<blockquote>.*?</blockquote>|<sup[^>]*>.*?</sup>` "" .Content -}}
+{{- $lede := "" -}}
+{{- with findRE `(?s)<p>.*?</p>` $content 1 -}}
+	{{- $lede = index . 0 | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace -}}
+{{- end -}}
+{{- return $lede -}}

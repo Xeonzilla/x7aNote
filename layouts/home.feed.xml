@@ -15,7 +15,6 @@
 	</author>
 	<rights>{{ printf "%s: %s" site.Params.license.name site.Params.license.url | transform.XMLEscape | safeHTML }}</rights>
 	{{- range $feedPages }}
-		{{- $summary := .Summary | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace }}
 		{{- $entryContent := .Content -}}
 		{{- with partial "cover/context.html" . -}}
 			{{- $entryContent = printf "%s\n%s" (partial "render-image/feed.html" .) $entryContent -}}
@@ -26,7 +25,9 @@
 			<published>{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}</published>
 			<updated>{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}</updated>
 			<link href="{{ .Permalink }}" rel="alternate" type="text/html"/>
-			<summary type="text">{{ $summary | transform.XMLEscape | safeHTML }}</summary>
+			{{- with partial "lede.html" . }}
+				<summary type="text">{{ . | transform.XMLEscape | safeHTML }}</summary>
+			{{- end }}
 			<content type="html" xml:base="{{ .Permalink }}">{{ $entryContent | transform.XMLEscape | safeHTML }}</content>
 		</entry>
 	{{- end }}

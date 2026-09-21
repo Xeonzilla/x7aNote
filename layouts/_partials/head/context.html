@@ -10,14 +10,19 @@
 {{- $siteDescription := site.Params.description -}}
 {{- $description := $siteDescription -}}
 {{- if .IsPage -}}
-	{{- with .Summary -}}
-		{{- $summary := . | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace -}}
-		{{- if $summary -}}
-			{{- $description = $summary | truncate 160 -}}
+	{{- with partial "lede.html" . -}}
+		{{- $description = . -}}
+		{{- if gt (strings.RuneCount .) 80 -}}
+			{{- /* Search snippets and social cards show roughly 80 CJK characters. Prefer ending on a sentence inside that limit; a clause that runs on gets a hard cut. */ -}}
+			{{- $description = truncate 80 "…" . | string -}}
+			{{- with findRE `^.*[。！？][”」』）]*` (substr . 0 80) 1 -}}
+				{{- if ge (strings.RuneCount (index . 0)) 40 -}}
+					{{- $description = index . 0 -}}
+				{{- end -}}
+			{{- end -}}
 		{{- end -}}
 	{{- end -}}
 {{- end -}}
-{{- $description = $description | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace -}}
 {{- return (dict
 	"page" .
 	"siteTitle" $siteTitle
