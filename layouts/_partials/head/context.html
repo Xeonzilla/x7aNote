@@ -13,8 +13,8 @@
 	{{- with partial "lede.html" . -}}
 		{{- $description = . -}}
 		{{- if gt (strings.RuneCount .) 80 -}}
-			{{- /* Search snippets and social cards show roughly 80 CJK characters. Prefer ending on a sentence inside that limit; a clause that runs on gets a hard cut. */ -}}
-			{{- $description = truncate 80 "…" . | string -}}
+			{{- /* Search snippets and social cards show roughly 80 CJK characters. Prefer ending on a sentence inside that limit; a clause that runs on gets a hard cut. truncate HTML-escapes plain strings, so unescape its result; the meta attributes escape once on output. */ -}}
+			{{- $description = truncate 80 "…" . | htmlUnescape -}}
 			{{- with findRE `^.*[。！？][”」』）]*` (substr . 0 80) 1 -}}
 				{{- if ge (strings.RuneCount (index . 0)) 40 -}}
 					{{- $description = index . 0 -}}
