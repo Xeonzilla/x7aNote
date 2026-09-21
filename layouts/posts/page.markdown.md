@@ -8,4 +8,4 @@
 	{{- end -}}
 {{- end -}}
 {{ partial "markdown/front-matter.html" (dict "page" . "coverURL" $coverURL) -}}
-{{- printf "\n%s" $body }}
+{{- printf "\n%s\n" $body -}}
