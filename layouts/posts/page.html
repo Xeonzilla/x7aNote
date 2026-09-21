@@ -4,7 +4,7 @@
 
 {{ define "main" }}
 {{ $homeURL := printf "%s#%s" ("/" | relURL) (.File.ContentBaseName | anchorize) }}
-<nav class="page-nav" id="top" aria-label="文章导航">
+<nav class="page-nav" id="top" aria-label="页首">
 	<a href="{{ $homeURL }}">返回首页</a>
 </nav>
 <article itemscope itemtype="https://schema.org/BlogPosting">
@@ -53,7 +53,7 @@
 	{{ partial "message-form.html" . }}
 </article>
 <footer class="page-nav footer-nav">
-	<nav aria-label="文章页脚导航">
+	<nav aria-label="页脚">
 		<a href="{{ $homeURL }}">返回首页</a>
 		<a href="#top">回到顶部</a>
 	</nav>
