@@ -61,6 +61,7 @@ hugo --environment production --cleanDestinationDir --panicOnWarning --printI18n
 ```
 
 - For release checks, remote-resource validation, or full content sweeps, add `--ignoreCache --buildDrafts --buildFuture --buildExpired`.
+- If the only visible failure is a panic that a template is unused, a template error aborted rendering before that template ran. Rerun without `--panicOnWarning` to read the real error; structured `fail.html` errors do not abort rendering and are never hidden this way.
 - Documentation, agent guidance, deployment metadata, and other non-output changes do not require a Hugo build; use targeted validation instead.
 - A successful build is only the baseline. Inspect representative HTML, XML, Markdown, headers, images, links, or redirects when the changed contract needs it. Use temporary fixtures for relevant positive, negative, and boundary cases, then remove them.
 
