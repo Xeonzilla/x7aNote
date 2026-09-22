@@ -59,6 +59,16 @@
   }
 }
 
+/* Browsers without the Popover API lack the UA `[popover]:not(:popover-open) { display: none }`
+   rule, so this fixed full-viewport overlay would render on load, showing a duplicate image over a
+   page the reader cannot scroll or dismiss. Hide it where the feature is absent; browsers too old
+   for selector() ignore this block whole, keeping today's behavior as the floor. */
+@supports not selector(:popover-open) {
+  .image-zoom-popover {
+    display: none;
+  }
+}
+
 .image-zoom-popover {
   position: fixed;
   inset: 0;
