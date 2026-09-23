@@ -59,16 +59,6 @@
   }
 }
 
-/* Browsers without the Popover API lack the UA `[popover]:not(:popover-open) { display: none }`
-   rule, so this fixed full-viewport overlay would render on load, showing a duplicate image over a
-   page the reader cannot scroll or dismiss. Hide it where the feature is absent; browsers too old
-   for selector() ignore this block whole, keeping today's behavior as the floor. */
-@supports not selector(:popover-open) {
-  .image-zoom-popover {
-    display: none;
-  }
-}
-
 .image-zoom-popover {
   position: fixed;
   inset: 0;
@@ -99,6 +89,17 @@
     & .image-zoom-dismiss > img {
       animation: fade-in 150ms ease-out both;
     }
+  }
+}
+
+/* Browsers without the Popover API lack the UA `[popover]:not(:popover-open) { display: none }`
+   rule, so every image's fixed full-viewport overlay would render on load, covering the text and
+   capturing clicks with no way to dismiss it. Hide it where the feature is absent; browsers too old
+   for selector() ignore this block whole, keeping today's behavior as the floor. Top-level and after
+   the base rule: many of these browsers predate CSS nesting, and a later display would win. */
+@supports not selector(:popover-open) {
+  .image-zoom-popover {
+    display: none;
   }
 }
 
