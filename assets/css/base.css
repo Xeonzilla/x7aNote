@@ -228,9 +228,12 @@ a,
     color 150ms,
     text-decoration-color 150ms;
 
-  &:hover {
-    color: var(--color-link-hover);
-    text-decoration-color: currentColor;
+  /* Only the primary input can hover; on touch this avoids the sticky-hover state. */
+  @media (hover: hover) {
+    &:hover {
+      color: var(--color-link-hover);
+      text-decoration-color: currentColor;
+    }
   }
 }
 
