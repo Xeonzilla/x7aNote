@@ -83,7 +83,7 @@ author_same_as = [
   "https://github.com/Xeonzilla",
 ]
 description = "Yuri is life."
-theme_color = "#2d6c67"
+theme_color = "#195B56"
 message_email = "admin@xeonzilla.top"
 
 [params.remote_images]
