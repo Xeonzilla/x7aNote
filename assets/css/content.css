@@ -208,7 +208,9 @@ textarea.message-form-control {
   inline-size: fit-content;
   margin-block-start: var(--space-flow);
   margin-inline-start: auto;
-  padding: 0;
+  /* Matches the 44px touch target of the sibling form controls. */
+  min-block-size: 44px;
+  padding: 0.25em 0;
   border: 0;
   background: transparent;
   font: inherit;
