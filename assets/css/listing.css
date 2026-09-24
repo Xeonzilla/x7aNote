@@ -99,9 +99,19 @@
     font-size: var(--font-size-reduced);
   }
 
+  /* Extra space above only, so each heading joins the group it introduces; a year directly under
+     its section heading stays attached to it. */
   & > .index-section-heading {
     grid-column: 1 / -1;
-    margin-block: auto;
+    margin-block: 0;
+  }
+
+  & > h2.index-section-heading {
+    margin-block-start: calc(1.5 * var(--page-gutter));
+  }
+
+  & > h3.index-section-heading:not(h2 + h3) {
+    margin-block-start: var(--page-gutter);
   }
 
   @media (min-width: 36em) {
