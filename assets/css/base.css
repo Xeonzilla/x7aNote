@@ -48,6 +48,7 @@ html {
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
   scroll-padding-block-start: 3rlh;
+  -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
 
