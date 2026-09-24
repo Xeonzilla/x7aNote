@@ -20,7 +20,8 @@
   display: grid;
 
   & > .article-card-title {
-    margin-block: 0 var(--space-xs);
+    /* A hairline gap keeps title-to-date within half the card-to-card distance. */
+    margin-block: 0 0.25ch;
     font-size: 1.3rem;
     line-height: var(--line-height-compact);
   }
