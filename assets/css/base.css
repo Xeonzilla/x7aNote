@@ -55,6 +55,7 @@ body {
   /* TODO: Evaluate text-spacing-trim for CJK punctuation when Firefox and Safari support it. */
   text-autospace: normal;
   text-rendering: optimizelegibility;
+  text-wrap: pretty;
 }
 
 .message-form-honeypot {
@@ -125,6 +126,7 @@ h6 {
   /* Display-size text takes tighter leading than the body value it would inherit. */
   line-height: var(--line-height-compact);
   margin-block: calc(1.5 * var(--space-flow)) var(--space-flow);
+  text-wrap: balance;
 }
 
 p,
