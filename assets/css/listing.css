@@ -16,8 +16,13 @@
   }
 }
 
+/* Every card is a direct child of an article grid, so it always lines up with its neighbors. */
 .article-card {
   display: grid;
+  grid-row: span 3;
+  grid-template-rows: subgrid;
+  /* Subgrid inherits the parent row gap unless the card opts out. */
+  row-gap: 0;
 
   & > .article-card-title {
     /* A hairline gap keeps title-to-date within half the card-to-card distance. */
@@ -40,13 +45,6 @@
     margin-block-start: var(--space-xs);
     font-size: var(--font-size-small);
   }
-}
-
-.article-grid > .article-card {
-  grid-row: span 3;
-  grid-template-rows: subgrid;
-  /* Subgrid inherits the parent row gap unless the card opts out. */
-  row-gap: 0;
 }
 
 .compact-list {

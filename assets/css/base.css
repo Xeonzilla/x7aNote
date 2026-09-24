@@ -60,19 +60,6 @@ body {
   text-wrap: pretty;
 }
 
-.message-form-honeypot {
-  position: absolute;
-  inline-size: 1px;
-  block-size: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  border: 0;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
 /* In flow, so the focused link takes a real row on the text column's left edge and overlaps nothing. */
 .skip-link {
   display: block;
@@ -135,15 +122,12 @@ p,
 figure,
 hr,
 blockquote,
+pre,
+.table-scroll,
 ul,
 ol {
   margin-block: var(--space-flow);
   margin-inline: auto;
-}
-
-/* Inline code scales with its surrounding text; block quotes and pre keep root-pinned size. */
-:not(pre) > code {
-  font-size: 0.9em;
 }
 
 blockquote,
@@ -171,8 +155,10 @@ pre {
     "SFMono-Regular", Menlo, Consolas, "Liberation Mono", "Ubuntu Mono", Monaco, monospace;
 }
 
-/* No block padding, so a code-bearing line keeps the body leading. */
+/* Inline code scales with its surrounding text; block quotes and pre keep root-pinned size.
+   No block padding, so a code-bearing line keeps the body leading. */
 :not(pre) > code {
+  font-size: 0.9em;
   padding-inline: 0.2em;
   background-color: var(--color-code-surface);
   /* Long inline code wraps mid-flow; keep the padding on each fragment. */
@@ -182,7 +168,6 @@ pre {
 
 /* Full width, not fit-content: a shrink-wrapped surface would ragged-edge the column. */
 pre {
-  margin-block: var(--space-flow);
   padding: 0.6em;
   overflow-x: auto;
   background-color: var(--color-code-surface);
@@ -193,7 +178,7 @@ pre {
   overflow-x: auto;
 }
 
-figure figcaption {
+figcaption {
   color: var(--color-muted);
   font-size: var(--font-size-small);
   text-align: end;

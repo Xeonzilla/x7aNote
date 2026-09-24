@@ -155,6 +155,19 @@ body:has(.image-zoom-popover:popover-open) {
   font-size: var(--font-size-reduced);
 }
 
+.message-form-honeypot {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 .message-form-grid,
 .message-form-options {
   display: grid;
