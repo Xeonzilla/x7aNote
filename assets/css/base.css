@@ -56,7 +56,6 @@ body {
   margin: 0;
   /* TODO: Evaluate text-spacing-trim for CJK punctuation when Firefox and Safari support it. */
   text-autospace: normal;
-  text-rendering: optimizelegibility;
   text-wrap: pretty;
 }
 
