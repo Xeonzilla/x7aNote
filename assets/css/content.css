@@ -126,7 +126,7 @@ h1:has(+ .article-meta) {
     outline: none;
 
     & > img {
-      outline: 2px solid var(--color-link-hover);
+      outline: 2px solid var(--color-accent-strong);
       outline-offset: 0.25em;
     }
   }
@@ -196,7 +196,7 @@ body:has(.image-zoom-popover:popover-open) {
   font-size: 1rem;
 
   &:focus-visible {
-    border-color: var(--color-link-hover);
+    border-color: var(--color-accent-strong);
   }
 }
 

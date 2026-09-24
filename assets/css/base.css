@@ -17,10 +17,11 @@
 }
 
 html {
+  /* Deeper shade of the link teal for interaction states: hover, focus rings, and native controls. */
+  --color-accent-strong: oklch(35% 0.07 188);
   --color-border: oklch(77% 0.013 96);
   /* Flexoki paper: lighter than the base-50 page, so syntax tokens hold at the 700 step. */
   --color-code-surface: oklch(99% 0.016 95);
-  --color-link-hover: oklch(35% 0.07 188);
   --color-muted: oklch(45% 0.005 92);
   /* One source for the text column, shared by main and the skip link that precedes it. */
   --content-measure: 46em;
@@ -41,7 +42,7 @@ html {
   line-height: 1.6;
   color: oklch(32% 0.004 85);
   background-color: oklch(95% 0.015 98);
-  accent-color: var(--color-link-hover);
+  accent-color: var(--color-accent-strong);
   color-scheme: light;
   overflow-wrap: break-word;
   scroll-behavior: smooth;
@@ -232,14 +233,14 @@ a,
   /* Only the primary input can hover; on touch this avoids the sticky-hover state. */
   @media (hover: hover) {
     &:hover {
-      color: var(--color-link-hover);
+      color: var(--color-accent-strong);
       text-decoration-color: currentColor;
     }
   }
 }
 
 :where(a, button, input, textarea, select, pre, .table-scroll):focus-visible {
-  outline: 2px solid var(--color-link-hover);
+  outline: 2px solid var(--color-accent-strong);
   outline-offset: 0.25em;
 }
 
