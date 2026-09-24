@@ -5,8 +5,13 @@
   font-size: var(--font-size-small);
 }
 
+/* The heading's display-size margin would collapse over the meta's and leave it floating mid-gap. */
+h1:has(+ .article-meta) {
+  margin-block-end: 0;
+}
+
 .article-meta {
-  margin-block: var(--space-flow);
+  margin-block: var(--space-xs) var(--space-flow);
   text-align: end;
 
   & > .article-meta-tags {
