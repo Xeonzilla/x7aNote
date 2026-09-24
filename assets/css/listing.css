@@ -26,6 +26,7 @@
 
   & > .article-card-title {
     margin-block: 0;
+    /* Between body text and the 1.5rem site title: cards rank below the page's own heading. */
     font-size: 1.3rem;
     line-height: var(--line-height-compact);
   }
