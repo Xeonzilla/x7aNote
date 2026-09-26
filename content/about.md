@@ -1,6 +1,7 @@
 ---
 title: "关于"
 date: 2026-06-24
+lastmod: 2026-09-20
 outputs: ["html", "markdown"]
 ---
 
