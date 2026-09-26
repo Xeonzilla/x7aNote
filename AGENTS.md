@@ -23,6 +23,7 @@
 - Reserve `layouts/_markup/`, `layouts/_shortcodes/`, and `layouts/_partials/` for their Hugo-defined roles. Add adjacent output-specific hook or shortcode variants only when correctness requires distinct rendering; otherwise prefer a compatible fallback, especially for bounded outputs where a specialized template may have no current consumer. Do not post-process rendered content. Organize partials by coherent domain or pipeline rather than a generic component hierarchy; keep short one-off markup inline.
 - Put resources that Hugo transforms, fingerprints, or publishes in `assets/`; put byte-for-byte public files in `static/`. Do not duplicate a resource across both ownership models.
 - Keep configuration in the single `hugo.toml` while it remains cohesive. Split configuration only for a real environment or independently maintained domain, not to imitate a reusable theme or a larger project.
+- Never commit `params.remote_images.fetch_header_value`; it is the secret the image origin checks. Locally it lives in the gitignored `config/_default/params.toml` (`[remote_images]` with `fetch_header_value`), which Hugo merges into `hugo.toml`; Vercel sets `HUGOxPARAMSxREMOTE_IMAGESxFETCH_HEADER_VALUE`. Keep only that value there, and copy the file into new worktrees because Git does not. Rotate by updating the Cloudflare rule before the value: Hugo caches failed fetches under the header-derived key.
 
 ## Content And Output Contracts
 

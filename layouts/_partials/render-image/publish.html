@@ -6,7 +6,7 @@
 			"location" $.location
 			"expected" (printf "a fetchable resource with a resolvable media type at %q" $.destination)
 			"got" (printf "%s" .)
-			"fix" "check the remote image URL, Content-Type, and Cloudflare allow-header rule"
+			"fix" "check the remote image URL, Content-Type, and Cloudflare allow-header rule; set remote_images.fetch_header_value in config/_default/params.toml locally or HUGOxPARAMSxREMOTE_IMAGESxFETCH_HEADER_VALUE on Vercel; Hugo caches failed responses, so rebuild with --ignoreCache after fixing the origin"
 		)
 		-}}
 		{{- return false -}}

@@ -86,10 +86,11 @@ description = "Yuri is life."
 theme_color = "#195B56"
 message_email = "admin@xeonzilla.top"
 
+# fetch_header_value is a secret: set it in the gitignored config/_default/params.toml locally and through
+# HUGOxPARAMSxREMOTE_IMAGESxFETCH_HEADER_VALUE on Vercel.
 [params.remote_images]
 base_url = "https://blog-static.xeonzilla.top/img"
 fetch_header_name = "X-X7aNote-Image-Fetch"
-fetch_header_value = "hugo-build"
 
 [params.message_form]
 api_key = "sf_9f36badb23f5e27e0330e4ff"

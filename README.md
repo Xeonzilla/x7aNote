@@ -10,6 +10,13 @@
 
 ## 预览
 
+远程图片源站需要请求头密钥。在本地创建不纳入版本控制的 `config/_default/params.toml`：
+
+```toml
+[remote_images]
+fetch_header_value = "<密钥>"
+```
+
 ```powershell
 hugo server
 ```

@@ -1,3 +1,4 @@
 .vercel/
 public/
+config/_default/params.toml
 .hugo_build.lock
