@@ -165,7 +165,7 @@
     },
     {
       "destination": "/:slug.md",
-      "source": "/:slug/index.md",
+      "source": "/:slug((?!(?:tags|message-sent)/)[^/]+)/index.md",
       "statusCode": 308
     },
     {

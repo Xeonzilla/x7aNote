@@ -16,7 +16,7 @@ This is a static, text-first personal blog. HTML pages are canonical for humans;
 - Use `https://xeonzilla.top/feed.xml` to discover recent articles and their canonical HTML pages.
 - Use `https://xeonzilla.top/sitemap.xml` to discover public HTML pages.
 - Prefer Markdown URLs for page text: the home page at `https://xeonzilla.top/index.md`, the about page at `https://xeonzilla.top/about.md`, and articles at `https://xeonzilla.top/<post-slug>.md`.
-- If starting from an HTML URL, appending `/index.md` to the path is supported as a fallback, for example `https://xeonzilla.top/example-post/index.md`; it redirects to the canonical Markdown alternate. The home page and about page Markdown URLs are the bare paths with the `.md` suffix.
+- If starting from the HTML URL of the about page or an article, appending `/index.md` to the path is supported as a fallback, for example `https://xeonzilla.top/example-post/index.md`; it redirects to the canonical Markdown alternate. Other pages, such as tag pages, have no Markdown alternate. The home page and about page Markdown URLs are the bare paths with the `.md` suffix.
 - HTML page URLs use trailing slashes, such as `/about/` and `/tags/hugo/`. File resources keep extensions, such as `/feed.xml`, `/sitemap.xml`, `/index.md`, and `/<post-slug>.md`.
 - The site uses tags, not categories.
 
