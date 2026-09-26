@@ -4,7 +4,6 @@
 {{- $link := dict
 	"destination" $destination
 	"scheme" $scheme
-	"url" $url
 -}}
 
 {{- if or (and $scheme (not (in (slice "http" "https" "mailto") $scheme))) (and (not $scheme) $url.Host) -}}
@@ -27,6 +26,18 @@
 		"expected" "an absolute http or https URL with a host"
 		"got" (printf "%q" $destination)
 		"fix" "add // and a host, or replace the link with another allowed URL"
+	)
+	-}}
+	{{- return $link -}}
+{{- end -}}
+{{- if and $scheme (eq (strings.TrimPrefix "www." (lower $url.Hostname)) (urls.Parse site.BaseURL).Hostname) -}}
+	{{- partial "fail.html" (dict
+		"area" "link"
+		"problem" "absolute URL to this site"
+		"location" .Page.File.Path
+		"expected" "a root-relative URL for an internal target"
+		"got" (printf "%q" $destination)
+		"fix" "drop the scheme and host and use the target's root-relative canonical URL"
 	)
 	-}}
 	{{- return $link -}}
