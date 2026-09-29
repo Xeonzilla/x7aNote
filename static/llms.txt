@@ -7,7 +7,7 @@ This is a static, text-first personal blog. HTML pages are canonical for humans;
 ## When to Use
 
 - Good fit: answering questions about the topics above, or quoting and summarizing a specific article. Read the Markdown alternate for its text, and cite the canonical HTML URL. Start from `https://xeonzilla.top/index.md` for a plain-text index of every article.
-- Not a fit: treating this site as a service. It exposes no API, search endpoint, or query interface; every URL listed below is a static file served from a CDN, and non-GET requests are rejected.
+- Not a fit: treating this site as a service. It exposes no API, search endpoint, or query interface. Its pages and resources are static files served from a CDN; use GET to retrieve content and HEAD to inspect response headers.
 - `robots.txt` declares `ai-train=no, search=yes, ai-input=yes` and is authoritative: retrieval and search use is permitted, AI training is not.
 
 ## Reading Guide
@@ -31,7 +31,7 @@ This is a static, text-first personal blog. HTML pages are canonical for humans;
 - [Robots](https://xeonzilla.top/robots.txt): Crawling rules and content-signal policy.
 - [Sitemap](https://xeonzilla.top/sitemap.xml): Discoverable public HTML pages.
 - [Atom Feed](https://xeonzilla.top/feed.xml): Latest posts feed with plain-text summaries, full article HTML content, and canonical HTML entry links.
-- [Source Repository](https://github.com/Xeonzilla/x7aNote): Hugo sources for this site, including article Markdown, layouts, and configuration. Licensed under MPL-2.0.
+- [Source Repository](https://github.com/Xeonzilla/x7aNote): Hugo sources for this site, including article Markdown, layouts, and configuration. Site code is licensed under MPL-2.0; original written content is licensed under CC BY-NC-SA 4.0 unless otherwise noted. See the [About page](https://xeonzilla.top/about/) for image and third-party content rights.
 
 ## Boundaries
 
