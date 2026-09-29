@@ -9,6 +9,7 @@
 <article>
 	<h1>页面不存在</h1>
 	<p>这个地址没有对应的页面，可能是旧链接、手误，或一次普通的迷路。</p>
-	<p>你可以返回首页，从文章列表或标签重新寻找内容。</p>
+	<p>你可以从<a href="{{ "/" | relURL }}">首页</a>或<a href="{{ "tags/" | relURL }}">标签页</a>重新寻找内容。</p>
+	<p>对于Agents与自动化客户端，<a href="{{ "llms.txt" | relURL }}">llms.txt站点指南</a>提供文章索引和Markdown版本的访问说明。</p>
 </article>
 {{ end }}
