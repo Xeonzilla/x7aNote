@@ -1,7 +1,7 @@
 ---
 title: "关于"
 date: 2026-06-24
-lastmod: 2026-09-20
+lastmod: 2026-10-13
 outputs: ["html", "markdown"]
 ---
 
@@ -46,7 +46,7 @@ outputs: ["html", "markdown"]
 
 亲爱的朋友们：[DailyMinz](https://zh.dailyminz.org/)，[Shadow3's Blog](https://shadow3aaa.github.io/)，[橙树志 | citydatum](https://citydatum.cn/)，[时歌的博客](https://www.lapis.cafe/)，[VnYzm的博客](https://vnyzm.top/)。
 
-有趣的邻居们：[Re:Linked](https://blog.outv.im/)，[Garden of Outlier](https://chlo.is/)，[記緒漂流](https://ttio.cc/)，[極客死亡計劃](https://www.geedea.pro/)，[Taxodium](https://taxodium.ink/)，[伊布的夢](https://s4r.in/)。
+有趣的邻居们：[Re:Linked](https://blog.outv.im/)，[Garden of Outlier](https://chlo.is/)，[極客死亡計劃](https://www.geedea.pro/)，[Taxodium](https://taxodium.ink/)，[伊布的夢](https://s4r.in/)，[ScaredCube's Site](https://sccube.link/)，[V-ISLAND](https://vonxxghost.xyz/)。
 
 如果你希望添加本站点的链接，欢迎使用下方的站点信息；如果你希望互换友链，欢迎与我联系，我会访问你的站点并判断是否适合作为友链。“有趣的邻居们”部分仅代表我个人最近的偏好与取向，如果你不希望你的站点出现在此处，请联系我并说明来意，我会移除。
 
