@@ -35,7 +35,7 @@
 		-}}
 	{{- end -}}
 {{- end -}}
-{{- if and (index .Params "lastmod") (lt .Lastmod.Unix .Date.Unix) -}}
+{{- if lt .Lastmod.Unix .Date.Unix -}}
 	{{- partial "fail.html" (dict
 		"area" "content"
 		"problem" "lastmod is before date"

@@ -11,7 +11,7 @@
 		<div>
 			<time datetime="{{ $date }}">{{ $date }}</time>发布
 		</div>
-		{{ if and .Params.lastmod (ne $date $lastmod) }}
+		{{ if ne $date $lastmod }}
 			<div>
 				<time datetime="{{ $lastmod }}">{{ $lastmod }}</time>更新
 			</div>

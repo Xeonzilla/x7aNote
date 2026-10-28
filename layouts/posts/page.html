@@ -23,7 +23,7 @@
 		<div>
 			<time datetime="{{ $date }}" itemprop="datePublished">{{ $date }}</time>发布
 		</div>
-		{{ if and .Params.lastmod (ne $date $lastmod) }}
+		{{ if ne $date $lastmod }}
 			<div>
 				<time datetime="{{ $lastmod }}" itemprop="dateModified">{{ $lastmod }}</time>更新
 			</div>
