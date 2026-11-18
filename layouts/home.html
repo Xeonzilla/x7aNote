@@ -32,7 +32,7 @@
 		{{ partial "posts/article-card.html" (dict "page" . "date" .Date "anchorID" (.File.ContentBaseName | anchorize)) }}
 	{{ end }}
 
-	<h2 class="index-section-heading" id="recent">最近更新</h2>
+	<h2 class="index-section-heading" id="updated">最近更新</h2>
 	{{ range $collections.recentlyUpdatedPosts }}
 		{{ partial "posts/article-card.html" (dict "page" . "date" .Lastmod "anchorID" (.File.ContentBaseName | anchorize)) }}
 	{{ end }}
