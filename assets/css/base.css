@@ -218,7 +218,9 @@ table {
 a,
 .message-form-submit {
   color: oklch(43% 0.065 188);
-  text-decoration: underline color-mix(in oklab, currentColor 50%, transparent);
+  /* Safari before 26.2 drops the shorthand when it carries a color. */
+  text-decoration-line: underline;
+  text-decoration-color: color-mix(in oklab, currentColor 50%, transparent);
   transition:
     color 150ms,
     text-decoration-color 150ms;
