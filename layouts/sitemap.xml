@@ -4,19 +4,13 @@
 	{{- /* Sitemap includes permalinked rendered pages unless front matter sets sitemap.disable. */ -}}
 	{{- range site.Pages }}
 		{{- if and .Permalink (not .Sitemap.Disable) }}
-			{{- $lastmod := "" -}}
+			{{- $lastmod := .Lastmod -}}
 			{{- if or .IsHome (eq .Kind "taxonomy") (eq .Kind "term") }}
-				{{- $activityPages := cond (eq .Kind "term") .Pages $posts -}}
-				{{- range $activityPages }}
-					{{- $pageLastmod := .Lastmod -}}
-					{{- if or (not $lastmod) (gt $pageLastmod.Unix $lastmod.Unix) }}
-						{{- $lastmod = $pageLastmod -}}
-					{{- end }}
+				{{- /* A listing is as fresh as the newest post it lists; an empty one carries no lastmod. */ -}}
+				{{- $lastmod = "" -}}
+				{{- range first 1 (cond (eq .Kind "term") .Pages $posts).ByLastmod.Reverse }}
+					{{- $lastmod = .Lastmod -}}
 				{{- end }}
-			{{- else if .IsPage }}
-				{{- $lastmod = .Lastmod -}}
-			{{- else if not .Lastmod.IsZero }}
-				{{- $lastmod = .Lastmod -}}
 			{{- end }}
 			<url>
 				<loc>{{ .Permalink }}</loc>

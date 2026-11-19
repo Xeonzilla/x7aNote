@@ -1,5 +1,5 @@
-{{- $cover := index .Params "cover" -}}
-{{- if and (isset .Params "cover") (eq (printf "%T" $cover) "bool") $cover -}}
+{{- /* A post with cover: true owns cover.avif under its remote image prefix. Returns a stand-in for an image render hook context so the cover reuses the render-image partials, or false when the post has no cover. posts/validate.html rejects non-boolean values. */ -}}
+{{- if eq .Params.cover true -}}
 	{{- return (dict
 		"Destination" "cover.avif"
 		"IsBlock" true

@@ -1,16 +1,8 @@
-{{/* Split a linear collection into compact-list columns; callers provide the outer grid and item renderer. */}}
-{{ $items := .items }}
-{{ $totalItems := len $items }}
-{{ if gt $totalItems 0 }}
-	{{ $columnCount := div (add $totalItems 3) 4 }}
-	{{ range $columnIndex := seq 0 (sub $columnCount 1) }}
-		{{ $start := mul $columnIndex 4 }}
-		{{ $end := add $start 4 }}
-		{{ if gt $end $totalItems }}{{ $end = $totalItems }}{{ end }}
-		<div class="compact-list">
-			{{ range first (sub $end $start) (after $start $items) }}
-				{{ partial $.itemPartial . }}
-			{{ end }}
-		</div>
-	{{ end }}
+{{/* Split a non-empty linear collection into compact-list columns of four; callers provide the outer grid and item renderer. */}}
+{{ range seq 0 4 (sub (len .items) 1) }}
+	<div class="compact-list">
+		{{ range first 4 (after . $.items) }}
+			{{ partial $.itemPartial . }}
+		{{ end }}
+	</div>
 {{ end }}

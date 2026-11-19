@@ -1,6 +1,7 @@
 {{ define "main" }}
 {{ $posts := (site.GetPage "/posts").RegularPages.ByDate.Reverse }}
 {{ $collections := partial "home/collections.html" . }}
+{{/* vercel-build.sh sets this variable, prints the published report in the deploy log, and deletes the file. */}}
 {{ if eq (os.Getenv "HUGO_ARTICLE_WORD_COUNT") "1" }}
 	{{ $wordCount := 0 }}
 	{{ range $posts }}
