@@ -3,7 +3,9 @@
 {{- $messageEmail := site.Params.message_email -}}
 {{- $formSuccessURL := ref . "/message-sent" -}}
 {{- $subject := printf "关于《%s》的留言" .Title -}}
-{{- $body := printf "文章标题：%s\n文章标识：%s\n\n留言方式（公开/私密）：\n昵称：\n邮箱（选填，用于回复私密留言）：\n站点（选填，公开留言时展示）：\n回复编号（选填，用于回应上方评论）：\n\n留言内容：\n" .Title $postSlug -}}
+{{- /* Replying needs an existing comment, so the reply line and field appear only on posts that have comments. */ -}}
+{{- $comments := default (slice) (index (partialCached "comments/index.html" site "comments-index") $postSlug) -}}
+{{- $body := printf "文章标题：%s\n文章标识：%s\n\n留言方式（公开/私密）：\n昵称：\n邮箱（选填，用于回复私密留言）：\n站点（选填，公开留言时展示）：\n%s\n留言内容：\n" .Title $postSlug (cond (gt (len $comments) 0) "回复编号（选填，用于回应上方评论）：\n" "") -}}
 {{- /* querify encodes spaces as "+", but mailto URIs (RFC 6068) treat "+" literally; real plus signs are already "%2B", so only spaces need rewriting. */ -}}
 {{- $mailtoQuery := replace (querify "subject" $subject "body" $body) "+" "%20" -}}
 {{- $mailtoHref := printf "mailto:%s?%s" $messageEmail $mailtoQuery -}}
@@ -11,6 +13,7 @@
 	<h2>留言</h2>
 	<p>读完后如果想补充、回应或私下联系，可以<a href="{{ $mailtoHref | safeURL }}">发一封邮件给我</a>，也可以使用下方表单。公开留言会在阅读后整理为文章下方的评论，无需填写邮箱；如有回复，我会在评论中回复。私密留言不会在站点展示，可以留下邮箱；如有回复，我会通过邮件联系你。</p>
 	<p>邮件链接会尝试打开你的默认邮件应用，并自动带上文章标题和标识；如果没有为mailto链接配置默认程序，也可以直接写信到{{ $messageEmail }}。</p>
+	<p>表单内容会提交到第三方服务<a href="https://www.staticforms.dev/" target="_blank" rel="nofollow noreferrer" aria-label="Static Forms（在新标签页打开）">Static Forms</a>，由它转发到我的邮箱；如果不希望数据经过第三方，请使用邮件。</p>
 	<form class="message-form" method="post" action="https://api.staticforms.dev/submit">
 		<input type="hidden" name="apiKey" value="{{ site.Params.message_form.api_key }}">
 		<input type="hidden" name="redirectTo" value="{{ $formSuccessURL }}">
@@ -40,17 +43,25 @@
 				<label class="message-form-label" for="message-email-{{ $postSlug }}">邮箱（选填，用于回复私密留言）</label>
 				<input class="message-form-control" id="message-email-{{ $postSlug }}" name="email" type="email" autocomplete="email" maxlength="254">
 			</div>
-			<div>
+			{{- /* Without a reply field beside it, the site field takes the full row instead of leaving half of it empty. */}}
+			<div{{ if not $comments }} class="message-form-wide"{{ end }}>
 				<label class="message-form-label" for="message-site-{{ $postSlug }}">站点（选填，公开留言时展示）</label>
-				<input class="message-form-control" id="message-site-{{ $postSlug }}" name="site" type="url" autocomplete="url" maxlength="2048">
+				<input class="message-form-control" id="message-site-{{ $postSlug }}" name="site" type="url" autocomplete="url" maxlength="2048" placeholder="https://example.com/">
 			</div>
-			<div>
-				<label class="message-form-label" for="message-replyto-{{ $postSlug }}">回复编号（选填，用于回应上方评论）</label>
-				<input class="message-form-control" id="message-replyto-{{ $postSlug }}" name="replyto" inputmode="numeric" pattern="[0-9]{1,8}" maxlength="8" autocomplete="off">
-			</div>
+			{{- with $comments }}
+				<div>
+					<label class="message-form-label" for="message-replyto-{{ $postSlug }}">回复评论</label>
+					<select class="message-form-control" id="message-replyto-{{ $postSlug }}" name="replyto" autocomplete="off">
+						<option value="">不回复评论</option>
+						{{- range . }}
+							<option value="{{ .File.BaseFileName }}">#{{ .File.BaseFileName }} {{ .Params.author }}</option>
+						{{- end }}
+					</select>
+				</div>
+			{{- end }}
 			<div class="message-form-wide">
-				<label class="message-form-label" for="message-content-{{ $postSlug }}">留言内容（支持Markdown语法，但不支持预览）</label>
-				<textarea class="message-form-control" id="message-content-{{ $postSlug }}" name="message" dir="auto" rows="6" maxlength="10000" placeholder="字数上限为10000字" required></textarea>
+				<label class="message-form-label" for="message-content-{{ $postSlug }}">留言内容（支持Markdown语法，但不支持预览，上限10000字）</label>
+				<textarea class="message-form-control" id="message-content-{{ $postSlug }}" name="message" dir="auto" rows="6" maxlength="10000" required></textarea>
 			</div>
 		</div>
 		<button class="message-form-submit">发送留言</button>
