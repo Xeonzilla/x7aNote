@@ -1,20 +1,44 @@
 {{- /* fail.html normally runs only on error paths; this no-op satisfies strict unused-template checks. */ -}}
 {{- partial "fail.html" (dict "noop" true) -}}
-{{- $head := partial "head/context.html" . -}}
+{{- $pageTitle := .Title -}}
+{{- if .IsHome -}}
+	{{- $pageTitle = site.Title -}}
+{{- else if eq .Kind "404" -}}
+	{{- $pageTitle = "404 页面不存在" -}}
+{{- end -}}
+{{- $description := site.Params.description -}}
+{{- if .IsPage -}}
+	{{- with partial "lede.html" . -}}
+		{{- $description = . -}}
+		{{- if gt (strings.RuneCount .) 80 -}}
+			{{- /* Search snippets and social cards show roughly 80 CJK characters. Prefer ending on a sentence inside that limit; a clause that runs on gets a hard cut. truncate HTML-escapes plain strings, so unescape its result; the meta attributes escape once on output. */ -}}
+			{{- $description = truncate 80 "…" . | htmlUnescape -}}
+			{{- with findRE `^.*[。！？][”」』）]*` (substr . 0 80) 1 -}}
+				{{- if ge (strings.RuneCount (index . 0)) 40 -}}
+					{{- $description = index . 0 -}}
+				{{- end -}}
+			{{- end -}}
+		{{- end -}}
+	{{- end -}}
+{{- end -}}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light">
-<title>{{ $head.documentTitle }}</title>
-<meta name="description" content="{{ $head.description }}">
-<meta name="author" content="{{ $head.siteAuthor }}">
-<meta name="theme-color" content="{{ $head.themeColor }}">
-<link rel="canonical" href="{{ $head.page.Permalink }}">
-<link rel="license" href="{{ $head.licenseURL }}">
+<title>{{ if not .IsHome }}{{ $pageTitle }} | {{ end }}{{ site.Title }}</title>
+<meta name="description" content="{{ $description }}">
+<meta name="author" content="{{ site.Params.author }}">
+<meta name="theme-color" content="{{ site.Params.theme_color }}">
+<link rel="canonical" href="{{ .Permalink }}">
+<link rel="license" href="{{ site.Params.license.url }}">
 {{ hugo.Generator }}
-{{ partial "head/styles.html" $head.page }}
+{{ partial "head/styles.html" . }}
 <link rel="icon" type="image/png" href="{{ "favicon-96x96.png" | relURL }}" sizes="96x96">
 <link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | relURL }}" sizes="any">
 <link rel="icon" href="{{ "favicon.ico" | relURL }}">
-{{ partial "head/alternates.html" $head }}
-{{ partial "head/social-meta.html" $head }}
-{{ partial "head/structured-data.html" $head }}
+<link rel="alternate" type="application/atom+xml" title="{{ site.Title }}" href="{{ "feed.xml" | absURL }}">
+{{- with .OutputFormats.Get "markdown" }}
+	<link rel="alternate" type="text/markdown" title="{{ $pageTitle }}" href="{{ .Permalink }}">
+{{- end }}
+<link rel="sitemap" href="{{ "sitemap.xml" | relURL }}">
+{{ partial "head/social-meta.html" (dict "page" . "pageTitle" $pageTitle "description" $description) }}
+{{ partial "head/structured-data.html" . }}

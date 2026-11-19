@@ -1,12 +1,5 @@
-{{- /* Build-time Open Graph images are generated PNGs; config owns remote font sources. */ -}}
-{{- $mode := .mode -}}
-{{- $title := .title -}}
-{{- $title = $title | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace -}}
-{{- $description := .description -}}
-{{- $description = $description | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace -}}
-{{- $date := .date -}}
-{{- $date = $date | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace -}}
-{{- $path := .path -}}
+{{- /* Build-time Open Graph images are generated PNGs; config owns remote font sources. Expects mode ("article" or "default"), title, and path; article mode also takes date, and default mode draws the site description under the title. */ -}}
+{{- $title := .title | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace -}}
 
 {{- $baseImage := resources.Get "images/open-graph-base.png" -}}
 {{- if not $baseImage -}}
@@ -32,11 +25,11 @@
 
 {{- $titleLength := len $title -}}
 {{- $maxArticleTitleLength := 75 -}}
-{{- if and (eq $mode "article") (gt $titleLength $maxArticleTitleLength) -}}
+{{- if and (eq .mode "article") (gt $titleLength $maxArticleTitleLength) -}}
 	{{- partial "fail.html" (dict
 		"area" "open graph"
 		"problem" "article title exceeds the supported single-line length"
-		"location" $path
+		"location" .path
 		"expected" (printf "a normalized UTF-8 title length no greater than %d" $maxArticleTitleLength)
 		"got" (printf "%q (length %d)" $title $titleLength)
 		"fix" "shorten the article title or revise and recalibrate the single-line Open Graph layout"
@@ -56,7 +49,7 @@
 {{- end -}}
 
 {{- $titleY := div $baseImage.Height 2 -}}
-{{- if eq $mode "default" -}}
+{{- if eq .mode "default" -}}
 	{{- $fontSize = 82 -}}
 	{{- $titleY = sub (div $baseImage.Height 2) 42 -}}
 {{- end -}}
@@ -73,7 +66,7 @@
 )
 )
 -}}
-{{- if eq $mode "article" -}}
+{{- if eq .mode "article" -}}
 	{{- $filters = $filters | append (images.Text site.Title (dict
 		"alignx" "left"
 		"aligny" "top"
@@ -85,7 +78,7 @@
 		"y" 72
 	)
 	)
-		(images.Text $date (dict
+		(images.Text .date (dict
 			"alignx" "right"
 			"aligny" "bottom"
 			"color" "#6f6e69"
@@ -98,8 +91,8 @@
 		)
 	-}}
 {{- end -}}
-{{- if and (eq $mode "default") $description -}}
-	{{- $filters = $filters | append (images.Text $description (dict
+{{- if eq .mode "default" -}}
+	{{- $filters = $filters | append (images.Text site.Params.description (dict
 		"alignx" "center"
 		"aligny" "center"
 		"color" "#575653"
@@ -114,4 +107,4 @@
 {{- end -}}
 {{- $image := $baseImage | images.Filter $filters -}}
 
-{{- return (resources.Copy (printf "%s.%s.png" (strings.TrimSuffix ".png" $path) (substr ($image.Content | crypto.Hash "sha256") 0 12)) $image) -}}
+{{- return (resources.Copy (printf "%s.%s.png" (strings.TrimSuffix ".png" .path) (substr ($image.Content | crypto.Hash "sha256") 0 12)) $image) -}}
