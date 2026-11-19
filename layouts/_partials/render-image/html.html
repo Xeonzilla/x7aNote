@@ -1,6 +1,72 @@
-{{- with partial "render-image/resolve.html" .hook -}}
-	{{- with partial "render-image/publish.html" . -}}
-		{{- $presentation := partial "render-image/presentation.html" (dict "hook" $.hook "image" . "role" $.role) -}}
-		{{- partial "render-image/markup.html" (dict "hook" $.hook "image" . "presentation" $presentation "role" $.role) -}}
+{{- /* HTML markup for one image. Expects hook (an image render hook context or cover/context.html) and role ("content" or "cover"). Block images become a figure whose button opens a Popover with the full-size image; inline images stay a bare img. */ -}}
+{{- with partial "render-image/resource.html" .hook -}}
+	{{- $altText := strings.TrimSpace $.hook.PlainText -}}
+	{{- if $.hook.IsBlock -}}
+		{{- $ratioClass := "" -}}
+		{{- if $.hook.Page.Store.Get "inImageRow" -}}
+			{{- /* The image-row shortcode sets inImageRow; head/styles.html turns the collected ratios into external CSS to satisfy the strict CSP. */ -}}
+			{{- $ratioClass = printf "image-row-ratio-%dx%d" .Width .Height -}}
+			{{- $.hook.Page.Store.SetInMap "imageRowRatios" $ratioClass (dict
+				"class" $ratioClass
+				"ratio" (printf "%.8f" (div (float .Width) (float .Height)))
+			)
+			-}}
+		{{- end -}}
+		<figure{{ with $ratioClass }} class="image-row-item {{ . }}"{{ end }}>
+			{{- $zoomOrdinal := default 0 ($.hook.Page.Store.Get (printf "imageZoomOrdinal-%s" $.role)) -}}
+			{{- $.hook.Page.Store.Set (printf "imageZoomOrdinal-%s" $.role) (add $zoomOrdinal 1) -}}
+			{{- $zoomID := printf "image-zoom-%s-%d" $.role $zoomOrdinal -}}
+			<button
+				class="image-zoom-trigger"
+				type="button"
+				popovertarget="{{ $zoomID }}"
+				aria-label="{{ cond (eq $.role "cover") "放大封面图" (cond $altText (printf "放大图片：%s" $altText) "放大图片") }}">
+				<img
+					src="{{ .RelPermalink }}"
+					{{- if eq $.role "cover" }}
+						itemprop="image"
+					{{- end }}
+					alt=""
+					width="{{ .Width }}"
+					height="{{ .Height }}"
+					{{- if eq $.role "cover" }}
+						fetchpriority="high"
+					{{- else }}
+						loading="lazy"
+					{{- end }}
+					decoding="async">
+			</button>
+			<div class="image-zoom-popover" id="{{ $zoomID }}" popover>
+				<button
+					class="image-zoom-dismiss"
+					type="button"
+					autofocus
+					popovertarget="{{ $zoomID }}"
+					popovertargetaction="hide"
+					aria-label="关闭放大图片">
+					<img
+						src="{{ .RelPermalink }}"
+						alt=""
+						width="{{ .Width }}"
+						height="{{ .Height }}"
+						loading="lazy"
+						decoding="async">
+				</button>
+			</div>
+			{{- with $.hook.Title }}
+				<figcaption{{ if eq (strings.TrimSpace .) $altText }} aria-hidden="true"{{ end }}>{{ . }}</figcaption>
+			{{- end }}
+		</figure>
+	{{- else -}}
+		<img
+			src="{{ .RelPermalink }}"
+			alt="{{ $.hook.PlainText }}"
+			width="{{ .Width }}"
+			height="{{ .Height }}"
+			loading="lazy"
+			decoding="async"
+			{{- with $.hook.Title }}
+				title="{{ . }}"
+			{{- end }}>
 	{{- end -}}
 {{- end -}}
