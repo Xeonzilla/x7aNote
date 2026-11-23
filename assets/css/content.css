@@ -197,16 +197,24 @@ body:has(.image-zoom-popover:popover-open) {
 }
 
 .message-form-control {
+  --control-padding-block: 0.25em;
+  --control-border-width: 1px;
+
   inline-size: 100%;
   min-block-size: 44px;
-  padding-block: 0.25em;
+  padding-block: var(--control-padding-block);
   padding-inline: 0.5em;
   /* Interactive boundary needs 3:1; the structural lines deliberately do not. */
-  border: 1px solid oklch(62% 0.008 96);
+  border: var(--control-border-width) solid oklch(62% 0.008 96);
   background: transparent;
   color: inherit;
   font: inherit;
   font-size: 1rem;
+
+  &:is(input, select) {
+    /* Native selects calculate their intrinsic height differently from text inputs. */
+    block-size: calc(1lh + 2 * (var(--control-padding-block) + var(--control-border-width)));
+  }
 
   &:focus-visible {
     border-color: var(--color-accent-strong);
