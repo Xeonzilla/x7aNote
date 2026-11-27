@@ -69,7 +69,10 @@ body {
   block-size: 0;
   overflow: hidden;
   margin-inline-start: max(var(--page-gutter), calc((100% - var(--content-measure)) / 2));
-  transition: block-size 150ms ease-out;
+  transition:
+    block-size 150ms ease-out,
+    color 150ms,
+    text-decoration-color 150ms;
 
   &:focus-visible {
     block-size: 1lh;

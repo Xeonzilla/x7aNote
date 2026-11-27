@@ -212,6 +212,7 @@ body:has(.image-zoom-popover:popover-open) {
   color: inherit;
   font: inherit;
   font-size: 1rem;
+  transition: border-color 150ms;
 
   &:is(input, select) {
     /* Native selects calculate their intrinsic height differently from text inputs. */
@@ -220,6 +221,12 @@ body:has(.image-zoom-popover:popover-open) {
 
   &:focus-visible {
     border-color: var(--color-accent-strong);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    & {
+      transition: none;
+    }
   }
 }
 
