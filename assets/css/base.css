@@ -221,18 +221,28 @@ table {
 a,
 .message-form-submit {
   color: var(--color-accent);
-  /* Safari before 26.2 drops the shorthand when it carries a color. */
   text-decoration-line: underline;
-  text-decoration-color: color-mix(in oklab, currentColor 50%, transparent);
+  text-decoration-color: transparent;
   transition:
     color 150ms,
     text-decoration-color 150ms;
+
+  &:focus-visible {
+    text-decoration-color: currentColor;
+  }
 
   /* Only the primary input can hover; on touch this avoids the sticky-hover state. */
   @media (hover: hover) {
     &:hover {
       color: var(--color-accent-strong);
       text-decoration-color: currentColor;
+    }
+  }
+
+  @media (forced-colors: active) {
+    & {
+      text-decoration-color: currentColor;
+      transition: none;
     }
   }
 }
