@@ -17,12 +17,15 @@
 }
 
 html {
-  /* Deeper shade of the link teal for interaction states: hover, focus rings, and native controls. */
-  --color-accent-strong: oklch(35% 0.07 188);
-  --color-border: oklch(77% 0.013 96);
-  /* Flexoki paper: lighter than the base-50 page, so syntax tokens hold at the 700 step. */
-  --color-code-surface: oklch(99% 0.016 95);
-  --color-muted: oklch(45% 0.005 92);
+  /* Rounded Flexoki cyan-700, cyan-850, paper, black, base-300, and base-700 in OKLCH. */
+  --color-accent: oklch(48.3% 0.075 187.6);
+  --color-accent-strong: oklch(33.7% 0.047 188.8);
+  --color-paper: oklch(99% 0.016 95.2);
+  --color-ink: oklch(17% 0.002 17.3);
+  --color-border: oklch(77.2% 0.013 96.5);
+  --color-muted: oklch(45.3% 0.005 91.5);
+  /* A shade between Flexoki paper and base-50 keeps 700-step syntax colors at APCA Lc 75. */
+  --color-code-surface: oklch(97.5% 0.015 94.2);
   /* One source for the text column, shared by main and the skip link that precedes it. */
   --content-measure: 46em;
   --font-size-reduced: 0.9rem;
@@ -40,8 +43,8 @@ html {
     "Source Han Sans CN", source-han-sans-sc, system-ui, ui-sans-serif, sans-serif;
   font-size: clamp(1.25rem, 0.5vw + 1rem, 1.5rem);
   line-height: 1.6;
-  color: oklch(32% 0.004 85);
-  background-color: oklch(95% 0.015 98);
+  color: var(--color-ink);
+  background-color: var(--color-paper);
   accent-color: var(--color-accent-strong);
   color-scheme: light;
   overflow-wrap: break-word;
@@ -217,7 +220,7 @@ table {
 
 a,
 .message-form-submit {
-  color: oklch(43% 0.065 188);
+  color: var(--color-accent);
   /* Safari before 26.2 drops the shorthand when it carries a color. */
   text-decoration-line: underline;
   text-decoration-color: color-mix(in oklab, currentColor 50%, transparent);

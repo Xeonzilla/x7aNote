@@ -1,61 +1,61 @@
-/* Flexoki 700 on the paper code surface, dropping to 800 where a role must separate from its own hue. */
+/* Rounded Flexoki 700 accents in OKLCH, with 800 variants and 50-step diff backgrounds. */
 .chroma {
   text-size-adjust: none;
 
   & .err {
-    color: #fffcf0;
-    background-color: #942822;
+    color: var(--color-paper);
+    background-color: oklch(44.7% 0.145 27.8);
   }
 
   & :is(.k, .kc, .kd, .kn, .kp, .kr, .kt) {
-    color: #942822;
+    color: oklch(44.7% 0.145 27.8);
   }
 
   & :is(.na, .nv, .vc, .vg, .vi, .vm) {
-    color: #9d4310;
+    color: oklch(49.5% 0.133 44.8);
   }
 
   & .nc {
-    color: #1c6c66;
+    color: var(--color-accent);
   }
 
   & :is(.no, .nd, .nt, .m, .mb, .mf, .mh, .mi, .il, .mo, .o, .ow, .or) {
-    color: #1a4f8c;
+    color: oklch(42.7% 0.115 254.6);
   }
 
   & :is(.ni, .nb, .nf, .fm) {
-    color: #4f3685;
+    color: oklch(40.4% 0.127 294.6);
   }
 
   & .nl {
-    color: #6c201c;
+    color: oklch(36.3% 0.109 27);
     font-weight: bold;
   }
 
   & :is(.nn, .nx, .p, .ge, .go) {
-    color: #343331;
+    color: var(--color-ink);
   }
 
   & :is(.bp, .c, .ch, .cm, .c1, .cs, .cp, .cpf) {
-    color: #575653;
+    color: var(--color-muted);
   }
 
   & :is(.s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1) {
-    color: #536907;
+    color: oklch(48.5% 0.116 123);
   }
 
   & .ss {
-    color: #163b66;
+    color: oklch(35% 0.086 254.2);
   }
 
   & .gd {
-    color: #942822;
-    background-color: #ffe1d5;
+    color: oklch(44.7% 0.145 27.8);
+    background-color: oklch(93.1% 0.037 43.1);
   }
 
   & .gi {
-    color: #536907;
-    background-color: #edeecf;
+    color: oklch(48.5% 0.116 123);
+    background-color: oklch(94% 0.041 108.7);
   }
 
   & .gl {

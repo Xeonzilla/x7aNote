@@ -58,7 +58,6 @@
 
 .tag-count {
   margin-inline-start: var(--space-xs);
-  color: var(--color-muted);
 }
 
 .article-card > .article-card-date,

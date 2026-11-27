@@ -83,7 +83,7 @@ author_same_as = [
   "https://github.com/Xeonzilla",
 ]
 description = "Yuri is life."
-theme_color = "#195B56"
+theme_color = "#1C6C66"
 message_email = "admin@xeonzilla.top"
 
 # fetch_header_value is a secret: set it in the gitignored config/_default/params.toml locally and through

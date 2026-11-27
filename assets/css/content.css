@@ -26,6 +26,10 @@ h1:has(+ .article-meta) {
   white-space: nowrap;
 }
 
+.comment-heading > a + .comment-date {
+  color: inherit;
+}
+
 .article-meta time,
 .comment-number,
 .comment-date,
@@ -77,12 +81,10 @@ h1:has(+ .article-meta) {
   overflow: hidden;
   background: transparent;
 
-  /* Flexoki paper, the site's raised surface, so the page lifts instead of darkening: at 90% the page
-     falls below APCA Lc 15 while the focus ring keeps at least 6.6:1 (Lc 72) over any page pixel. A
-     literal, not var(--color-code-surface): ::backdrop inherits custom properties only from Chrome 122
-     and Safari 17.4, above the declared baseline floor. */
+  /* Flexoki paper at 90% dims the underlying content. The literal supports browsers where
+     ::backdrop cannot inherit custom properties. */
   &::backdrop {
-    background: oklch(99% 0.016 95 / 90%);
+    background: oklch(99% 0.016 95.2 / 90%);
   }
 
   /* TODO: Replace this fade with approximate source motion using CSS Anchor Positioning or interoperable bidirectional Popover transitions when the browser baseline allows it. */
@@ -204,8 +206,8 @@ body:has(.image-zoom-popover:popover-open) {
   min-block-size: 44px;
   padding-block: var(--control-padding-block);
   padding-inline: 0.5em;
-  /* Interactive boundary needs 3:1; the structural lines deliberately do not. */
-  border: var(--control-border-width) solid oklch(62% 0.008 96);
+  /* Flexoki base-500 gives the interactive boundary at least 3:1 against paper. */
+  border: var(--control-border-width) solid oklch(61.7% 0.008 88.7);
   background: transparent;
   color: inherit;
   font: inherit;
